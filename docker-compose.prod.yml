@@ -1,0 +1,13 @@
+services:
+  web:
+    image: mx/website
+    build:
+      context: ./website
+      dockerfile: Dockerfile
+      target: prod
+    env_file:
+      - .env
+    volumes:
+      - ./website/app:/app
+    ports:
+      - "7001:5173"

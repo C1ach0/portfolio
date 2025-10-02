@@ -1,0 +1,5 @@
+# robots.txt file for Maxence Bessi Portfolio
+
+User-agent: *
+Disallow: /admin/
+Disallow: /assets/

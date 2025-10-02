@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Ancizar+Sans:ital,wght@0,100..1000;1,100..1000&display=swap');
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+
+:root {
+  --ui-primary: #f43f5e;
+  --ui-secondary: var(--ui-color-secondary-500);
+  --ui-success: var(--ui-color-success-500);
+  --ui-info: var(--ui-color-info-500);
+  --ui-warning: var(--ui-color-warning-500);
+  --ui-error: var(--ui-color-error-500);
+}
+
+* {
+    scroll-behavior: smooth;
+    /* @apply font-ancizar; */
+}
