@@ -40,3 +40,4 @@ jobs:
                 "appId": "k0gcckks8ggooso4kkcgo0o0",
                 "image": "${{ secrets.REGISTRY }}/portfolio:latest"
               }'
+              
