@@ -17,11 +17,8 @@ jobs:
 
       # 2️⃣ Login au registre Docker
       - name: Log in to private Docker registry
-        uses: docker/login-action@v2
-        with:
-          username: ${{ secrets.DOCKER_REGISTRY_USER }}
-          password: ${{ secrets.DOCKER_REGISTRY_PASSWORD }}
-          registry: ${{ secrets.REGISTRY }}
+      run: |
+        echo "${{ secrets.DOCKER_REGISTRY_PASSWORD }}" | docker login ${{ secrets.REGISTRY }} -u ${{ secrets.DOCKER_REGISTRY_USER }} --password-stdin
 
       # 3️⃣ Build l'image Docker
       - name: Build Docker image
