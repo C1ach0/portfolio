@@ -6,21 +6,37 @@ on:
       - main
 
 jobs:
-  build-and-push:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      # 1️⃣ Récupérer le code
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Log in to Docker registry
+      # 2️⃣ Login au registre Docker
+      - name: Log in to private Docker registry
         uses: docker/login-action@v2
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+          username: ${{ secrets.DOCKER_REGISTRY_USER }}
+          password: ${{ secrets.DOCKER_REGISTRY_PASSWORD }}
+          registry: ${{ secrets.REGISTRY }}
 
+      # 3️⃣ Build l'image Docker
       - name: Build Docker image
-        run: docker build -t ton-registre/mon-site:latest .
+        run: docker build -t ${{ secrets.REGISTRY }}/portfolio:latest .
 
+      # 4️⃣ Push l'image vers le registre
       - name: Push Docker image
-        run: docker push ton-registre/mon-site:latest
+        run: docker push ${{ secrets.REGISTRY }}/portfolio:latest
+
+      # 5️⃣ Trigger Coolify deployment
+      - name: Trigger Coolify Auto Deploy
+        run: |
+          curl -X POST "${{ secrets.COOLIFY_URL }}/api/deployments" \
+          -H "Authorization: Bearer ${{ secrets.COOLIFY_API_TOKEN }}" \
+          -H "Content-Type: application/json" \
+          -d '{
+                "appId": "k0gcckks8ggooso4kkcgo0o0",
+                "image": "${{ secrets.REGISTRY }}/portfolio:latest"
+              }'
