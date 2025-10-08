@@ -60,5 +60,5 @@ jobs:
 
       - name: Trigger Coolify Auto Deploy
         run: |
-          curl -X POST "${{ secrets.COOLIFY_URL }}/api/services/k0gcckks8ggooso4kkcgo0o0/restart?latest=true" \
+          curl "${{ secrets.COOLIFY_URL }}/api/v1/services/k0gcckks8ggooso4kkcgo0o0/restart?latest=true" \
             -H "Authorization: Bearer ${{ secrets.COOLIFY_API_TOKEN }}"
