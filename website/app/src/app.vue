@@ -6,8 +6,6 @@
 </template>
 
 <script setup lang="ts">
-const appConfig = useAppConfig();
-updateAppConfig(appConfig);
 defineOgImageComponent("Base", {
   title: "Maxence Bessi - Développeur Full Stack",
   description: "Je suis Maxence Bessi, un développeur passionné. J'adore travailler avec toutes sortes de technologies et développer des applications.",

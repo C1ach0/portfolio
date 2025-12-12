@@ -3,5 +3,5 @@ export default defineAppConfig({
         colors: {
             primary: "rose"
         }
-    }
+    },
 })

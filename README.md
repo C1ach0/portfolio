@@ -13,8 +13,12 @@
 git clone https://github.com/C1ach0/portfolio.git
 cd portoflio
 ```
-2. Run the compose
+2. Run the project
 ```bash
+npm run dev
+
+# OR
+
 docker compose -f docker-compose.dev.yml up
 ```
 

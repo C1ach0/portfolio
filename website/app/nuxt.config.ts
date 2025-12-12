@@ -32,6 +32,9 @@ export default defineNuxtConfig({
     "./assets/main.css"
   ],
   modules: ["@nuxt/ui", "nuxt-og-image"],
+  ui: {
+    colorMode: true,
+  }
   // ogImage: {
   //   defaults: {
   //     cacheMaxAgeSeconds: 60 * 60 * 24 * 7 // 7 days
