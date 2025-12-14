@@ -1,0 +1,103 @@
+import introJs from "intro.js";
+import "intro.js/introjs.css";
+
+export const useIntro = () => {
+    const $intro = introJs();
+
+    $intro.setOptions({
+        showBullets: false,
+        showButtons: false,
+        exitOnOverlayClick: false,
+        exitOnEsc: false,
+        disableInteraction: true,
+        overlayOpacity: 0.65,
+    })
+
+    const route = useRoute()
+    const router = useRouter();
+
+    let isPaused = false
+    let timer: ReturnType<typeof setTimeout> | null = null
+
+    const autoNext = (delay = 3500) => {
+        if (isPaused) return
+
+        timer = setTimeout(() => {
+            $intro.nextStep()
+            autoNext(delay)
+        }, delay)
+    }
+
+    const clearTimer = () => {
+        if (timer) {
+            clearTimeout(timer)
+            timer = null
+        }
+    }
+
+    const pause = () => {
+        isPaused = true
+        clearTimer()
+    }
+
+    const resume = () => {
+        if (!isPaused) return
+        isPaused = false
+        autoNext()
+    }
+
+    const stop = () => {
+        clearTimer()
+        isPaused = false
+        $intro.exit()
+    }
+
+    const startIfEnabled = (steps: any[], nextDelay?: number, nextPath?: string) => {
+        if (route.query.intro === 'true') {
+            nextTick(() => {
+                $intro.setOptions({ steps, showBullets: false, showButtons: false, exitOnOverlayClick: false, exitOnEsc: false, disableInteraction: true })
+
+                $intro.start()
+                autoNext(nextDelay)
+
+                if (nextPath) {
+                    $intro.onComplete(() => {
+                        router.push({ path: nextPath, query: { ...route.query, intro: 'true' } })
+                    })
+                }
+            })
+        }
+    }
+
+    const onKeydown = (e: KeyboardEvent) => {
+        if (route.query.intro !== 'true') return
+
+        switch (e.key.toLowerCase()) {
+            case 'p':
+                pause()
+                break
+            case 'r':
+                resume()
+                break
+            case 's':
+                stop()
+                break
+        }
+    }
+
+    onMounted(() => {
+        window.addEventListener('keydown', onKeydown)
+    })
+
+    onBeforeUnmount(() => {
+        window.removeEventListener('keydown', onKeydown)
+    })
+
+    return {
+        intro: $intro,
+        startIfEnabled,
+        pause,
+        resume,
+        stop
+    }
+}

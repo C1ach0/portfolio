@@ -6,24 +6,23 @@
                 <div class="grid md:grid-cols-2 gap-12 items-center">
                     <div ref="aboutContent" class="space-y-6">
                         <div class="overflow-hidden">
-                            <h2 class="text-4xl md:text-5xl font-bold mb-6 text-rose-400 transform translate-y-full opacity-0"
+                            <h2 class="text-4xl md:text-5xl font-bold mb-6 text-rose-500 dark:text-rose-400 transform translate-y-full opacity-0"
                                 ref="aboutTitle">
                                 A Propos de Moi
                             </h2>
                         </div>
                         <div class="space-y-3">
-                            <p class="text-lg text-gray-300 leading-relaxed transform translate-y-8 opacity-0"
-                                ref="aboutText1">
-                                Je suis un développeur passionné par la création d'applications modernes en tous genres,
-                                j'aime beaucoup travailler sur des projets variés et découvrir de nouvelles
-                                technologies.
+                            <p class="text-lg text-gray-800 dark:text-gray-300 leading-relaxed transform translate-y-8 opacity-0"
+                            ref="aboutText1">
+                                Développeur spécialisé dans la création d'applications modernes et variées,
+                                j'interviens sur des projets aux problématiques diverses en m'appuyant sur des technologies actuelles
+                                et des pratiques éprouvées.
                             </p>
-                            <p class="text-lg text-gray-300 leading-relaxed transform translate-y-8 opacity-0"
-                                ref="aboutText2">
-                                Suite à mon auto-apprentissage, les écoles que j'ai fréquentées et les projets réalisés,
-                                j'ai acquis une solide expérience dans le développement. Aujourd'hui je suis capable de
-                                concevoir des applications performantes et innovantes, en mettant l'accent sur la
-                                qualité et l'expérience utilisateur.
+                            <p class="text-lg text-gray-800 dark:text-gray-300 leading-relaxed transform translate-y-8 opacity-0"
+                            ref="aboutText2">
+                                Grâce à un parcours mêlant auto-apprentissage, formation et projets concrets,
+                                j'ai développé une expertise solide me permettant de concevoir des applications performantes,
+                                innovantes et centrées sur la qualité ainsi que l'expérience utilisateur.
                             </p>
                         </div>
 
@@ -31,26 +30,26 @@
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <CardAbout ref="skill1" class="skill-card">
                                 <h4
-                                    class="font-semibold text-rose-400 mb-2 group-hover:text-rose-300 transition-colors">
+                                    class="font-semibold text-rose-500 dark:text-rose-400 mb-2 group-hover:text-rose-300 transition-colors">
                                     Frontend</h4>
-                                <p class="text-gray-300 text-sm">Vue/Nuxt, Typescript, TailwindCss</p>
+                                <p class="text-gray-800 dark:text-gray-300 text-sm">Vue/Nuxt, Typescript, TailwindCss</p>
                             </CardAbout>
                             <CardAbout ref="skill2" class="skill-card">
                                 <h4
-                                    class="font-semibold text-rose-400 mb-2 group-hover:text-rose-300 transition-colors">
+                                    class="font-semibold text-rose-500 dark:text-rose-400 mb-2 group-hover:text-rose-300 transition-colors">
                                     Backend</h4>
-                                <p class="text-gray-300 text-sm">Node.js, Java, Spring, Docker</p>
+                                <p class="text-gray-800 dark:text-gray-300 text-sm">Node.js, Java, Spring, Docker</p>
                             </CardAbout>
                         </div>
                         <div class="flex space-x-8 mt-8">
                             <div class="metric-item transform translate-y-8 opacity-0" ref="metric1">
-                                <div class="text-2xl font-bold text-rose-400">{{ (new Date()).getFullYear() - (new
+                                <div class="text-2xl font-bold text-rose-500 dark:text-rose-400">{{ (new Date()).getFullYear() - (new
                                     Date(about.devYearsStart)).getFullYear() }}+</div>
-                                <div class="text-sm text-gray-400">Ans d'apprentissage</div>
+                                <div class="text-sm text-gray-500 dark:text-gray-400">Ans d'apprentissage</div>
                             </div>
                             <div class="metric-item transform translate-y-8 opacity-0" ref="metric2">
-                                <div class="text-2xl font-bold text-rose-400">{{ projects.length }}+</div>
-                                <div class="text-sm text-gray-400">Projets réalisés</div>
+                                <div class="text-2xl font-bold text-rose-500 dark:text-rose-400">{{ projects.length }}+</div>
+                                <div class="text-sm text-gray-500 dark:text-gray-400">Projets réalisés</div>
                             </div>
                         </div>
                     </div>
@@ -96,7 +95,7 @@
             </div>
         </section>
         <section id="skills" class="py-10 flex flex-col items-center justify-center mx-2">
-            <div class="max-w-screen-sm mx-auto flex flex-wrap gap-3 items-center justify-center">
+            <div ref="skillContent" class="max-w-screen-sm mx-auto flex flex-wrap gap-3 items-center justify-center">
                 <UIcon v-for="skill in about.skills" :key="skill" :name="`skill-icons:${skill}`" class="h-10 w-10"/>
             </div>
             <p class="text-sm text-mutted text-center">...</p>
@@ -104,8 +103,8 @@
         <section id="career" class="py-40 relative overflow-hidden flex items-center justify-center">
             <div class="container mx-auto px-6 relative z-10 flex flex-col items-center">
                 <div class="mb-12 text-center">
-                    <h2 ref="careerTitle" class="text-4xl md:text-5xl font-bold text-rose-400 mb-4">Mon Parcours</h2>
-                    <p class="text-lg text-gray-300 max-w-2xl mx-auto">
+                    <h2 ref="careerTitle" class="text-4xl md:text-5xl font-bold text-rose-500 dark:text-rose-400 mb-4">Mon Parcours</h2>
+                    <p class="text-lg text-gray-800 dark:text-gray-300 max-w-2xl mx-auto">
                         Découvrez mon évolution professionnelle.
                     </p>
                 </div>
@@ -131,7 +130,7 @@
                                 </a>
                                 <span v-else>{{ item.from }}</span>
                             </div>
-                            <CardAbout class="my-2 text-start">
+                            <CardAbout class="my-2 text-start text-gray-800 dark:text-gray-300">
                                 {{ item.description }}
                             </CardAbout>
                         </template>
@@ -142,10 +141,10 @@
             <div class="absolute bottom-1/4 left-[15%] w-44 h-44 bg-purple-500 rounded-full blur-3xl"></div>
         </section>
         <section id="school" class="py-40 relative overflow-hidden flex items-center justify-center">
-            <div class="container mx-auto px-6 relative z-10 flex flex-col items-center">
+            <div ref="schoolSection" class="container mx-auto px-6 relative z-10 flex flex-col items-center">
                 <div class="mb-12 text-center">
-                    <h2 ref="schoolTitle" class="text-4xl md:text-5xl font-bold text-rose-400 mb-4">Mon Education</h2>
-                    <p class="text-lg text-gray-300 max-w-2xl mx-auto">
+                    <h2 ref="schoolTitle" class="text-4xl md:text-5xl font-bold text-rose-500 dark:text-rose-400 mb-4">Mon Education</h2>
+                    <p class="text-lg text-gray-800 dark:text-gray-300 max-w-2xl mx-auto">
                         Découvrez mon parcours éducatif et les écoles que j'ai fréquentées.
                     </p>
                 </div>
@@ -171,7 +170,7 @@
                                 </a>
                                 <span v-else>{{ item.from }}</span>
                             </div>
-                            <CardAbout class="my-2 text-start">
+                            <CardAbout class="my-2 text-start text-gray-800 dark:text-gray-300">
                                 {{ item.description }}
                             </CardAbout>
                         </template>
@@ -203,10 +202,15 @@ defineMeta({
     }
 })
 
+import { useIntro } from '~/services/useIntro.client';
+const { intro, startIfEnabled } = useIntro();
+
 // Template refs
 const aboutContent = useTemplateRef("aboutContent");
+const skillContent = useTemplateRef("skillContent");
 const careerTitle = useTemplateRef("careerTitle");
 const schoolTitle = useTemplateRef("schoolTitle");
+const schoolSection = useTemplateRef("schoolSection");  
 
 const careers = ref<ICS[]>([]);
 const schools = ref<ICS[]>([]);
@@ -280,6 +284,25 @@ onMounted(() => {
             }
         }
     );
+
+    // Gestion intro animation
+    startIfEnabled([
+        {
+            element: aboutContent.value as HTMLElement,
+            intro: "Apprenez-en plus sur moi, mon parcours et mes compétences en développement.",
+            title: "À Propos de Moi"
+        },
+        {
+            element: skillContent.value as HTMLElement,
+            intro: "Découvrez mes compétences techniques et les technologies que je maîtrise.",
+            title: "Mes compétences"
+        },
+        {
+            element: schoolSection.value as HTMLElement,
+            intro: "Explorez mon parcours éducatif et les institutions qui ont façonné mes connaissances.",
+            title: "Mon éducation"
+        }
+    ], Number(useRoute().query.duration) || 10_000, "/projets");
 });
 
 </script>

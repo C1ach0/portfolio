@@ -9,8 +9,6 @@ services:
       args:
         NODE_VERSION: 18.7
     user: ${USER_ID}:${GROUP_ID}
-    env_file:
-      - ./.env
     volumes:
       - ./website/app:/app
     ports:

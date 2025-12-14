@@ -2,49 +2,48 @@
     <NuxtLayout>
         <section id="about"
             class="min-h-screen flex flex-col items-center py-20 justify-center relative overflow-hidden">
-            <div class="container mx-auto px-6 relative z-10">
+            <div ref="projectHero" class="container mx-auto px-6 relative z-10">
                 <div class="grid md:grid-cols-2 gap-12 items-center">
-                    <div ref="aboutContent" class="space-y-6">
+                    <div ref="projectContent" class="space-y-6">
                         <div class="overflow-hidden">
-                            <h2 class="text-4xl md:text-5xl font-bold mb-6 text-rose-400 transform translate-y-full opacity-0"
+                            <h2 class="text-4xl md:text-5xl font-bold mb-6 text-rose-500 dark:text-rose-400 transform translate-y-full opacity-0"
                                 ref="aboutTitle">
                                 Mes Projets
                             </h2>
                         </div>
                         <div class="space-y-3">
-                            <p class="text-lg text-gray-300 leading-relaxed transform translate-y-8 opacity-0"
-                                ref="aboutText1">
-                                Découvrez les projets que j'ai réalisés au cours de mon parcours. Chacun d'eux m'a
-                                permis de relever de nouveaux défis, d'apprendre et de perfectionner mes compétences en
-                                développement.
+                            <p class="text-lg text-gray-800 dark:text-gray-300 leading-relaxed transform translate-y-8 opacity-0"
+                            ref="aboutText1">
+                                Découvrez une sélection de projets réalisés tout au long de mon parcours,
+                                illustrant ma capacité à répondre à des problématiques variées et à relever des défis techniques concrets.
                             </p>
-                            <p class="text-lg text-gray-300 leading-relaxed transform translate-y-8 opacity-0"
-                                ref="aboutText2">
-                                Que ce soit des applications web, des outils de productivité ou des projets open source,
-                                chaque réalisation reflète ma passion pour le développement et mon engagement envers
-                                l'innovation.
+                            <p class="text-lg text-gray-800 dark:text-gray-300 leading-relaxed transform translate-y-8 opacity-0"
+                            ref="aboutText2">
+                                Applications web, outils métiers ou contributions open source,
+                                chaque projet met en avant des solutions pensées pour la performance,
+                                la maintenabilité et l'innovation.
                             </p>
                         </div>
                         <!-- Animated Skills Grid -->
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <CardAbout ref="skill1" class="skill-card">
                                 <h4
-                                    class="font-semibold text-rose-400 mb-2 group-hover:text-rose-300 transition-colors">
+                                    class="font-semibold text-rose-500 dark:text-rose-400 mb-2 group-hover:text-rose-500 dark:group-hover:text-rose-300 transition-colors">
                                     Projets</h4>
-                                <p class="text-gray-300 text-sm">{{ projects.length }} réalisations</p>
+                                <p class="text-gray-800 dark:text-gray-300 text-sm">{{ projects.length }} réalisations</p>
                             </CardAbout>
                             <CardAbout v-if="about.links.github" ref="skill1" class="skill-card">
                                 <h4
-                                    class="font-semibold text-rose-400 mb-1 group-hover:text-rose-300 transition-colors">
+                                    class="font-semibold text-rose-500 dark:text-rose-400 mb-1 group-hover:text-rose-500 dark:group-hover:text-rose-300 transition-colors">
                                     GitHub</h4>
                                 <a :href="about.links.github" target="_blank"
-                                    class="text-sm text-rose-400 hover:underline">
+                                    class="text-sm text-rose-500 dark:text-rose-400 hover:underline">
                                     Aller sur GitHub &rarr;
                                 </a>
                             </CardAbout>
                         </div>
                     </div>
-                    <div ref="aboutImage" class="relative group scale-90 lg:scale-100">
+                    <div ref="projectImage" class="relative group scale-90 lg:scale-100">
                         <div
                             class="relative w-full h-96 transform rotate-3 group-hover:rotate-6 transition-transform duration-700">
                             <div
@@ -87,27 +86,30 @@
         </section>
         <section class="py-20 px-6 max-w-screen-2xl mx-auto">
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                <div v-for="(project, index) in sortedProjects" :key="index" class="rounded-2xl overflow-hidden bg-gradient-to-br from-gray-800/70 to-gray-900/60 border border-gray-700 hover:border-rose-500/50 shadow-md hover:shadow-rose-500/10 transition-all duration-300 group relative
-         flex flex-col justify-between">
+                <div v-for="(project, index) in sortedProjects" :key="index" :id="`p_${project.slug}`" class="rounded-2xl overflow-hidden bg-gradient-to-br from-gray-100/70 to-gray-200/60 dark:from-gray-800/70 dark:to-gray-900/60 border border-gray-100 dark:border-gray-700 hover:border-rose-500/50 shadow-md hover:shadow-rose-500/10 transition-all duration-300 group relative flex flex-col justify-between">
                     <NuxtLink :to="`/projets/${project.slug}`" class="absolute inset-0 z-10"
                         aria-label="Aller au projet" />
                     <div class="p-5 relative z-20 flex flex-col flex-1">
-                        <h3
-                            class="text-xl font-bold text-rose-400 group-hover:text-rose-300 transition-colors duration-300">
-                            {{ project.name }}
-                        </h3>
-                        <p class="text-gray-300 text-sm mt-2 flex-1">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3
+                                class="text-xl font-bold text-rose-500 dark:text-rose-400 group-hover:text-rose-500 dark:group-hover:text-rose-300 transition-colors duration-300">
+                                {{ project.name }}
+                            </h3>
+                            <h2 class="text-sm text-gray-500 dark:text-gray-300">{{ from(project.devFrom) }}</h2>
+                            
+                        </div>
+                        <p class="text-gray-800 dark:text-gray-300 text-sm mt-2 flex-1">
                             {{ project.description }}
                         </p>
                         <div class="flex flex-wrap gap-2 mt-3">
                             <span v-for="tag in project.techs" :key="tag"
-                                class="bg-rose-500/20 text-rose-300 px-3 py-1 rounded-full text-xs font-medium">
+                                class="bg-rose-500/20 text-rose-500 dark:text-rose-300 px-3 py-1 rounded-full text-xs font-medium">
                                 {{ tag }}
                             </span>
                         </div>
                         <div class="mt-4">
                             <NuxtLink :to="`/projets/${project.slug}`"
-                                class="inline-block bg-rose-500/10 text-rose-300 text-sm font-medium px-4 py-2 rounded-lg hover:bg-rose-500/20 transition-colors duration-300"
+                                class="inline-block bg-rose-500/10 text-rose-500 dark:text-rose-300 text-sm font-medium px-4 py-2 rounded-lg hover:bg-rose-500/20 transition-colors duration-300"
                                 @click.stop>
                                 Voir le projet
                             </NuxtLink>
@@ -141,7 +143,19 @@ defineMeta({
     }
 })
 
-const aboutContent = useTemplateRef("aboutContent");
+import { useIntro } from '~/services/useIntro.client';
+const { intro, startIfEnabled } = useIntro();
+const route = useRoute();
+
+const from = (devFrom: string|undefined) => {
+    return {
+        "home": "Personnel",
+        "school": "Scolaire",
+        "work": "Professionnel"
+    }[devFrom || "home"];
+}
+
+const projectContent = useTemplateRef("projectContent");
 
 const hovered = ref<number | null>(null)
 
@@ -187,21 +201,44 @@ const sortedProjects = computed(() => {
     })
 })
 
+function loadIntro() {
+    const steps: any[] = [
+        {
+            element: projectContent.value as HTMLElement,
+            intro: "Découvrez mes projets phares, illustrant ma passion pour le développement et l'innovation technologique.",
+            title: "Mes Projets"
+        }
+    ]
+
+    for (const slug of (route.query.projects as string).split(',')) {
+        const project = projects.find(p => p.slug === slug);
+        if (project) {
+            steps.push({
+                element: `#p_${project.slug}`,
+                intro: project.description.split('.')[0],
+                title: project.name
+            })
+        }
+    }
+
+    startIfEnabled(steps, Number(useRoute().query.duration) || 10_000)
+}
+
 onMounted(() => {
     // loadData();
     gsap.registerPlugin(ScrollTrigger)
 
     // About section animations
-    const aboutTl = gsap.timeline({
+    const projectTl = gsap.timeline({
         scrollTrigger: {
-            trigger: aboutContent.value,
+            trigger: projectContent.value,
             start: "top 80%",
             end: "bottom 20%"
         }
     })
 
     // Animate about title
-    aboutTl
+    projectTl
         .fromTo("#about h2",
             { opacity: 0, y: 50 },
             { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }
@@ -222,5 +259,6 @@ onMounted(() => {
             "-=0.2"
         );
 
+    loadIntro();
 });
 </script>

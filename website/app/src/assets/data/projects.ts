@@ -6,37 +6,21 @@ export const projects: ProjectData[] = [
     {
         slug: "rosy-discordjs",
         name: "Bot Discord Rosy",
-        description: "RosyBot est un robot Discord utilisé pour diverses tâches de gestion, d'activités et de contenu sur la plateforme Discord. Ce projet a marqué mes débuts dans le développement.",
+        description: "RosyBot est un robot Discord utilisé pour gérer différentes activités et contenus sur la plateforme. C’est avec ce projet que j’ai commencé à me lancer dans le développement, et aujourd’hui, par nostalgie, je conserve le nom « Rosy » pour mes autres projets.",
         ogDescription: "RosyBot, robot Discord pour gestion et activités, mon premier projet de développement.",
+        previewImage: "/__og-image__/image/projets/rosy-discordjs/og.png",
         date: "2019-08-01",
         techs: ["JavaScript", "NodeJS", "Discord"],
         types: ["Bot"],
         devFrom: "home"
     },
     {
-        slug: "mc-paper-handler",
-        name: "Minecraft Plugin Handler",
-        description: "Cet outil est un gestionnaire simple de commandes et d'événements pour la création de plugins Paper sur Minecraft. Il m'a permis de mieux comprendre le fonctionnement des annotations et le chargement automatique d'instances.",
-        date: "2023-07-20",
-        techs: ["Java", "Minecraft", "Paper"],
-        types: ["Plugin"],
-        devFrom: "home"
-    },
-    {
-        slug: "frog-dpp",
-        name: "Bot Discord Frog",
-        description: "FrogBot est un bot Discord développé en C++ avec la librairie D++. Ce projet m'a principalement permis de découvrir et approfondir mes connaissances en C++ et d'expérimenter le développement d'applications pour Discord.",
-        date: "2022-10-22",
-        techs: ["C++", "Discord"],
-        types: ["Bot"],
-        devFrom: "home"
-    },
-    {
-        slug: "discord-reflect",
-        name: "DiscordReflect",
-        description: "Ce projet est un handler Discord développé en TypeScript qui utilise Reflect pour gérer les annotations sur les commandes et les événements. Il permet une organisation efficace des commandes et des événements grâce à une utilisation innovante des métadonnées TypeScript.",
+        slug: "harmonix",
+        name: "HarmonixJS",
+        description: "HarmonixJS est un framework de développement de bots Discord en TypeScript, conçu pour simplifier la création et la gestion de fonctionnalités avancées telles que les commandes slash, les événements, la gestion des permissions et l'intégration avec des bases de données. Il vise à offrir une structure modulaire et extensible pour les développeurs de bots Discord.",
+        previewImage: "/__og-image__/image/projets/harmonix/og.png",
         date: "2023-08-21",
-        techs: ["TypeScript", "NodeJS", "Discord"],
+        techs: ["TypeScript", "NodeJS", "Discord", "Reflect-Metadata"],
         types: ["Bot"],
         devFrom: "home"
     },
@@ -54,6 +38,7 @@ export const projects: ProjectData[] = [
         slug: "rosy-rp",
         name: "RosyRP",
         description: "RosyRP est une application ambitieuse permettant aux joueurs consoles de pratiquer du rôle-play sur GTA et d'autres jeux via Discord. Les utilisateurs interagissent avec le bot depuis leur téléphone. Les serveurs peuvent personnaliser entièrement l'expérience, en ajoutant des items, entreprises et autres fonctionnalités. J'ai développé ce projet pour répondre à de nombreuses demandes, malgré son caractère un peu niche.",
+        previewImage: "/__og-image__/image/projets/rosy-rp/og.png",
         date: "dev",
         techs: ["Nuxt", "TailwindCss", "Spring Boot", "Stripe"],
         types: ["Website", "Bot", "API"],
@@ -63,9 +48,20 @@ export const projects: ProjectData[] = [
         slug: "portfolio",
         name: "Portfolio",
         description: "Ce portfolio est un projet que j'ai développé pour présenter mes compétences, mes projets et mon expérience de manière interactive et moderne. Construit avec TypeScript, Nuxt, NestJS et SQLite, il met en avant mon approche full-stack et mes capacités à créer des interfaces réactives et un back-end performant.",
+        previewImage: "/__og-image__/image/og.png",
         date: "2025-08-27",
         techs: ["TypeScript", "Nuxt", "TailwindCss"],
         types: ["Website"],
         devFrom: "home"
+    },
+    {
+        slug: "gsb-frais",
+        name: "GSB Frais",
+        description: "Application de gestion des frais pour le compte rendu de visite des délégués médicaux de l'entreprise GSB (Galaxy Swiss Bourdin). Ce projet académique m'a permis de mettre en pratique mes compétences en développement d'applications web, en travaillant sur des fonctionnalités telles que la saisie, la validation et le suivi des frais professionnels.",
+        previewImage: "/__og-image__/image/projets/gsb-frais/og.png",
+        date: "2025-05-15",
+        techs: ["PHP", "MySQL", "Bootstrap"],
+        types: ["Website"],
+        devFrom: "school"
     }
 ]

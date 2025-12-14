@@ -37,7 +37,7 @@ defineMeta({
         props: {
             headline: `Maxence Bessi`,
             title: project.value?.name,
-            description: project.value?.ogDescription
+            description: project.value?.ogDescription || project.value?.description.split('.')[0]
         }
     }
 })

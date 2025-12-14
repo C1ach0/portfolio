@@ -14,8 +14,11 @@
 </template>
 
 <script setup lang="ts">
-
 import { projects } from '~/assets/data/projects';
+
+definePageMeta({
+    ssr: true
+})
 
 const route = useRoute();
 
@@ -24,4 +27,19 @@ const project = computed(() => {
     const slugRoute = slugRouteSplit[slugRouteSplit.length - 1];
     return projects.find(p => p.slug === slugRoute);
 })
+
+
+defineMeta({
+    title: `Maxence Bessi - ${project.value?.name}`,
+    description: project.value?.description!,
+    image: {
+        component: `BlogPost`,
+        props: {
+            headline: `Maxence Bessi`,
+            title: project.value?.name,
+            description: project.value?.ogDescription || project.value?.description.split('.')[0]
+        }
+    }
+})
+
 </script>

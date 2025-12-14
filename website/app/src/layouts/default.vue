@@ -61,42 +61,42 @@
             </div>
         </div>
     </nav>
-    <main class="min-h-screen bg-white dark:bg-black text-white overflow-x-hidden">
+    <main class="min-h-screen bg-white dark:bg-black dark:text-white overflow-x-hidden">
         <slot />
     </main>
     <footer id="contact" v-if="showFooter" class="py-20 bg-slate-50/80 dark:bg-black">
         <div class="container mx-auto px-6 text-center">
-            <h2 class="text-3xl font-bold mb-8 text-rose-400">Travaillons ensemble</h2>
-            <p class="text-gray-300 mb-8 max-w-2xl mx-auto">
+            <h2 class="text-3xl font-bold mb-8 text-rose-500 dark:text-rose-400">Travaillons ensemble</h2>
+            <p class="text-gray-800 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
                 Je suis toujours intéressé par de nouvelles opportunités et des projets passionnants.
                 Discutons de la façon dont nous pouvons donner vie à vos idées.
             </p>
             <div class="flex justify-center space-x-6 mb-8">
                 <a v-if="about.links.email" :href="`mailto:${about.links.email}`" target="_blank"
-                    class="contact-link bg-rose-600 hover:bg-rose-700 px-6 py-3 rounded-lg font-semibold transition-colors">
+                    class="contact-link bg-rose-600 hover:bg-rose-700 px-6 py-3 rounded-lg font-semibold transition-colors text-white">
                     Email
                 </a>
                 <a v-if="about.links.linkedin" :href="about.links.linkedin" target="_blank"
-                    class="contact-link border border-rose-400 text-rose-400 hover:bg-rose-400 hover:text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+                    class="contact-link border border-rose-400 text-rose-500 dark:text-rose-400 hover:bg-rose-500 hover:text-white px-6 py-3 rounded-lg font-semibold transition-colors duration-200 ease-in">
                     LinkedIn
                 </a>
             </div>
             <div class="py-10 flex flex-wrap gap-4 items-center justify-center">
                 <a v-if="about.links.github" :href="about.links.github" target="_blank"
-                    class="rounded-lg w-10 h-10 flex flex-col items-center justify-center hover:scale-105 ease-in duration-150 bg-white">
-                    <UIcon name="mdi-github" class="w-7 h-7 text-black" />
+                    class="rounded-lg w-10 h-10 flex flex-col items-center justify-center hover:scale-105 ease-in duration-150 bg-black dark:bg-white">
+                    <UIcon name="mdi-github" class="w-7 h-7 text-white dark:text-black" />
                 </a>
                 <a v-if="about.links.linkedin" :href="about.links.linkedin" target="_blank"
                     class="rounded-lg w-10 h-10 flex flex-col items-center justify-center hover:scale-105 ease-in duration-150 bg-blue-500">
-                    <UIcon name="mdi-linkedin" class="w-7 h-7" />
+                    <UIcon name="mdi-linkedin" class="w-7 h-7 text-white" />
                 </a>
                 <a v-if="about.links.x" :href="about.links.x" target="_blank"
-                    class="rounded-lg w-10 h-10 flex flex-col items-center justify-center hover:scale-105 ease-in duration-150 bg-white">
-                    <UIcon name="ri-twitter-x-fill" class="w-7 h-7 text-black" />
+                    class="rounded-lg w-10 h-10 flex flex-col items-center justify-center hover:scale-105 ease-in duration-150 bg-white dark:bg-black">
+                    <UIcon name="ri-twitter-x-fill" class="w-7 h-7 text-black dark:text-white" />
                 </a>
                 <a v-if="about.links.discord" :href="about.links.discord" target="_blank"
                     class="rounded-lg w-10 h-10 flex flex-col items-center justify-center hover:scale-105 ease-in duration-150 bg-blue-600">
-                    <UIcon name="ic-baseline-discord" class="w-7 h-7" />
+                    <UIcon name="ic-baseline-discord" class="w-7 h-7 text-white" />
                 </a>
             </div>
             <p class="text-gray-500 text-sm">

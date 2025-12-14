@@ -1,7 +1,12 @@
 {
-  "name": "nuxt-app",
+  "name": "portfolio",
   "private": true,
   "type": "module",
+  "author": {
+    "name": "Maxence Bessi",
+    "email": "contact@maxence-bessi.com",
+    "url": "https://maxence-bessi.com"
+  },
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
@@ -13,6 +18,7 @@
     "@nuxt/ui": "^3.3.2",
     "@nuxtjs/proxy": "^2.1.0",
     "gsap": "^3.13.0",
+    "intro.js": "^8.3.2",
     "nuxt": "^3.15.1",
     "nuxt-og-image": "^5.1.9",
     "unenv": "^1.10.0",
@@ -20,6 +26,7 @@
     "vue-router": "latest"
   },
   "devDependencies": {
-    "@tailwindcss/typography": "^0.5.16"
+    "@tailwindcss/typography": "^0.5.16",
+    "@types/intro.js": "^5.1.5"
   }
 }

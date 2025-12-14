@@ -6,19 +6,23 @@
                 <div class="grid md:grid-cols-2 gap-12 items-center">
                     <div ref="aboutContent" class="space-y-6">
                         <div class="overflow-hidden">
-                            <h2 class="text-4xl md:text-5xl font-bold mb-6 text-rose-400 transform translate-y-full opacity-0"
+                            <h2 class="text-4xl md:text-5xl font-bold mb-6 text-rose-500 dark:text-rose-400 transform translate-y-full opacity-0"
                                 ref="aboutTitle">
                                 Me Contacter
                             </h2>
                         </div>
                         <div class="space-y-3">
-                            <p class="text-lg text-gray-300 leading-relaxed transform translate-y-8 opacity-0"
-                                ref="aboutText1">
-                                En tant que développeur passionné, je suis toujours à la recherche de nouveaux défis et de collaborations enrichissantes. Si vous avez un projet en tête ou si vous souhaitez simplement discuter de développement, n'hésitez pas à me contacter.
+                            <p class="text-lg text-gray-800 dark:text-gray-300 leading-relaxed transform translate-y-8 opacity-0"
+                            ref="aboutText1">
+                                Toujours ouvert à de nouveaux défis et collaborations,
+                                je m'investis avec sérieux dans des projets aux enjeux variés.
+                                N'hésitez pas à me contacter pour échanger autour de vos besoins ou de vos idées.
                             </p>
-                            <p class="text-lg text-gray-300 leading-relaxed transform translate-y-8 opacity-0"
-                                ref="aboutText2">
-                                Que ce soit pour une question, une proposition de projet, simplement pour échanger des idées ou pour un entretien, je suis disponible. Vous pouvez me contacter par email ou via LinkedIn.
+                            <p class="text-lg text-gray-800 dark:text-gray-300 leading-relaxed transform translate-y-8 opacity-0"
+                            ref="aboutText2">
+                                Que ce soit pour une prise de contact, une proposition de projet,
+                                un échange technique ou un entretien, je reste disponible.
+                                Vous pouvez me joindre facilement par email ou via LinkedIn.
                             </p>
                         </div>
                     </div>

@@ -13,6 +13,10 @@
 }
 
 * {
-    scroll-behavior: smooth;
-    /* @apply font-ancizar; */
+  scroll-behavior: smooth;
+  /* @apply font-ancizar; */
 }
+::selection {
+  @apply bg-rose-500/70 text-white;
+}
+
