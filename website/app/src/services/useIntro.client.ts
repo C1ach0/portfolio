@@ -1,56 +1,80 @@
-import { ref, onMounted, onBeforeUnmount, nextTick } from "vue";
-import { useRoute, useRouter } from "vue-router";
-import introJs from "intro.js";
-import "intro.js/introjs.css";
+import { ref, onMounted, onBeforeUnmount, nextTick } from "vue"
+import { useRoute, useRouter } from "vue-router"
 
 export const useIntro = () => {
-    const intro = ref<ReturnType<typeof introJs> | null>(null);
-    const route = useRoute();
-    const router = useRouter();
+    const intro = ref<any | null>(null)
 
-    let isPaused = false;
-    let timer: ReturnType<typeof setTimeout> | null = null;
+    if (import.meta.server) {
+        return {
+            intro,
+            startIfEnabled: async () => { },
+            pause: () => { },
+            resume: () => { },
+            stop: () => { }
+        }
+    }
+
+    const route = useRoute()
+    const router = useRouter()
+
+    let isPaused = false
+    let timer: ReturnType<typeof setTimeout> | null = null
+    let introJs: any = null
+
+    const loadIntro = async () => {
+        if (introJs) return introJs
+        const mod = await import("intro.js")
+        introJs = mod.default
+        return introJs
+    }
 
     const autoNext = (delay = 3500) => {
-        if (isPaused || !intro.value) return;
+        if (isPaused || !intro.value) return
 
         timer = setTimeout(() => {
-            intro.value!.nextStep();
-            autoNext(delay);
-        }, delay);
-    };
+            intro.value!.nextStep()
+            autoNext(delay)
+        }, delay)
+    }
 
     const clearTimer = () => {
         if (timer) {
-            clearTimeout(timer);
-            timer = null;
+            clearTimeout(timer)
+            timer = null
         }
-    };
+    }
 
     const pause = () => {
-        isPaused = true;
-        clearTimer();
-    };
+        isPaused = true
+        clearTimer()
+    }
 
     const resume = () => {
-        if (!isPaused) return;
-        isPaused = false;
-        autoNext();
-    };
+        if (!isPaused) return
+        isPaused = false
+        autoNext()
+    }
 
     const stop = () => {
-        clearTimer();
-        isPaused = false;
-        intro.value?.exit();
-    };
+        clearTimer()
+        isPaused = false
+        intro.value?.exit()
+    }
 
-    const startIfEnabled = async (steps: any[], nextDelay?: number, nextPath?: string) => {
-        if (route.query.intro !== "true") return;
+    const startIfEnabled = async (
+        steps: any[],
+        nextDelay?: number,
+        nextPath?: string
+    ) => {
+        if (route.query.intro !== "true") return
 
-        await nextTick(); // attendre que le DOM soit prêt
+        // 🐾 attendre DOM + hydration
+        await nextTick()
+
+        const introJs = await loadIntro()
 
         if (!intro.value) {
-            intro.value = introJs();
+            intro.value = introJs()
         }
 
         intro.value.setOptions({
@@ -60,49 +84,52 @@ export const useIntro = () => {
             exitOnOverlayClick: false,
             exitOnEsc: false,
             disableInteraction: true,
-            overlayOpacity: 0.65,
-        });
+            overlayOpacity: 0.65
+        })
 
-        intro.value.start();
-        autoNext(nextDelay);
+        intro.value.start()
+        autoNext(nextDelay)
 
         if (nextPath) {
             intro.value.onComplete(() => {
-                router.push({ path: nextPath, query: { ...route.query, intro: "true" } });
-            });
+                router.push({
+                    path: nextPath,
+                    query: { ...route.query, intro: "true" }
+                })
+            })
         }
-    };
+    }
 
     const onKeydown = (e: KeyboardEvent) => {
-        if (route.query.intro !== "true") return;
+        if (route.query.intro !== "true") return
 
         switch (e.key.toLowerCase()) {
             case "p":
-                pause();
-                break;
+                pause()
+                break
             case "r":
-                resume();
-                break;
+                resume()
+                break
             case "s":
-                stop();
-                break;
+                stop()
+                break
         }
-    };
+    }
 
     onMounted(() => {
-        window.addEventListener("keydown", onKeydown);
-    });
+        window.addEventListener("keydown", onKeydown)
+    })
 
     onBeforeUnmount(() => {
-        window.removeEventListener("keydown", onKeydown);
-        clearTimer();
-    });
+        window.removeEventListener("keydown", onKeydown)
+        clearTimer()
+    })
 
     return {
         intro,
         startIfEnabled,
         pause,
         resume,
-        stop,
-    };
-};
+        stop
+    }
+}

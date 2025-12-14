@@ -24,16 +24,14 @@ export default defineNuxtConfig({
       ],
     }
   },
-  nitro: {
-    preset: "node-server",
-  },
   devtools: { enabled: true },
   devServer: {
     port: 5173
   },
   srcDir: "src/",
   css: [
-    "./assets/main.css"
+    "./assets/main.css",
+    "intro.js/introjs.css"
   ],
   modules: ["@nuxt/ui", "nuxt-og-image"],
   ui: {
