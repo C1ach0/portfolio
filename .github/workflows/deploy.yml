@@ -31,32 +31,23 @@ jobs:
       - name: Check repo
         uses: actions/checkout@v4
 
-      - name: Allow insecure Docker registry
-        run: |
-          sudo mkdir -p /etc/docker
-          echo '{"insecure-registries":["${{ secrets.REGISTRY }}"]}' | sudo tee /etc/docker/daemon.json
-          sudo systemctl restart docker
-
-      - name: Login to Docker Registry
-        run: echo ${{ secrets.DOCKER_REGISTRY_PASSWORD }} | docker login ${{ secrets.REGISTRY }} -u ${{ secrets.DOCKER_REGISTRY_USER }} --password-stdin
-
       - name: Set Git SHA
         id: vars
         run: echo "GIT_SHA=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
 
       - name: Build Docker image
         run: |
-          docker build -t ${{ secrets.REGISTRY }}/portfolio:latest \
-                       -t ${{ secrets.REGISTRY }}/portfolio:${GIT_SHA} ./website
+          docker build -t ghcr.io/C1ach0/portfolio:latest \
+                       -t ghcr.io/C1ach0/portfolio:${GIT_SHA} ./website
                        
       - name: Login to Docker Registry
-        run: echo ${{ secrets.DOCKER_REGISTRY_PASSWORD }} | docker login ${{ secrets.REGISTRY }} -u ${{ secrets.DOCKER_REGISTRY_USER }} --password-stdin
+        run: echo ${{ secrets.GH_DOCKER_REGISTRY_PASSWORD }} | docker login ghcr.io -u C1ach0 --password-stdin
 
       - name: Push Docker image (latest)
-        run: docker push ${{ secrets.REGISTRY }}/portfolio:latest
+        run: docker push ghcr.io/C1ach0/portfolio:latest
 
       - name: Push Docker image (SHA)
-        run: docker push ${{ secrets.REGISTRY }}/portfolio:${GIT_SHA}
+        run: docker push ghcr.io/C1ach0/portfolio:${GIT_SHA}
 
       - name: Trigger Coolify Auto Deploy
         run: |
