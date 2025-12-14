@@ -15,19 +15,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install WireGuard
-        run: sudo apt-get update && sudo apt-get install -y wireguard
-
-      - name: Configure VPN
-        run: |
-          echo "${{ secrets.VPN_CONF }}" > wg0.conf
-          sudo mv wg0.conf /etc/wireguard/wg0.conf
-          sudo chmod 600 /etc/wireguard/wg0.conf
-          sudo wg-quick up wg0
-          
-      - name: Check VPN IP
-        run: ip addr show wg0
-
       - name: Check repo
         uses: actions/checkout@v4
 
@@ -37,17 +24,17 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t ghcr.io/C1ach0/portfolio:latest \
-                       -t ghcr.io/C1ach0/portfolio:${GIT_SHA} ./website
+          docker build -t ghcr.io/c1ach0/portfolio:latest \
+                       -t ghcr.io/c1ach0/portfolio:${GIT_SHA} ./website
                        
       - name: Login to Docker Registry
         run: echo ${{ secrets.GH_DOCKER_REGISTRY_PASSWORD }} | docker login ghcr.io -u C1ach0 --password-stdin
 
       - name: Push Docker image (latest)
-        run: docker push ghcr.io/C1ach0/portfolio:latest
+        run: docker push ghcr.io/c1ach0/portfolio:latest
 
       - name: Push Docker image (SHA)
-        run: docker push ghcr.io/C1ach0/portfolio:${GIT_SHA}
+        run: docker push ghcr.io/c1ach0/portfolio:${GIT_SHA}
 
       - name: Trigger Coolify Auto Deploy
         run: |
