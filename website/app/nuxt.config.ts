@@ -1,6 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   app: {
+    baseURL: "/",
     head: {
       charset: "utf-8",
       viewport: "width=device-width, initial-scale=1",
@@ -22,6 +23,9 @@ export default defineNuxtConfig({
         { name: "theme-color", content: "#f43f5e" }
       ],
     }
+  },
+  nitro: {
+    preset: "node-server",
   },
   devtools: { enabled: true },
   devServer: {
