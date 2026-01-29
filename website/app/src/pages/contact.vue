@@ -32,9 +32,7 @@
                             <div
                                 class="absolute inset-0 bg-gradient-to-br from-rose-600 via-purple-600 to-pink-600 rounded-2xl transform rotate-6 opacity-80 group-hover:rotate-12 transition-all duration-700">
                             </div>
-                            <div
-                                class="absolute inset-0 bg-gradient-to-tl from-purple-600 via-rose-600 to-cyan-600 rounded-2xl opacity-60 group-hover:opacity-80 transition-all duration-500">
-                            </div>
+                            <img src="~/assets/data/images/45deg.jpg" class="absolute h-96 w-full object-cover object-center inset-0 rounded-2xl opacity-60 group-hover:opacity-80 transition-all duration-500"/>
                         </div>
                         <div
                             class="absolute -top-4 -right-4 w-24 h-24 bg-rose-500/20 rounded-full blur-xl animate-pulse">

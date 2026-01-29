@@ -59,9 +59,10 @@
                             <div
                                 class="absolute inset-0 bg-gradient-to-br from-rose-600 via-purple-600 to-pink-600 rounded-2xl transform rotate-6 opacity-80 group-hover:rotate-12 transition-all duration-700">
                             </div>
-                            <div
+                            <img src="~/assets/data/images/face.jpg" class="absolute h-96 w-full object-cover object-center inset-0 rounded-2xl opacity-60 group-hover:opacity-80 transition-all duration-500"/>
+                            <!-- <div
                                 class="absolute inset-0 bg-gradient-to-tl from-purple-600 via-rose-600 to-cyan-600 rounded-2xl opacity-60 group-hover:opacity-80 transition-all duration-500">
-                            </div>
+                            </div> -->
                         </div>
                         <div
                             class="absolute -top-4 -right-4 w-24 h-24 bg-rose-500/20 rounded-full blur-xl animate-pulse">
@@ -179,6 +180,7 @@
             </div>
             <div class="absolute top-1/4 right-[15%] w-44 h-44 bg-rose-500 rounded-full blur-3xl"></div>
         </section>
+        <IntroPage intro-id="about" :steps="introSteps"/>
     </NuxtLayout>
 </template>
 
@@ -202,8 +204,6 @@ defineMeta({
     }
 })
 
-import { useIntro } from '~/services/useIntro.client';
-const { intro, startIfEnabled } = useIntro();
 
 // Template refs
 const aboutContent = useTemplateRef("aboutContent");
@@ -220,6 +220,24 @@ const imageUrl = computed(() => {
         about.skills.join(',')
     }&perline=10`
 })
+
+const introSteps = ref([ 
+    {
+        element: aboutContent.value as HTMLDivElement,
+        intro: "Apprenez-en plus sur moi, mon parcours et mes compétences en développement.",
+        title: "À Propos de Moi"
+    },
+    {
+        element: skillContent.value as HTMLDivElement,
+        intro: "Découvrez mes compétences techniques et les technologies que je maîtrise.",
+        title: "Mes compétences"
+    },
+    {
+        element: schoolSection.value as HTMLDivElement,
+        intro: "Explorez mon parcours éducatif et les institutions qui ont façonné mes connaissances.",
+        title: "Mon éducation"
+    }
+]);
 
 onMounted(() => {
     gsap.registerPlugin(ScrollTrigger)
@@ -284,25 +302,6 @@ onMounted(() => {
             }
         }
     );
-
-    // Gestion intro animation
-    startIfEnabled([
-        {
-            element: aboutContent.value as HTMLElement,
-            intro: "Apprenez-en plus sur moi, mon parcours et mes compétences en développement.",
-            title: "À Propos de Moi"
-        },
-        {
-            element: skillContent.value as HTMLElement,
-            intro: "Découvrez mes compétences techniques et les technologies que je maîtrise.",
-            title: "Mes compétences"
-        },
-        {
-            element: schoolSection.value as HTMLElement,
-            intro: "Explorez mon parcours éducatif et les institutions qui ont façonné mes connaissances.",
-            title: "Mon éducation"
-        }
-    ], Number(useRoute().query.duration) || 10_000, "/projets");
 });
 
 </script>

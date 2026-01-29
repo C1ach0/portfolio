@@ -1,6 +1,6 @@
 <template>
   <UApp>
-    <UNotifications />
+    <IntroConfig v-model:isOpen="open"/>
     <NuxtPage/>
   </UApp>
 </template>
@@ -53,4 +53,6 @@ https://rosystudio.net
                        +++++++++
 `);
 }
+
+const open = ref<boolean>(true);
 </script>

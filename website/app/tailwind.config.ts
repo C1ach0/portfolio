@@ -18,7 +18,6 @@ export default <Config>{
           950: '#000000'  // Noir pur
         }
       },
-      
     }
   },
   plugins: [

@@ -1,7 +1,7 @@
 <template>
     <NuxtLayout>
         <header id="hero" class="h-screen flex items-center justify-center relative">
-            <div ref="heroContent" class="text-center z-10 .introHeroContent">
+            <div ref="heroContent" class="text-center z-10 .introHeroContent" data-intro-id="1">
                 <h1 ref="heroTitle" class="text-6xl md:text-8xl font-bold mb-6 opacity-0">
                     <span class="text-rose-500 dark:text-rose-400">Maxence</span><br>
                     <span class="dark:text-white">Bessi</span>
@@ -26,7 +26,7 @@
         <section id="about" class="py-40 relative overflow-hidden">
             <div class="container mx-auto px-6 relative z-10">
                 <div class="grid md:grid-cols-2 gap-12 items-center">
-                    <div ref="aboutContent" class="space-y-6">
+                    <div ref="aboutContent" class="space-y-6" data-intro-id="2">
                         <div class="overflow-hidden">
                             <h2 class="text-4xl md:text-5xl font-bold mb-6 text-rose-500 dark:text-rose-400 transform translate-y-full opacity-0"
                                 ref="aboutTitle">
@@ -78,9 +78,10 @@
                             <div
                                 class="absolute inset-0 bg-gradient-to-br from-rose-600 via-purple-600 to-pink-600 rounded-2xl transform rotate-6 opacity-80 group-hover:rotate-12 transition-all duration-700">
                             </div>
-                            <div
+                            <img src="~/assets/data/images/45deg.jpg" class="absolute h-96 w-full object-cover object-center inset-0 rounded-2xl opacity-60 group-hover:opacity-80 transition-all duration-500"/>
+                            <!-- <div
                                 class="absolute inset-0 bg-gradient-to-tl from-purple-600 via-rose-600 to-cyan-600 rounded-2xl opacity-60 group-hover:opacity-80 transition-all duration-500">
-                            </div>
+                            </div> -->
                         </div>
                         <div
                             class="absolute -top-4 -right-4 w-24 h-24 bg-rose-500/20 rounded-full blur-xl animate-pulse">
@@ -177,14 +178,14 @@
             </div>
         </section>
         <section id="career" class="min-h-[75vh] py-40 relative overflow-hidden flex items-center justify-center">
-            <div ref="careerTimeline" class="container mx-auto px-6 relative z-10 flex flex-col items-center mx-auto">
+            <div ref="careerTimeline" class="container mx-auto px-6 relative z-10 flex flex-col items-center">
                 <div class="mb-12 text-center">
                     <h2 ref="careerTitle" class="text-4xl md:text-5xl font-bold text-rose-500 dark:text-rose-400 mb-4">Mon Parcours</h2>
                     <p class="text-lg text-gray-800 dark:text-gray-300 max-w-2xl mx-auto">
                         Découvrez mon évolution professionnelle.
                     </p>
                 </div>
-                <div class="w-96">
+                <div class="w-96" data-intro-id="3">
                     <UTimeline :items="about.careers" :default-value="about.careers.length - 1" size="xs"
                         :ui="{ item: 'lg:even:flex-row-reverse lg:even:-translate-x-[calc(100%-1.5rem)] lg:even:text-right' }"
                         class="lg:translate-x-[calc(50%-1rem)]">
@@ -216,6 +217,7 @@
             <div class="absolute top-1/4 right-[15%] w-44 h-44 bg-rose-500 rounded-full blur-3xl"></div>
             <div class="absolute bottom-1/4 left-[15%] w-44 h-44 bg-purple-500 rounded-full blur-3xl"></div>
         </section>
+        <IntroPage intro-id="home" :steps="introSteps"/>
     </NuxtLayout>
 </template>
 
@@ -236,8 +238,8 @@ defineMeta({
         }
     }
 })
-import { useIntro } from '~/services/useIntro.client';
-const { startIfEnabled } = useIntro();
+
+const { initScenario, registerSteps } = useIntro()
 
 // Template refs
 const heroContent = useTemplateRef("heroContent");
@@ -303,6 +305,25 @@ function toggleAutoRotate() {
         stopAutoRotate();
     }
 }
+
+const introSteps = ref([
+    {
+        element: heroContent.value as HTMLDivElement,
+        intro: "Bienvenue sur mon portfolio ! Je suis Maxence Bessi, développeur Full Stack passionné.",
+        title: "Présentation"
+    },
+    {
+        element: aboutContent.value as HTMLDivElement,
+        intro: "Découvrez mon parcours, mes compétences et les technologies que j'utilise au quotidien.",
+        title: "À propos de moi"
+    },
+    {
+        element: careerTimeline.value as HTMLDivElement,
+        intro: "Voici mon parcours professionnel, de mes débuts à aujourd'hui.",
+        position: "bottom",
+        title: "Mon parcours"
+    }
+])
 
 onMounted(async () => {
     startAutoRotate()
@@ -400,26 +421,6 @@ onMounted(async () => {
             }
         }
     );
-
-    // Gestion intro animation
-    await startIfEnabled([
-        {
-            element: heroContent.value as HTMLElement,
-            intro: "Bienvenue sur mon portfolio ! Je suis Maxence Bessi, développeur Full Stack passionné.",
-            title: "Présentation"
-        },
-        {
-            element: aboutContent.value as HTMLElement,
-            intro: "Découvrez mon parcours, mes compétences et les technologies que j'utilise au quotidien.",
-            title: "À propos de moi"
-        },
-        {
-            element: careerTimeline.value as HTMLElement,
-            intro: "Voici mon parcours professionnel, de mes débuts à aujourd'hui.",
-            position: "bottom",
-            title: "Mon parcours"
-        }
-    ], Number(useRoute().query.duration) || 10_000, "/a-propos");
 });
 onUnmounted(() => {
     stopAutoRotate()

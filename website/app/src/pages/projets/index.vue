@@ -49,9 +49,7 @@
                             <div
                                 class="absolute inset-0 bg-gradient-to-br from-rose-600 via-purple-600 to-pink-600 rounded-2xl transform rotate-6 opacity-80 group-hover:rotate-12 transition-all duration-700">
                             </div>
-                            <div
-                                class="absolute inset-0 bg-gradient-to-tl from-purple-600 via-rose-600 to-cyan-600 rounded-2xl opacity-60 group-hover:opacity-80 transition-all duration-500">
-                            </div>
+                            <img :src="ogImageDisplay" class="absolute h-96 w-full object-cover object-center inset-0 rounded-2xl opacity-60 group-hover:opacity-80 transition-all duration-500"/>
                         </div>
                         <div
                             class="absolute -top-4 -right-4 w-24 h-24 bg-rose-500/20 rounded-full blur-xl animate-pulse">
@@ -90,9 +88,12 @@
                     <NuxtLink :to="`/projets/${project.slug}`" class="absolute inset-0 z-10"
                         aria-label="Aller au projet" />
                     <div class="p-5 relative z-20 flex flex-col flex-1">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-r from-purple-600/10 to-rose-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        </div>
                         <div class="flex items-center justify-between mb-2">
                             <h3
-                                class="text-xl font-bold text-rose-500 dark:text-rose-400 group-hover:text-rose-500 dark:group-hover:text-rose-300 transition-colors duration-300">
+                                class="text-xl font-bold transition-colors duration-300">
                                 {{ project.name }}
                             </h3>
                             <h2 class="text-sm text-gray-500 dark:text-gray-300">{{ from(project.devFrom) }}</h2>
@@ -118,10 +119,9 @@
                 </div>
             </div>
         </section>
+        <IntroPage intro-id="projects" :steps="[]"/>
     </NuxtLayout>
 </template>
-
-
 
 <script setup lang="ts">
 import { ref, watch, nextTick } from 'vue'
@@ -136,6 +136,7 @@ defineMeta({
     image: {
         component: "Base",
         props: {
+            colorMode: "light",
             headline: "Portfolio",
             title: "Maxence Bessi",
             description: "Découvrez mes réalisations : des projets variés alliant créativité, performance et technologies modernes."
@@ -143,9 +144,9 @@ defineMeta({
     }
 })
 
-import { useIntro } from '~/services/useIntro.client';
-const { intro, startIfEnabled } = useIntro();
+const ogImageDisplay = ref("/__og-image__/image/og.png");
 const route = useRoute();
+const { scenario, registerSteps } = useIntro();
 
 const from = (devFrom: string|undefined) => {
     return {
@@ -156,10 +157,9 @@ const from = (devFrom: string|undefined) => {
 }
 
 const projectContent = useTemplateRef("projectContent");
-
 const hovered = ref<number | null>(null)
 
-// 👑 Animation au hover (au lieu de toggle clic)
+// 👑 Animation au hover
 watch(hovered, async (newVal, oldVal) => {
     if (typeof newVal === 'number') {
         await nextTick()
@@ -189,11 +189,9 @@ watch(hovered, async (newVal, oldVal) => {
 
 const sortedProjects = computed(() => {
     return projects.slice().sort((a, b) => {
-        // Projets en dev en haut
         if (a.date === 'dev' && b.date !== 'dev') return -1
         if (b.date === 'dev' && a.date !== 'dev') return 1
 
-        // Convertir en Date pour les autres projets
         const dateA = a.date === 'dev' ? new Date() : new Date(a.date)
         const dateB = b.date === 'dev' ? new Date() : new Date(b.date)
 
@@ -201,34 +199,10 @@ const sortedProjects = computed(() => {
     })
 })
 
-function loadIntro() {
-    const steps: any[] = [
-        {
-            element: projectContent.value as HTMLElement,
-            intro: "Découvrez mes projets phares, illustrant ma passion pour le développement et l'innovation technologique.",
-            title: "Mes Projets"
-        }
-    ]
-
-    for (const slug of (route.query.projects as string).split(',')) {
-        const project = projects.find(p => p.slug === slug);
-        if (project) {
-            steps.push({
-                element: `#p_${project.slug}`,
-                intro: project.description.split('.')[0],
-                title: project.name
-            })
-        }
-    }
-
-    startIfEnabled(steps, Number(useRoute().query.duration) || 10_000)
-}
-
-onMounted(() => {
-    // loadData();
+onMounted(async () => {
+    // GSAP Animations
     gsap.registerPlugin(ScrollTrigger)
 
-    // About section animations
     const projectTl = gsap.timeline({
         scrollTrigger: {
             trigger: projectContent.value,
@@ -237,7 +211,6 @@ onMounted(() => {
         }
     })
 
-    // Animate about title
     projectTl
         .fromTo("#about h2",
             { opacity: 0, y: 50 },
@@ -253,12 +226,39 @@ onMounted(() => {
             { opacity: 1, y: 0, scale: 1, duration: 0.7, stagger: 0.15, ease: "back.out(1.7)" },
             "-=0.3"
         )
-        .fromTo(".metric-item",
-            { opacity: 0, y: 20 },
-            { opacity: 1, y: 0, duration: 0.5, stagger: 0.1, ease: "power2.out" },
-            "-=0.2"
-        );
 
-    loadIntro();
+    // Construire les steps dynamiquement
+    const steps: any[] = []
+    
+    // Premier step : la section hero (utiliser un ID ou sélecteur CSS valide)
+    steps.push({
+        element: "#about", // Ou ajoute un ID unique à projectContent
+        intro: "Découvrez mes projets phares, illustrant ma passion pour le développement et l'innovation technologique.",
+        title: "Mes Projets"
+    })
+    
+    // Steps pour chaque projet listé dans la query
+    const projectSlugs = String(route.query.projects || "").split(',').filter(Boolean)
+    
+    for (const slug of projectSlugs) {
+        // Ignorer home, about (ce sont des pages, pas des projets)
+        if (slug === 'home' || slug === 'about') continue
+        
+        // Nettoyer le slug (enlever [in]/[out])
+        const cleanSlug = slug.replace(/\[(in|out)\]/, '')
+        
+        const project = projects.find(p => p.slug === cleanSlug)
+        if (project) {
+            // Vérifier que l'élément existe
+            const element = document.querySelector(`#p_${project.slug}`)
+            if (element) {
+                steps.push({
+                    element: `#p_${project.slug}`,
+                    intro: project.description.split('.')[0] + '.',
+                    title: project.name
+                })
+            }
+        }
+    }
 });
 </script>
