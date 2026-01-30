@@ -1,15 +1,15 @@
 <template>
     <NuxtLayout>
-        <section id="about"
+        <header id="about"
             class="min-h-screen flex flex-col items-center py-20 justify-center relative overflow-hidden">
             <div ref="projectHero" class="container mx-auto px-6 relative z-10">
                 <div class="grid md:grid-cols-2 gap-12 items-center">
                     <div ref="projectContent" class="space-y-6">
                         <div class="overflow-hidden">
-                            <h2 class="text-4xl md:text-5xl font-bold mb-6 text-rose-500 dark:text-rose-400 transform translate-y-full opacity-0"
+                            <h1 class="text-4xl md:text-5xl font-bold mb-6 text-rose-500 dark:text-rose-400 transform translate-y-full opacity-0"
                                 ref="aboutTitle">
                                 Mes Projets
-                            </h2>
+                            </h1>
                         </div>
                         <div class="space-y-3">
                             <p class="text-lg text-gray-800 dark:text-gray-300 leading-relaxed transform translate-y-8 opacity-0"
@@ -81,12 +81,10 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </header>
         <section class="py-20 px-6 max-w-screen-2xl mx-auto">
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                 <div v-for="(project, index) in sortedProjects" :key="index" :id="`p_${project.slug}`" :data-intro-id="`project-${project.slug}`" class="rounded-2xl overflow-hidden bg-gradient-to-br from-gray-100/70 to-gray-200/60 dark:from-gray-800/70 dark:to-gray-900/60 border border-gray-100 dark:border-gray-700 hover:border-rose-500/50 shadow-md hover:shadow-rose-500/10 transition-all duration-300 group relative flex flex-col justify-between">
-                    <RouterLink :to="`/projets/${project.slug}`" class="absolute inset-0 z-10"
-                        aria-label="Aller au projet" />
                     <div class="p-5 relative z-20 flex flex-col flex-1">
                         <div
                             class="absolute inset-0 bg-gradient-to-r from-purple-600/10 to-rose-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -108,10 +106,9 @@
                                 {{ tag }}
                             </span>
                         </div>
-                        <div class="mt-4">
+                        <div class="mt-4 z-50">
                             <RouterLink :to="`/projets/${project.slug}`"
-                                class="inline-block bg-rose-500/10 text-rose-500 dark:text-rose-300 text-sm font-medium px-4 py-2 rounded-lg hover:bg-rose-500/20 transition-colors duration-300"
-                                @click.stop>
+                                class="inline-block bg-rose-500/10 text-rose-500 dark:text-rose-300 text-sm font-medium px-4 py-2 rounded-lg hover:bg-rose-500/20 transition-colors duration-300">
                                 Voir le projet
                             </RouterLink>
                         </div>
@@ -131,31 +128,42 @@ import { projects } from '~/assets/data/projects';
 import { about } from '~/assets/data/about';
 
 defineMeta({
-    title: "Maxence Bessi - Développeur FullStack",
+    title: "Projets - Maxence Bessi",
     description: "Maxence Bessi, développeur passionné, spécialisé dans la création d'applications et l'exploration de technologies variées pour proposer des solutions performantes et innovantes.",
     image: {
         component: "Base",
         props: {
             colorMode: "light",
-            headline: "Portfolio",
-            title: "Maxence Bessi",
+            headline: "Maxence Bessi",
+            title: "Mes Projets",
             description: "Découvrez mes réalisations : des projets variés alliant créativité, performance et technologies modernes."
         }
     }
 })
-defineSchema([
+defineSeoSchema([
     {
         "@context": "https://schema.org",
-        "@type": "WebPage",
-        "name": "Maxence Bessi - Développeur Full Stack",
-        "url": "https://maxence-bessi.com",
+        "@type": "CollectionPage",
+        "name": "Projets - Maxence Bessi",
+        "description": "Sélection de projets web et applicatifs réalisés par Maxence Bessi en tant que développeur Full Stack.",
+        "url": "https://maxence-bessi.com/projets",
         "isPartOf": {
             "@type": "WebSite",
             "name": "Maxence Bessi - Développeur Full Stack",
             "url": "https://maxence-bessi.com"
         },
-        "about": {
-            "@type": "CreativeWork"
+        "hasPart": [
+            ...projects.map(project => ({
+                "@type": "CreativeWork",
+                "name": project.name,
+                "description": project.schemaDescription,
+                "url": `https://maxence-bessi.com/projets/${project.slug}`,
+                "keywords": project.techs
+            }))
+        ],
+        "author": {
+            "@type": "Person",
+            "name": "Maxence Bessi"
         }
     }
 ])
@@ -168,8 +176,9 @@ const from = (devFrom: string|undefined) => {
     return {
         "home": "Personnel",
         "school": "Scolaire",
-        "work": "Professionnel"
-    }[devFrom || "home"];
+        "work": "Professionnel",
+        "company": "Professionnel"
+    }[devFrom ?? "home"];
 }
 
 const projectContent = useTemplateRef("projectContent");
@@ -228,7 +237,7 @@ onMounted(async () => {
     })
 
     projectTl
-        .fromTo("#about h2",
+        .fromTo("#about h1",
             { opacity: 0, y: 50 },
             { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }
         )

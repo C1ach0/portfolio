@@ -34,9 +34,17 @@ export interface ProjectData {
      */
     ogDescription?: string;
     /**
+     * Description utilisée dans les schémas SEO (schema.org)
+     */
+    schemaDescription?: string;
+    /**
      * Technologie utilisé : Max 5
      */
     techs: string[];
+    /**
+     * Mots-clés associés au projet pour faciliter la recherche et le référencement
+     */
+    keywords?: string[];
     /**
      * Image de présentation
      */

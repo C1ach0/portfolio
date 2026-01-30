@@ -232,12 +232,31 @@ defineMeta({
     image: {
         component: "Base",
         props: {
-            headline: "Portfolio",
-            title: "Maxence Bessi",
+            headline: "Maxence Bessi",
+            title: "Développeur FullStack",
             description: "Développeur full-stack et passionné, toujours en quête d'amélioration et de nouvelles compétences."
         }
     }
 })
+
+defineSeoSchema([
+  {
+    "@context": "https://schema.org",
+    "@type": "HomePage",
+    "name": "Maxence Bessi - Développeur Full Stack",
+    "description": "Portfolio de Maxence Bessi, développeur Full Stack spécialisé dans le développement d'applications web modernes.",
+    "url": "https://maxence-bessi.com",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Maxence Bessi - Développeur Full Stack",
+      "url": "https://maxence-bessi.com"
+    },
+    "about": {
+      "@type": "Person",
+      "name": "Maxence Bessi"
+    }
+  }
+])
 
 const { initScenario, registerSteps } = useIntro()
 
@@ -256,23 +275,7 @@ import {
     projects
 } from "~/assets/data/projects";
 
-defineSchema([
-    {
-        "@context": "https://schema.org",
-        "@type": "WebPage",
-        "name": "Maxence Bessi - Développeur Full Stack",
-        "url": "https://maxence-bessi.com",
-        "isPartOf": {
-            "@type": "WebSite",
-            "name": "Maxence Bessi - Développeur Full Stack",
-            "url": "https://maxence-bessi.com"
-        },
-        "about": {
-            "@type": "Person",
-            "name": "Bessi Maxence"
-        }
-    }
-])
+
 
 const sortedProjects = computed(() => {
     return projects.slice().sort((a, b) => {

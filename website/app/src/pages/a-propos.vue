@@ -192,33 +192,35 @@ import { projects } from '~/assets/data/projects';
 import { about } from '~/assets/data/about';
 
 defineMeta({
-    title: "Maxence Bessi - Développeur FullStack",
+    title: "À Propos - Maxence Bessi",
     description: "Maxence Bessi, développeur passionné, spécialisé dans la création d'applications et l'exploration de technologies variées pour proposer des solutions performantes et innovantes.",
     image: {
         component: "Base",
         props: {
-            headline: "Portfolio",
-            title: "Maxence Bessi",
+            colorMode: "light",
+            headline: "Maxence Bessi",
+            title: "À Propos",
             description: "Développeur passionné et curieux, toujours en quête d'amélioration et de nouvelles compétences."
         }
     }
 })
-defineSchema([
-    {
-        "@context": "https://schema.org",
-        "@type": "WebPage",
-        "name": "Maxence Bessi - Développeur Full Stack",
-        "url": "https://maxence-bessi.com",
-        "isPartOf": {
-            "@type": "WebSite",
-            "name": "Maxence Bessi - Développeur Full Stack",
-            "url": "https://maxence-bessi.com"
-        },
-        "about": {
-            "@type": "Person",
-            "name": "Bessi Maxence"
-        }
+defineSeoSchema([
+  {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "À propos - Maxence Bessi",
+    "description": "Présentation de Maxence Bessi, développeur Full Stack, de son parcours, de ses compétences et de ses expériences.",
+    "url": "https://maxence-bessi.com/a-propos",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Maxence Bessi - Développeur Full Stack",
+      "url": "https://maxence-bessi.com"
+    },
+    "about": {
+      "@type": "Person",
+      "name": "Maxence Bessi"
     }
+  }
 ])
 
 const route = useRoute()

@@ -7,18 +7,16 @@
                     A faire pour mieux créer la page :
                     - Afficher des schemas fonctionnement (MVC, logique metier, ...)
                     - Organisations :
-                        - 1 présentation rapide du projet et de mon travail
-                        - 2 image du projet
-                        - 3 présentation du projet avec logo sur le coté
-                        - 4 blabla bullshit
-                        - 5 3x présentation de features que j'ai développer au sein de l'app, avec une galerie (3, 4 images)
-                        - 6 blabla final
-                        - 7 gestion full SEO avec les schemas.org
+                    - 1 présentation rapide du projet et de mon travail
+                    - 2 image du projet
+                    - 3 présentation du projet avec logo sur le coté
+                    - 4 blabla bullshit
+                    - 5 3x présentation de features que j'ai développer au sein de l'app, avec une galerie (3, 4 images)
+                    - 6 blabla final
+                    - 7 gestion full SEO avec les schemas.org
                 </p>
 
-                <div class="text-justify">
 
-                </div>
                 <div class="absolute top-1/4 right-[15%] w-44 h-44 bg-rose-500 rounded-full blur-3xl"></div>
                 <div class="absolute bottom-1/4 left-[15%] w-44 h-44 bg-purple-500 rounded-full blur-3xl"></div>
             </article>
@@ -54,36 +52,54 @@ defineMeta({
         }
     }
 })
-// TODO: ajouter le type WebPage pour dire a google que c'est une page web
-defineSchema([
+
+defineSeoSchema([
     {
         "@context": "https://schema.org",
-        "@type": "CreativeWork",
-        "name": `Maxence Bessi - ${project.value?.name}`,
-        "description": "Mission réalisée en alternance consistant à concevoir et développer un outil interne de gestion RH et pédagogique.",
+        "@type": "AboutPage",
+        "name": "Projet GIPE - Maxence Bessi",
+        "description": "Présentation du projet GIPE réalisé en alternance : conception et développement d'un outil interne de gestion RH et pédagogique.",
+        "url": "https://maxence-bessi.com/projets/gipe",
+        "inLanguage": "fr",
         "isPartOf": {
             "@type": "WebSite",
             "name": "Maxence Bessi - Développeur Full Stack",
             "url": "https://maxence-bessi.com"
         },
-        "author": {
-            "@type": "Person",
-            "name": "Bessi Maxence"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Marine National",
-            "url": "https://www.defense.gouv.fr/marine"
-        },
-        "dateCreated": "2024-09",
-        "datePublished": "2026-06",
-        "keywords": [
-            "application web",
-            "outil interne",
-            "gestion RH",
-            "gestion pédagogie"
-        ]
-    },
+        "about": {
+            "@type": "CreativeWork",
+            "name": "GIPE",
+            "description": "Outil interne de gestion des ressources humaines et de la pédagogie développé dans le cadre d'une alternance.",
+            "publisher": {
+                "@type": "Organization",
+                "name": "Marine Nationale",
+                "url": "https://www.defense.gouv.fr/marine"
+            },
+            "creator": {
+                "@type": "Role",
+                "roleName": "Alternant développeur Full Stack",
+                "startDate": "2024-09",
+                "endDate": "2026-06",
+                "creator": {
+                    "@type": "Person",
+                    "name": "Maxence Bessi"
+                },
+                "organization": {
+                    "@type": "Organization",
+                    "name": "Marine Nationale",
+                    "url": "https://www.defense.gouv.fr/marine"
+                }
+            },
+            "dateCreated": "2024-09",
+            "keywords": [
+                "application web",
+                "outil interne",
+                "gestion RH",
+                "gestion pédagogique"
+            ]
+        }
+    }
 ])
+
 
 </script>

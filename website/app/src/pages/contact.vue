@@ -1,25 +1,25 @@
 <template>
     <NuxtLayout>
-        <section id="about"
+        <header id="about"
             class="min-h-screen flex flex-col items-center py-20 justify-center relative overflow-hidden">
             <div class="container mx-auto px-6 relative z-10">
                 <div class="grid md:grid-cols-2 gap-12 items-center">
                     <div ref="aboutContent" class="space-y-6">
                         <div class="overflow-hidden">
-                            <h2 class="text-4xl md:text-5xl font-bold mb-6 text-rose-500 dark:text-rose-400 transform translate-y-full opacity-0"
+                            <h1 class="text-4xl md:text-5xl font-bold mb-6 text-rose-500 dark:text-rose-400 transform translate-y-full opacity-0"
                                 ref="aboutTitle">
                                 Me Contacter
-                            </h2>
+                            </h1>
                         </div>
                         <div class="space-y-3">
                             <p class="text-lg text-gray-800 dark:text-gray-300 leading-relaxed transform translate-y-8 opacity-0"
-                            ref="aboutText1">
+                                ref="aboutText1">
                                 Toujours ouvert à de nouveaux défis et collaborations,
                                 je m'investis avec sérieux dans des projets aux enjeux variés.
                                 N'hésitez pas à me contacter pour échanger autour de vos besoins ou de vos idées.
                             </p>
                             <p class="text-lg text-gray-800 dark:text-gray-300 leading-relaxed transform translate-y-8 opacity-0"
-                            ref="aboutText2">
+                                ref="aboutText2">
                                 Que ce soit pour une prise de contact, une proposition de projet,
                                 un échange technique ou un entretien, je reste disponible.
                                 Vous pouvez me joindre facilement par email ou via LinkedIn.
@@ -32,7 +32,8 @@
                             <div
                                 class="absolute inset-0 bg-gradient-to-br from-rose-600 via-purple-600 to-pink-600 rounded-2xl transform rotate-6 opacity-80 group-hover:rotate-12 transition-all duration-700">
                             </div>
-                            <img src="~/assets/data/images/45deg.jpg" class="absolute h-96 w-full object-cover object-center inset-0 rounded-2xl opacity-60 group-hover:opacity-80 transition-all duration-500"/>
+                            <img src="~/assets/data/images/45deg.jpg"
+                                class="absolute h-96 w-full object-cover object-center inset-0 rounded-2xl opacity-60 group-hover:opacity-80 transition-all duration-500" />
                         </div>
                         <div
                             class="absolute -top-4 -right-4 w-24 h-24 bg-rose-500/20 rounded-full blur-xl animate-pulse">
@@ -64,10 +65,7 @@
                     </div>
                 </div>
             </div>
-        </section>
-        <section>
-            
-        </section>
+        </header>
     </NuxtLayout>
 </template>
 
@@ -81,19 +79,21 @@ defineMeta({
     image: {
         component: "Base",
         props: {
-            headline: "Portfolio",
-            title: "Maxence Bessi",
+            colorMode: "light",
+            headline: "Maxence Bessi",
+            title: "Me Contacter",
             description: "Développeur passionné et curieux, toujours en quête d'amélioration et de nouvelles compétences."
         }
     }
 })
 
-defineSchema([
+defineSeoSchema([
     {
         "@context": "https://schema.org",
-        "@type": "WebPage",
-        "name": "Maxence Bessi - Développeur Full Stack",
-        "url": "https://maxence-bessi.com",
+        "@type": "ContactPage",
+        "name": "Contact - Maxence Bessi",
+        "description": "Page de contact pour joindre Maxence Bessi, développeur Full Stack.",
+        "url": "https://maxence-bessi.com/contact",
         "isPartOf": {
             "@type": "WebSite",
             "name": "Maxence Bessi - Développeur Full Stack",
@@ -101,7 +101,7 @@ defineSchema([
         },
         "about": {
             "@type": "Person",
-            "name": "Bessi Maxence"
+            "name": "Maxence Bessi"
         }
     }
 ])
@@ -122,7 +122,7 @@ onMounted(() => {
 
     // Animate about title
     aboutTl
-        .fromTo("#about h2",
+        .fromTo("#about h1",
             { opacity: 0, y: 50 },
             { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }
         )

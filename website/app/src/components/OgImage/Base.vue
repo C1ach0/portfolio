@@ -8,7 +8,7 @@ const props = withDefaults(defineProps<{
 	headline?: string
 	theme?: string
 }>(), {
-	colorMode: 'dark',
+	colorMode: 'light',
 	theme: '#f43f5e',
 	title: 'title',
 })

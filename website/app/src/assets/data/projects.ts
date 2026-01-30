@@ -71,6 +71,7 @@ export const projects: ProjectData[] = [
         previewImage: "__og-image__/image/projects/ensmbpn-gipe/og.png",
         date: "2026-06-30",
         techs: ["Symfony", "VueJS", "TailwindCss"],
+        keywords: ["ENSM", "BPN", "Gestion de formations", "Refonte logicielle"],
         types: ["Website"],
         devFrom: "company",
         locationName: "ENSM-BPN",

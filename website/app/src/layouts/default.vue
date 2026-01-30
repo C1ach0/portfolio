@@ -111,14 +111,14 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { about } from '~/assets/data/about';
 
-defineSchema([
+defineSeoSchema([
   {
     "@context": "https://schema.org",
     "@type": "Person",
-    "name": "Bessi Maxence",
+    "name": "Maxence Bessi",
     "givenName": "Maxence",
     "familyName": "Bessi",
-    "jobTitle": "Développeur web",
+    "jobTitle": "Développeur Full Stack",
     "url": "https://maxence-bessi.com",
     "sameAs": [
       "https://github.com/C1ach0",
