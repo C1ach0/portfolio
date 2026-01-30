@@ -111,6 +111,41 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { about } from '~/assets/data/about';
 
+defineSchema([
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Bessi Maxence",
+    "givenName": "Maxence",
+    "familyName": "Bessi",
+    "jobTitle": "Développeur web",
+    "url": "https://maxence-bessi.com",
+    "sameAs": [
+      "https://github.com/C1ach0",
+      "https://www.linkedin.com/in/maxence-bessi"
+    ],
+    "knowsAbout": [
+      "JavaScript", "TypeScript",
+      "Vue.js", "Nuxt",
+      "Java", "Spring",
+      "PHP", "Symfony",
+      "TailwindCSS",
+      "Docker", "Linux"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Maxence Bessi - Développeur Full Stack",
+    "url": "https://maxence-bessi.com",
+    "author": {
+        "@type": "Person",
+        "name": "Bessi Maxence"
+    },
+    "inLanguage": "fr"
+  }
+]);
+
 const colorMode = useColorMode()
 
 const isDark = computed({

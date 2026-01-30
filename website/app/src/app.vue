@@ -13,30 +13,6 @@ defineOgImageComponent("Base", {
   colorMode: "dark"
 });
 
-defineSchema([
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Bessi Maxence",
-    "givenName": "Maxence",
-    "familyName": "Bessi",
-    "jobTitle": "Développeur web",
-    "url": "https://maxence-bessi.com",
-    "sameAs": [
-      "https://github.com/C1ach0",
-      "https://www.linkedin.com/in/maxence-bessi"
-    ],
-    "knowsAbout": [
-      "JavaScript", "TypeScript",
-      "Vue.js", "Nuxt",
-      "Java", "Spring",
-      "PHP", "Symfony",
-      "TailwindCSS",
-      "Docker", "Linux"
-    ]
-  }
-]);
-
 if (typeof window !== 'undefined') {
   console.log(`
 https://maxence-bessi.com

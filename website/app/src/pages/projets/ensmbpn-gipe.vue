@@ -54,5 +54,36 @@ defineMeta({
         }
     }
 })
+// TODO: ajouter le type WebPage pour dire a google que c'est une page web
+defineSchema([
+    {
+        "@context": "https://schema.org",
+        "@type": "CreativeWork",
+        "name": `Maxence Bessi - ${project.value?.name}`,
+        "description": "Mission réalisée en alternance consistant à concevoir et développer un outil interne de gestion RH et pédagogique.",
+        "isPartOf": {
+            "@type": "WebSite",
+            "name": "Maxence Bessi - Développeur Full Stack",
+            "url": "https://maxence-bessi.com"
+        },
+        "author": {
+            "@type": "Person",
+            "name": "Bessi Maxence"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Marine National",
+            "url": "https://www.defense.gouv.fr/marine"
+        },
+        "dateCreated": "2024-09",
+        "datePublished": "2026-06",
+        "keywords": [
+            "application web",
+            "outil interne",
+            "gestion RH",
+            "gestion pédagogie"
+        ]
+    },
+])
 
 </script>

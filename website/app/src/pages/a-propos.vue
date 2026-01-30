@@ -203,7 +203,23 @@ defineMeta({
         }
     }
 })
-
+defineSchema([
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Maxence Bessi - Développeur Full Stack",
+        "url": "https://maxence-bessi.com",
+        "isPartOf": {
+            "@type": "WebSite",
+            "name": "Maxence Bessi - Développeur Full Stack",
+            "url": "https://maxence-bessi.com"
+        },
+        "about": {
+            "@type": "Person",
+            "name": "Bessi Maxence"
+        }
+    }
+])
 
 const route = useRoute()
 const { registerSteps } = useIntro()

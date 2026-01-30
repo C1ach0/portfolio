@@ -256,6 +256,24 @@ import {
     projects
 } from "~/assets/data/projects";
 
+defineSchema([
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Maxence Bessi - Développeur Full Stack",
+        "url": "https://maxence-bessi.com",
+        "isPartOf": {
+            "@type": "WebSite",
+            "name": "Maxence Bessi - Développeur Full Stack",
+            "url": "https://maxence-bessi.com"
+        },
+        "about": {
+            "@type": "Person",
+            "name": "Bessi Maxence"
+        }
+    }
+])
+
 const sortedProjects = computed(() => {
     return projects.slice().sort((a, b) => {
         // Projets en dev en haut

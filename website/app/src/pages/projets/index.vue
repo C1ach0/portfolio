@@ -143,6 +143,22 @@ defineMeta({
         }
     }
 })
+defineSchema([
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Maxence Bessi - Développeur Full Stack",
+        "url": "https://maxence-bessi.com",
+        "isPartOf": {
+            "@type": "WebSite",
+            "name": "Maxence Bessi - Développeur Full Stack",
+            "url": "https://maxence-bessi.com"
+        },
+        "about": {
+            "@type": "CreativeWork"
+        }
+    }
+])
 
 const ogImageDisplay = ref("/__og-image__/image/og.png");
 const route = useRoute();
