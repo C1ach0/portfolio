@@ -43,7 +43,7 @@
                             </CardAbout>
                         </div>
                     </div>
-                    <div ref="projectImage" class="relative group scale-90 lg:scale-100">
+                    <div ref="projectImage" class="relative group scale-90 lg:scale-100 mx-4">
                         <div
                             class="relative w-full h-96 transform rotate-3 group-hover:rotate-6 transition-transform duration-700">
                             <div
@@ -84,8 +84,8 @@
         </section>
         <section class="py-20 px-6 max-w-screen-2xl mx-auto">
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                <div v-for="(project, index) in sortedProjects" :key="index" :id="`p_${project.slug}`" class="rounded-2xl overflow-hidden bg-gradient-to-br from-gray-100/70 to-gray-200/60 dark:from-gray-800/70 dark:to-gray-900/60 border border-gray-100 dark:border-gray-700 hover:border-rose-500/50 shadow-md hover:shadow-rose-500/10 transition-all duration-300 group relative flex flex-col justify-between">
-                    <NuxtLink :to="`/projets/${project.slug}`" class="absolute inset-0 z-10"
+                <div v-for="(project, index) in sortedProjects" :key="index" :id="`p_${project.slug}`" :data-intro-id="`project-${project.slug}`" class="rounded-2xl overflow-hidden bg-gradient-to-br from-gray-100/70 to-gray-200/60 dark:from-gray-800/70 dark:to-gray-900/60 border border-gray-100 dark:border-gray-700 hover:border-rose-500/50 shadow-md hover:shadow-rose-500/10 transition-all duration-300 group relative flex flex-col justify-between">
+                    <RouterLink :to="`/projets/${project.slug}`" class="absolute inset-0 z-10"
                         aria-label="Aller au projet" />
                     <div class="p-5 relative z-20 flex flex-col flex-1">
                         <div
@@ -109,11 +109,11 @@
                             </span>
                         </div>
                         <div class="mt-4">
-                            <NuxtLink :to="`/projets/${project.slug}`"
+                            <RouterLink :to="`/projets/${project.slug}`"
                                 class="inline-block bg-rose-500/10 text-rose-500 dark:text-rose-300 text-sm font-medium px-4 py-2 rounded-lg hover:bg-rose-500/20 transition-colors duration-300"
                                 @click.stop>
                                 Voir le projet
-                            </NuxtLink>
+                            </RouterLink>
                         </div>
                     </div>
                 </div>
@@ -227,38 +227,50 @@ onMounted(async () => {
             "-=0.3"
         )
 
-    // Construire les steps dynamiquement
-    const steps: any[] = []
-    
-    // Premier step : la section hero (utiliser un ID ou sélecteur CSS valide)
-    steps.push({
-        element: "#about", // Ou ajoute un ID unique à projectContent
-        intro: "Découvrez mes projets phares, illustrant ma passion pour le développement et l'innovation technologique.",
-        title: "Mes Projets"
-    })
-    
-    // Steps pour chaque projet listé dans la query
-    const projectSlugs = String(route.query.projects || "").split(',').filter(Boolean)
-    
-    for (const slug of projectSlugs) {
-        // Ignorer home, about (ce sont des pages, pas des projets)
-        if (slug === 'home' || slug === 'about') continue
-        
-        // Nettoyer le slug (enlever [in]/[out])
-        const cleanSlug = slug.replace(/\[(in|out)\]/, '')
-        
-        const project = projects.find(p => p.slug === cleanSlug)
-        if (project) {
-            // Vérifier que l'élément existe
-            const element = document.querySelector(`#p_${project.slug}`)
-            if (element) {
-                steps.push({
-                    element: `#p_${project.slug}`,
-                    intro: project.description.split('.')[0] + '.',
-                    title: project.name
-                })
+    // Si on est en mode intro, construire les steps dynamiquement
+    if (route.query.intro === 'start') {
+        // Attendre un peu que le DOM soit prêt
+        await nextTick()
+        await new Promise(resolve => setTimeout(resolve, 100))
+
+        const steps: any[] = []
+
+        // Premier step : la section hero
+        steps.push({
+            element: "#about",
+            intro: "Découvrez mes projets phares, illustrant ma passion pour le développement et l'innovation technologique.",
+            title: "Mes Projets"
+        })
+
+        // Steps pour chaque projet listé dans la query
+        const projectSlugs = String(route.query.projects || "").split(',').filter(Boolean)
+
+        for (const slug of projectSlugs) {
+            // Ignorer home, about (ce sont des pages, pas des projets)
+            if (slug === 'home' || slug === 'about') continue
+
+            // Nettoyer le slug (enlever [in]/[out])
+            const cleanSlug = slug.replace(/\[(in|out)\]/, '')
+
+            const project = sortedProjects.value.find(p => p.slug === cleanSlug)
+            if (project) {
+                // Vérifier que l'élément existe
+                const element = document.querySelector(`#p_${project.slug}`)
+                if (element) {
+                    const mode = slug.includes('[in]') ? 'in' : 'out'
+                    const modeLabel = mode === 'in' ? ' (cliquez pour explorer)' : ''
+
+                    steps.push({
+                        element: `#p_${project.slug}`,
+                        intro: project.description.split('.')[0] + '.' + modeLabel,
+                        title: project.name
+                    })
+                }
             }
         }
+
+        console.log(`📝 Registering ${steps.length} steps for projects page`)
+        await registerSteps('projects', steps)
     }
 });
 </script>

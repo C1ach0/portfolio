@@ -14,7 +14,7 @@ export const about: AboutAll = {
     skills: [
         "html", "css", "sass", "javascript", "typescript", "java-light", "php-light", "cpp", "bash-light", "nodejs-light",
         "vuejs-light", "nuxtjs-light", "tailwindcss-light", "nestjs-light", "discord", "maven-light", "spring-light", "symfony-light",
-        "mysql-light", "redis-light", "git", "docker", "nginx", "cloudflare-light", "proxmox",
+        "mysql-light", "redis-light", "git", "docker", "nginx", "cloudflare-light",
         "linux", "vscode", "intellij"
     ],
     careers: [
@@ -28,7 +28,7 @@ export const about: AboutAll = {
         },
         {
             status: "Développeur",
-            description: "En alternance à l'ENSM BPN, j'ai développé une plateforme de gestion scolaire type Pronote/Moodle, axée sur les enseignants et la programmation de cours. Réalisée en PHP (Symfony), Vue.js et TailwindCSS, elle facilitait la gestion RH et le suivi pédagogique.",
+            description: "En alternance à l'ENSM-BPN, j'ai contribué au développement d'une plateforme de gestion scolaire type Pronote/Moodle, axée sur les enseignants et la programmation de cours. Réalisée en PHP (Symfony), Vue.js et TailwindCSS, elle facilite la gestion RH et le suivi pédagogique.",
             from: "Marine Nationale",
             start: "09/2024",
             link: "https://www.defense.gouv.fr/marine"

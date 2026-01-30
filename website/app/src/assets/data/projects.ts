@@ -39,8 +39,8 @@ export const projects: ProjectData[] = [
         name: "RosyRP",
         description: "RosyRP est une application ambitieuse permettant aux joueurs consoles de pratiquer du rôle-play sur GTA et d'autres jeux via Discord. Les utilisateurs interagissent avec le bot depuis leur téléphone. Les serveurs peuvent personnaliser entièrement l'expérience, en ajoutant des items, entreprises et autres fonctionnalités. J'ai développé ce projet pour répondre à de nombreuses demandes, malgré son caractère un peu niche.",
         previewImage: "/__og-image__/image/projets/rosy-rp/og.png",
-        date: "dev",
-        techs: ["Nuxt", "TailwindCss", "Spring Boot", "Stripe"],
+        date: "2025-12-01",
+        techs: ["Nuxt", "TailwindCss", "Spring Boot", "Stripe", "DiscordJS"],
         types: ["Website", "Bot", "API"],
         devFrom: "home"
     },
@@ -63,5 +63,17 @@ export const projects: ProjectData[] = [
         techs: ["PHP", "MySQL", "Bootstrap"],
         types: ["Website"],
         devFrom: "school"
+    },
+    {
+        slug: "ensmbpn-gipe",
+        name: "GIPE",
+        description: "GIPE v3 est une refonte majeure du logiciel de gestion des formations de l'ENSM/BPN. Développé en Vue.js (front-end) et Symfony (back-end), il modernise la gestion des formations et activités annuelles. Cette version sépare l'interface utilisateur du serveur pour une meilleure évolutivité et maintenabilité. Elle intègre les fonctionnalités clés de la v1 (tests, documentation) tout en restant compatible avec l'ajout d'autres écoles.",
+        previewImage: "__og-image__/image/projects/ensmbpn-gipe/og.png",
+        date: "2026-06-30",
+        techs: ["Symfony", "VueJS", "TailwindCss"],
+        types: ["Website"],
+        devFrom: "company",
+        locationName: "ENSM-BPN",
+        sndName: "Marine National"
     }
 ]

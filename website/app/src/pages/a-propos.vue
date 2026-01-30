@@ -4,7 +4,7 @@
             class="min-h-screen flex flex-col items-center py-20 justify-center relative overflow-hidden">
             <div class="container mx-auto px-6 relative z-10">
                 <div class="grid md:grid-cols-2 gap-12 items-center">
-                    <div ref="aboutContent" class="space-y-6">
+                    <div ref="aboutContent" class="space-y-6" data-intro-id="about-content">
                         <div class="overflow-hidden">
                             <h2 class="text-4xl md:text-5xl font-bold mb-6 text-rose-500 dark:text-rose-400 transform translate-y-full opacity-0"
                                 ref="aboutTitle">
@@ -45,7 +45,7 @@
                             <div class="metric-item transform translate-y-8 opacity-0" ref="metric1">
                                 <div class="text-2xl font-bold text-rose-500 dark:text-rose-400">{{ (new Date()).getFullYear() - (new
                                     Date(about.devYearsStart)).getFullYear() }}+</div>
-                                <div class="text-sm text-gray-500 dark:text-gray-400">Ans d'apprentissage</div>
+                                <div class="text-sm text-gray-500 dark:text-gray-400">Ans de pratique</div>
                             </div>
                             <div class="metric-item transform translate-y-8 opacity-0" ref="metric2">
                                 <div class="text-2xl font-bold text-rose-500 dark:text-rose-400">{{ projects.length }}+</div>
@@ -96,7 +96,7 @@
             </div>
         </section>
         <section id="skills" class="py-10 flex flex-col items-center justify-center mx-2">
-            <div ref="skillContent" class="max-w-screen-sm mx-auto flex flex-wrap gap-3 items-center justify-center">
+            <div ref="skillContent" class="max-w-screen-sm mx-auto flex flex-wrap gap-3 items-center justify-center" data-intro-id="skill-content">
                 <UIcon v-for="skill in about.skills" :key="skill" :name="`skill-icons:${skill}`" class="h-10 w-10"/>
             </div>
             <p class="text-sm text-mutted text-center">...</p>
@@ -142,7 +142,7 @@
             <div class="absolute bottom-1/4 left-[15%] w-44 h-44 bg-purple-500 rounded-full blur-3xl"></div>
         </section>
         <section id="school" class="py-40 relative overflow-hidden flex items-center justify-center">
-            <div ref="schoolSection" class="container mx-auto px-6 relative z-10 flex flex-col items-center">
+            <div ref="schoolSection" class="container mx-auto px-6 relative z-10 flex flex-col items-center" data-intro-id="school-section">
                 <div class="mb-12 text-center">
                     <h2 ref="schoolTitle" class="text-4xl md:text-5xl font-bold text-rose-500 dark:text-rose-400 mb-4">Mon Education</h2>
                     <p class="text-lg text-gray-800 dark:text-gray-300 max-w-2xl mx-auto">
@@ -205,12 +205,15 @@ defineMeta({
 })
 
 
+const route = useRoute()
+const { registerSteps } = useIntro()
+
 // Template refs
 const aboutContent = useTemplateRef("aboutContent");
 const skillContent = useTemplateRef("skillContent");
 const careerTitle = useTemplateRef("careerTitle");
 const schoolTitle = useTemplateRef("schoolTitle");
-const schoolSection = useTemplateRef("schoolSection");  
+const schoolSection = useTemplateRef("schoolSection");
 
 const careers = ref<ICS[]>([]);
 const schools = ref<ICS[]>([]);
@@ -221,26 +224,34 @@ const imageUrl = computed(() => {
     }&perline=10`
 })
 
-const introSteps = ref([ 
+const introSteps = [
     {
-        element: aboutContent.value as HTMLDivElement,
+        element: '[data-intro-id="about-content"]',
         intro: "Apprenez-en plus sur moi, mon parcours et mes compétences en développement.",
         title: "À Propos de Moi"
     },
     {
-        element: skillContent.value as HTMLDivElement,
+        element: '[data-intro-id="skill-content"]',
         intro: "Découvrez mes compétences techniques et les technologies que je maîtrise.",
         title: "Mes compétences"
     },
     {
-        element: schoolSection.value as HTMLDivElement,
+        element: '[data-intro-id="school-section"]',
         intro: "Explorez mon parcours éducatif et les institutions qui ont façonné mes connaissances.",
         title: "Mon éducation"
     }
-]);
+];
 
-onMounted(() => {
+onMounted(async () => {
     gsap.registerPlugin(ScrollTrigger)
+
+    // Enregistrer les steps pour l'intro si elle est active
+    if (route.query.intro === 'start') {
+        await nextTick()
+        await new Promise(resolve => setTimeout(resolve, 100))
+        await registerSteps('about', introSteps)
+        console.log('📝 Registered steps for about page')
+    }
 
     // About section animations
     const aboutTl = gsap.timeline({

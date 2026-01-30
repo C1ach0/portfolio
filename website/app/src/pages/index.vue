@@ -64,7 +64,7 @@
                             <div class="metric-item transform translate-y-8 opacity-0" ref="metric1">
                                 <div class="text-2xl font-bold text-rose-500 dark:text-rose-400">{{ (new Date()).getFullYear() - (new
                                     Date(about.devYearsStart)).getFullYear() }}+</div>
-                                <div class="text-sm text-gray-500 dark:text-gray-400">Ans d'apprentissage</div>
+                                <div class="text-sm text-gray-500 dark:text-gray-400">Ans de pratique</div>
                             </div>
                             <div class="metric-item transform translate-y-8 opacity-0" ref="metric2">
                                 <div class="text-2xl font-bold text-rose-500 dark:text-rose-400">{{ projects.length }}+</div>
@@ -306,28 +306,38 @@ function toggleAutoRotate() {
     }
 }
 
-const introSteps = ref([
+const introSteps = [
     {
-        element: heroContent.value as HTMLDivElement,
+        element: '[data-intro-id="1"]',
         intro: "Bienvenue sur mon portfolio ! Je suis Maxence Bessi, développeur Full Stack passionné.",
         title: "Présentation"
     },
     {
-        element: aboutContent.value as HTMLDivElement,
+        element: '[data-intro-id="2"]',
         intro: "Découvrez mon parcours, mes compétences et les technologies que j'utilise au quotidien.",
         title: "À propos de moi"
     },
     {
-        element: careerTimeline.value as HTMLDivElement,
+        element: '[data-intro-id="3"]',
         intro: "Voici mon parcours professionnel, de mes débuts à aujourd'hui.",
         position: "bottom",
         title: "Mon parcours"
     }
-])
+]
 
 onMounted(async () => {
     startAutoRotate()
     gsap.registerPlugin(ScrollTrigger)
+
+    // Enregistrer les steps pour l'intro si elle est active
+    const route = useRoute()
+    if (route.query.intro === 'start') {
+        await nextTick()
+        await new Promise(resolve => setTimeout(resolve, 100))
+        const { registerSteps } = useIntro()
+        await registerSteps('home', introSteps)
+        console.log('📝 Registered steps for home page')
+    }
 
     // Hero animations
     const tl = gsap.timeline()

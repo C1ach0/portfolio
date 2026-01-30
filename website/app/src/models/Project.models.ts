@@ -45,4 +45,12 @@ export interface ProjectData {
      * Provenance
      */
     devFrom?: "home" | "school" | "company";
+    /**
+     * Nom de l'établissement : (school = Bonaparte, comany = ...)
+     */
+    locationName?: string;
+    /**
+     * Complement du nom de l'établissement
+     */
+    sndName?: string;
 }

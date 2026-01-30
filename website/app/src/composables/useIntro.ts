@@ -17,6 +17,8 @@ interface IntroScenario {
     duration: number
     projectsToShow: IntroProjectStep[] // Les projets à montrer dans /projets
     currentPageIndex: number // Index dans le cycle home → about → projects
+    currentProjectIndex: number // Index du projet actuellement affiché (dans projectsToShow)
+    isInProjectDetail: boolean // Est-on dans la page détail d'un projet ?
 }
 
 interface RegisteredPageSteps {
@@ -25,13 +27,47 @@ interface RegisteredPageSteps {
 }
 
 /* ----------------------------------
+ * Intro.js minimal typing
+ * ---------------------------------- */
+type IntroStep = Record<string, unknown> & { element?: string }
+
+interface IntroInstance {
+    setOptions(options: {
+        steps: IntroStep[]
+        showBullets?: boolean
+        showButtons?: boolean
+        exitOnOverlayClick?: boolean
+        exitOnEsc?: boolean
+        disableInteraction?: boolean
+        overlayOpacity?: number
+        scrollToElement?: boolean
+        scrollPadding?: number
+    }): void
+    start(): void
+    exit(): void
+    nextStep(): void
+    previousStep(): void
+    onbeforechange(cb: (targetElement: HTMLElement | null) => boolean | void | Promise<boolean | void>): void
+    oncomplete(cb: () => void): void
+    onexit(cb: () => void): void
+    onchange?: ((targetElement: HTMLElement | null) => void) | null
+    getCurrentStep: () => number
+    _currentStep?: number
+    _options?: { steps?: IntroStep[] }
+}
+
+type IntroFactory = () => IntroInstance
+type IntroModule = IntroFactory & { tour?: IntroFactory }
+
+/* ----------------------------------
  * Singleton state (persistent multi-route)
  * ---------------------------------- */
-const intro = ref<any | null>(null)
-let introJs: any = null
+const intro = ref<IntroInstance | null>(null)
+let introJs: IntroModule | null = null
 let autoTimer: ReturnType<typeof setTimeout> | null = null
 let isPaused = false
 let isNavigating = false
+let isIntroCompleted = false // Flag pour savoir si l'intro de la page actuelle est terminé
 const scenario = ref<IntroScenario | null>(null)
 const registeredSteps = ref<RegisteredPageSteps[]>([])
 
@@ -52,7 +88,8 @@ export const useIntro = () => {
             resume: () => { },
             stop: () => { },
             nextManualStep: () => { },
-            prevManualStep: () => { }
+            prevManualStep: () => { },
+            continueFromProject: () => { }
         }
     }
 
@@ -62,10 +99,11 @@ export const useIntro = () => {
     /* ----------------------------------
      * Utils
      * ---------------------------------- */
-    const loadIntro = async () => {
+    const loadIntro = async (): Promise<IntroModule> => {
         if (introJs) return introJs
         const mod = await import("intro.js")
-        introJs = mod.default
+        const imported = (mod as unknown as { default?: IntroModule }).default ?? (mod as unknown as IntroModule)
+        introJs = imported
         return introJs
     }
 
@@ -79,13 +117,20 @@ export const useIntro = () => {
     /* ----------------------------------
      * Helper pour convertir HTMLElement en sélecteur
      * ---------------------------------- */
-    const convertElementToSelector = (element: HTMLDivElement | string, fallbackId: string): string => {
+    const convertElementToSelector = (element: HTMLDivElement | string | null, fallbackId: string): string => {
         if (typeof element === 'string') {
             return element
         }
+
+        // Si l'élément est null ou undefined, retourner un sélecteur avec le fallback
+        if (!element) {
+            console.warn(`Element is null for fallbackId: ${fallbackId}`)
+            return `[data-intro-id="${fallbackId}"]`
+        }
+
         console.log(element);
-        if (!element?.hasAttribute('data-intro-id')) {
-            element?.setAttribute('data-intro-id', fallbackId)
+        if (!element.hasAttribute('data-intro-id')) {
+            element.setAttribute('data-intro-id', fallbackId)
         }
 
         return `[data-intro-id="${element.getAttribute('data-intro-id')}"]`
@@ -104,6 +149,8 @@ export const useIntro = () => {
             control: route.query.control === "manual" ? "manual" : "auto",
             duration: Number(route.query.duration) || 3500,
             currentPageIndex: 0, // Toujours commencer par home
+            currentProjectIndex: -1, // Pas encore de projet affiché
+            isInProjectDetail: false, // Pas encore dans un projet
             projectsToShow: projectsRaw.map((raw) => {
                 const match = raw.match(/^([a-z0-9-]+)(?:\[(in|out)\])?$/i)
                 return {
@@ -199,7 +246,15 @@ export const useIntro = () => {
      * Navigation logic
      * ---------------------------------- */
     const goToPage = async (pageIndex: number) => {
-        if (!scenario.value || isNavigating) return
+        if (!scenario.value) {
+            console.error("❌ No scenario, cannot navigate")
+            return
+        }
+
+        if (isNavigating) {
+            console.warn("⚠️ Already navigating, skipping")
+            return
+        }
 
         // ✅ Cycle infini
         console.log(`➡️ Navigating to page index ${pageIndex}`)
@@ -217,6 +272,7 @@ export const useIntro = () => {
 
         // Exit current intro
         if (intro.value) {
+            console.log("🚪 Exiting current intro before navigation")
             intro.value.exit()
             intro.value = null
         }
@@ -225,32 +281,70 @@ export const useIntro = () => {
         const pageId = PAGE_CYCLE[pageIndex]
         const targetPath = getTargetPath(pageIndex)
 
-        console.log(`🎯 Page ${pageIndex + 1}/${PAGE_CYCLE.length}: ${pageId} → ${targetPath}`)
+        console.log(`🎯 Navigating to page ${pageIndex + 1}/${PAGE_CYCLE.length}: ${pageId} → ${targetPath}`)
 
         // Navigate if needed
         if (route.path !== targetPath) {
+            console.log(`🔀 Route change: ${route.path} → ${targetPath}`)
             await router.push({ path: targetPath, query: route.query })
             await nextTick()
-            await new Promise(resolve => setTimeout(resolve, 200))
+            await new Promise(resolve => setTimeout(resolve, 300))
+        } else {
+            console.log("✅ Already on target path")
         }
 
         isNavigating = false
+        console.log("✅ Navigation completed, trying to start intro")
 
         // Try to start intro on current page
         const expectedPageId = getCurrentPageId()
         if (expectedPageId) {
+            console.log(`🎬 Starting intro for page: ${expectedPageId}`)
             await tryStartIntro(expectedPageId)
+        } else {
+            console.error("❌ No expected page ID")
         }
     }
 
     const nextManualStep = () => {
         if (!scenario.value || scenario.value.control !== "manual") return
-        
-        // ✅ Si intro est actif, Intro.js gère déjà la navigation entre steps
-        // On laisse juste Intro.js faire son travail
+
+        // Bloquer les inputs pendant la navigation
+        if (isNavigating) {
+            console.warn("⚠️ Navigation in progress, ignoring input")
+            return
+        }
+
+        // ✅ Si l'intro est complété, passer à la page suivante
+        if (isIntroCompleted) {
+            console.log("➡️ Manual: intro completed, going to next page")
+            isIntroCompleted = false
+            goToPage(scenario.value.currentPageIndex + 1)
+            return
+        }
+
+        // ✅ Si intro est actif, vérifier si on est sur le dernier step
         if (intro.value) {
-            console.log("➡️ Manual: next step (handled by Intro.js)")
-            intro.value.nextStep()
+            const currentStep = intro.value.getCurrentStep()
+            const totalSteps = intro.value._options?.steps?.length || 0
+
+            console.log(`➡️ Manual: current step ${currentStep + 1}/${totalSteps}`)
+
+            // Si currentStep est NaN ou invalide, ignorer (l'intro vient de démarrer)
+            if (isNaN(currentStep) || currentStep === undefined || currentStep === null) {
+                console.warn("⚠️ Manual: step not initialized yet, ignoring")
+                return
+            }
+
+            // Si on est sur le dernier step, passer à la page suivante
+            if (currentStep >= totalSteps - 1) {
+                console.log("➡️ Manual: last step, going to next page")
+                goToPage(scenario.value.currentPageIndex + 1)
+            } else {
+                // Sinon, passer au step suivant
+                console.log("➡️ Manual: next step (handled by Intro.js)")
+                intro.value.nextStep()
+            }
         } else {
             // Pas d'intro actif, passer directement à la page suivante
             console.log("➡️ Manual: next page (no intro active)")
@@ -260,11 +354,22 @@ export const useIntro = () => {
 
     const prevManualStep = () => {
         if (!scenario.value || scenario.value.control !== "manual") return
-        
-        // ✅ Si intro est actif, Intro.js gère déjà la navigation entre steps
+
+        // ✅ Si intro est actif, vérifier si on est sur le premier step
         if (intro.value) {
-            console.log("⬅️ Manual: previous step (handled by Intro.js)")
-            intro.value.previousStep()
+            const currentStep = intro.value.getCurrentStep()
+
+            console.log(`⬅️ Manual: current step ${currentStep + 1}`)
+
+            // Si on est sur le premier step, revenir à la page précédente
+            if (currentStep === 0) {
+                console.log("⬅️ Manual: first step, going to previous page")
+                goToPage(scenario.value.currentPageIndex - 1)
+            } else {
+                // Sinon, revenir au step précédent
+                console.log("⬅️ Manual: previous step (handled by Intro.js)")
+                intro.value.previousStep()
+            }
         } else {
             // Pas d'intro actif, revenir directement à la page précédente
             console.log("⬅️ Manual: previous page (no intro active)")
@@ -276,6 +381,32 @@ export const useIntro = () => {
         if (!scenario.value || scenario.value.control === "manual") return
         console.log("⏭️ Auto: advancing to next page")
         await goToPage(scenario.value.currentPageIndex + 1)
+    }
+
+    /* ----------------------------------
+     * Project detail navigation
+     * ---------------------------------- */
+    const continueFromProject = async () => {
+        if (!scenario.value || !scenario.value.isInProjectDetail) return
+
+        console.log("⬅️ Returning from project detail to projects page")
+
+        scenario.value.isInProjectDetail = false
+
+        // Retourner à la page projets
+        await router.push({ path: "/projets", query: route.query })
+        await nextTick()
+
+        // Reprendre l'intro si on a un intro actif
+        if (intro.value) {
+            // Passer au step suivant (le prochain projet ou la fin)
+            intro.value.nextStep()
+
+            // Reprendre le timer si on était en mode auto
+            if (scenario.value.control === "auto") {
+                resume()
+            }
+        }
     }
 
     /* ----------------------------------
@@ -318,7 +449,13 @@ export const useIntro = () => {
     }
 
     const tryStartIntro = async (id: string) => {
-        if (!scenario.value || isNavigating) {
+        if (!scenario.value) {
+            console.error(`❌ No scenario, cannot start intro for "${id}"`)
+            return
+        }
+
+        if (isNavigating) {
+            console.warn(`⚠️ Still navigating, skipping intro start for "${id}"`)
             return
         }
 
@@ -328,10 +465,23 @@ export const useIntro = () => {
             return
         }
 
-        const entry = registeredSteps.value.find(s => s.id === id)
+        // Attendre que les steps soient enregistrés (avec retry)
+        let entry = registeredSteps.value.find(s => s.id === id)
         if (!entry || entry.steps.length === 0) {
-            console.warn(`⚠️ No steps found for "${id}"`)
-            return
+            console.log(`⏳ Waiting for steps to be registered for "${id}"...`)
+            const maxRetries = 10
+            let retries = 0
+            while (retries < maxRetries && (!entry || entry.steps.length === 0)) {
+                await new Promise(resolve => setTimeout(resolve, 100))
+                entry = registeredSteps.value.find(s => s.id === id)
+                retries++
+            }
+
+            if (!entry || entry.steps.length === 0) {
+                console.error(`❌ No steps found for "${id}" after ${maxRetries} retries. Registered pages:`, registeredSteps.value.map(s => s.id))
+                return
+            }
+            console.log(`✅ Steps registered after ${retries * 100}ms`)
         }
 
         await nextTick()
@@ -339,22 +489,27 @@ export const useIntro = () => {
         // Wait for DOM to be ready
         const firstElement = entry.steps[0]?.element
         if (firstElement) {
-            const maxWait = 10
+            console.log(`🔍 Waiting for element: ${firstElement}`)
+            const maxWait = 20 // Augmenté à 20 tentatives = 1 seconde
             let attempts = 0
             while (attempts < maxWait && !document.querySelector(firstElement)) {
                 await new Promise(resolve => setTimeout(resolve, 50))
                 attempts++
             }
             if (attempts >= maxWait) {
-                console.warn(`⚠️ Element "${firstElement}" not found after ${maxWait * 50}ms`)
+                console.error(`❌ Element "${firstElement}" not found after ${maxWait * 50}ms`)
                 return
             }
+            console.log(`✅ Element found after ${attempts * 50}ms`)
         }
 
-        console.log(`✅ Starting intro for "${id}" (${entry.steps.length} steps)`)
+        console.log(`🎬 Starting intro for "${id}" with ${entry.steps.length} steps`)
+
+        // Réinitialiser le flag de complétion
+        isIntroCompleted = false
 
         const Intro = await loadIntro()
-        intro.value = Intro()
+        intro.value = typeof Intro.tour === "function" ? Intro.tour() : Intro()
 
         intro.value.setOptions({
             steps: entry.steps,
@@ -368,14 +523,48 @@ export const useIntro = () => {
             scrollPadding: 30
         })
 
+        intro.value.onbeforechange(async function(this: IntroInstance, targetElement: HTMLElement | null) {
+            if (!scenario.value) return
+
+            // Détecter si on est sur la page projets et si le step actuel est un projet avec mode [in]
+            if (id === "projects" && scenario.value.projectsToShow.length > 0) {
+                const currentStepIndex = this.getCurrentStep()
+
+                // Le premier step est le hero de la page projets, donc les projets commencent à l'index 1
+                const projectIndex = currentStepIndex - 1
+
+                if (projectIndex >= 0 && projectIndex < scenario.value.projectsToShow.length) {
+                    const project = scenario.value.projectsToShow[projectIndex]
+
+                    // Si le projet a le mode [in], on doit naviguer vers la page du projet
+                    if (project.mode === "in") {
+                        console.log(`📍 Entering project detail: ${project.slug}`)
+                        scenario.value.currentProjectIndex = projectIndex
+                        scenario.value.isInProjectDetail = true
+
+                        // Pause l'intro
+                        pause()
+
+                        // Naviguer vers la page du projet
+                        await router.push(`/projets/${project.slug}`)
+
+                        // Arrêter temporairement l'intro (on reprendra après)
+                        return false
+                    }
+                }
+            }
+        })
+
         intro.value.oncomplete(() => {
             console.log(`✅ Completed intro for "${id}"`)
-            // ✅ Quand tous les steps de la page sont terminés, passer à la page suivante
+            // ✅ Quand tous les steps de la page sont terminés
             if (scenario.value?.control === "auto") {
+                // En mode auto, passer automatiquement à la page suivante
                 goToNextPage()
             } else if (scenario.value?.control === "manual") {
-                // En mode manual, on attend que l'utilisateur appuie sur →
-                // Mais on pourrait aussi passer automatiquement :
+                // En mode manual, marquer l'intro comme complété
+                // L'utilisateur appuiera sur → pour passer à la page suivante
+                isIntroCompleted = true
                 console.log("✅ All steps completed. Press → to go to next page")
             }
         })
@@ -455,6 +644,7 @@ export const useIntro = () => {
         resume,
         stop,
         nextManualStep,
-        prevManualStep
+        prevManualStep,
+        continueFromProject
     }
 }
