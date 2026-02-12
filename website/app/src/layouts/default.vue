@@ -140,7 +140,7 @@ defineSeoSchema([
     "url": "https://maxence-bessi.com",
     "author": {
         "@type": "Person",
-        "name": "Bessi Maxence"
+        "name": "Maxence Bessi"
     },
     "inLanguage": "fr"
   }
