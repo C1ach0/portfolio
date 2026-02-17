@@ -110,7 +110,7 @@
                         </div>
                         <div class="mt-4">
                             <RouterLink :to="`/projets/${project.slug}`"
-                                class="inline-block bg-rose-500/10 text-rose-500 dark:text-rose-300 text-sm font-medium px-4 py-2 rounded-lg hover:bg-rose-500/20 transition-colors duration-300"
+                                class="inline-block z-50 bg-rose-500/10 text-rose-500 dark:text-rose-300 text-sm font-medium px-4 py-2 rounded-lg hover:bg-rose-500/20 transition-colors duration-300"
                                 @click.stop>
                                 Voir le projet
                             </RouterLink>

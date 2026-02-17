@@ -20,3 +20,6 @@
   @apply bg-rose-500/70 text-white;
 }
 
+.kdb-text {
+  @apply inline-flex items-center align-middle;
+}
