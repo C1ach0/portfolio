@@ -85,11 +85,9 @@
         <section class="py-20 px-6 max-w-screen-2xl mx-auto">
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                 <div v-for="(project, index) in sortedProjects" :key="index" :id="`p_${project.slug}`" :data-intro-id="`project-${project.slug}`" class="rounded-2xl overflow-hidden bg-gradient-to-br from-gray-100/70 to-gray-200/60 dark:from-gray-800/70 dark:to-gray-900/60 border border-gray-100 dark:border-gray-700 hover:border-rose-500/50 shadow-md hover:shadow-rose-500/10 transition-all duration-300 group relative flex flex-col justify-between">
-                    <RouterLink :to="`/projets/${project.slug}`" class="absolute inset-0 z-10"
-                        aria-label="Aller au projet" />
                     <div class="p-5 relative z-20 flex flex-col flex-1">
                         <div
-                            class="absolute inset-0 bg-gradient-to-r from-purple-600/10 to-rose-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            class="absolute inset-0 pointer-events-none bg-gradient-to-r from-purple-600/10 to-rose-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         </div>
                         <div class="flex items-center justify-between mb-2">
                             <h3

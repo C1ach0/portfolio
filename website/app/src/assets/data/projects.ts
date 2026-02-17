@@ -4,21 +4,10 @@ import type {
 
 export const projects: ProjectData[] = [
     {
-        slug: "rosy-discordjs",
-        name: "Bot Discord Rosy",
-        description: "RosyBot est un robot Discord utilisé pour gérer différentes activités et contenus sur la plateforme. C’est avec ce projet que j’ai commencé à me lancer dans le développement, et aujourd’hui, par nostalgie, je conserve le nom « Rosy » pour mes autres projets.",
-        ogDescription: "RosyBot, robot Discord pour gestion et activités, mon premier projet de développement.",
-        previewImage: "/__og-image__/image/projets/rosy-discordjs/og.png",
-        date: "2019-08-01",
-        techs: ["JavaScript", "NodeJS", "Discord"],
-        types: ["Bot"],
-        devFrom: "home"
-    },
-    {
         slug: "harmonix",
         name: "HarmonixJS",
         description: "HarmonixJS est un framework de développement de bots Discord en TypeScript, conçu pour simplifier la création et la gestion de fonctionnalités avancées telles que les commandes slash, les événements, la gestion des permissions et l'intégration avec des bases de données. Il vise à offrir une structure modulaire et extensible pour les développeurs de bots Discord.",
-        previewImage: "/__og-image__/image/projets/harmonix/og.png",
+        previewImage: "https://avatars.githubusercontent.com/u/247443023?s=400&u=a5ee14f63343f440adb9f7d8ef302c33553635ee&v=4",
         date: "2023-08-21",
         techs: ["TypeScript", "NodeJS", "Discord", "Reflect-Metadata"],
         types: ["Bot"],
@@ -47,7 +36,7 @@ export const projects: ProjectData[] = [
     {
         slug: "portfolio",
         name: "Portfolio",
-        description: "Ce portfolio est un projet que j'ai développé pour présenter mes compétences, mes projets et mon expérience de manière interactive et moderne. Construit avec TypeScript, Nuxt, NestJS et SQLite, il met en avant mon approche full-stack et mes capacités à créer des interfaces réactives et un back-end performant.",
+        description: "Ce portfolio est un projet que j'ai développé pour présenter mes compétences, mes projets et mon expérience de manière interactive et moderne. Construit avec TypeScript et Nuxt, il met en avant mes capacités à créer des interfaces réactives et performantes.",
         previewImage: "/__og-image__/image/og.png",
         date: "2025-08-27",
         techs: ["TypeScript", "Nuxt", "TailwindCss"],
