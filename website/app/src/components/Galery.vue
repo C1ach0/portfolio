@@ -1,6 +1,5 @@
 <template>
   <div class="m-2">
-    <!-- MULTIPLE IMAGES -->
     <div
       v-if="images.length > 1"
       :class="gridClass"
@@ -25,7 +24,6 @@
       </div>
     </div>
 
-    <!-- SINGLE IMAGE -->
     <div
       v-else
       class="relative group overflow-hidden rounded-xl cursor-pointer"
@@ -38,7 +36,6 @@
       />
     </div>
 
-    <!-- FULLSCREEN -->
     <div
       v-if="fullscreen"
       class="fixed inset-0 bg-black/90 flex items-center justify-center z-50"

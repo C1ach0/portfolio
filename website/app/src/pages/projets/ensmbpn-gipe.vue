@@ -6,35 +6,96 @@
                 <header class="max-w-3xl mx-auto text-center space-y-5">
                     <h1 class="text-4xl font-bold">Gestion Informatique Pour l'Enseignement</h1>
                     <p>
-                        GIPE est une projet réalisé à l'ENSM-BPN, ce projet à pour but de servir la partie RH de l'école, la gestion des cours et des exercices.
+                        GIPE est un projet auquel j'ai largement contribué. J'y ai apporté de nombreuses recommandations
+                        afin d'en améliorer la conception et d'en assurer la pérennité.
+
+                        Ce projet a pour objectif de soutenir le service des ressources humaines de l'école, ainsi que
+                        d'optimiser la gestion des cours et des exercices.
                     </p>
                     <img src="" alt="Présentation du projet GIPE">
                 </header>
                 <section class="py-20 grid grid-cols-2 gap-4 items-start">
-                    <Galery :images="images1"/>
+                    <Galery :images="images1" />
                     <div class="space-y-3">
                         <p class="text-justify">
-                            
+                            Afin de reprendre le projet dans de bonnes conditions, nous l'avons restructuré en deux
+                            services distincts : un site web et une API. Cette séparation nous a permis de mieux
+                            comprendre l'architecture de l'application et d'envisager son évolution, notamment en
+                            facilitant le développement futur d'autres applications pouvant s'y connecter.
                         </p>
                         <p class="text-justify">
-                            
+                            Dans un premier temps, avec cette nouvelle configuration, nous avons consacré plusieurs
+                            heures à concevoir un système modulable pour la gestion des groupes, ainsi qu'une méthode
+                            plus efficace pour administrer les rôles au sein de l'application.
+                        </p>
+                        <p class="text-justify">
+                            Pour y parvenir, je me suis appuyé sur différentes solutions avec lesquelles j'avais déjà
+                            travaillé, et nous avons retenu cette approche. Nous avons ainsi mis en place une table «
+                            Permissions », directement exploitée dans le code, puis défini des rôles regroupant
+                            plusieurs de ces permissions.
+                        </p>
+                        <p class="text-justify">
+                            Nous avons ensuite associé les rôles créés soit à des groupes, soit à des utilisateurs
+                            individuels via un système d'affectation. Cela nous a permis de développer une application
+                            dotée d'un système suffisamment modulable pour répondre aux besoins de notre école, et
+                            potentiellement à ceux d'autres établissements.
                         </p>
                     </div>
                 </section>
                 <section class="py-20 grid grid-cols-2 gap-4">
                     <div class="space-y-3">
                         <p class="text-justify">
-                            
+                            Au sein de l'application, j'ai principalement contribué à la mise en place de la gestion des
+                            groupes et des rôles, mais également au développement complet du module de gestion des
+                            personnes : création, modification et assignation à des groupes. Pour cela, je me suis
+                            appuyé en partie sur l'ancienne version du système afin d'en analyser le fonctionnement et
+                            d'identifier précisément les besoins métiers, tout en veillant à moderniser et structurer
+                            davantage l'architecture existante.
                         </p>
                         <p class="text-justify">
-                            
+                            L'une des principales étapes a consisté à établir une liaison avec l'annuaire militaire.
+                            Cette intégration a représenté un défi important, puisque nous travaillions sur un réseau
+                            isolé, non directement connecté à celui de l'annuaire. J'ai donc dû concevoir un mécanisme
+                            d'échange et de synchronisation fiable, en réalisant de nombreux tests entre les
+                            environnements de développement et de préproduction. Après plusieurs phases de validation,
+                            l'intégration s'est révélée concluante, permettant la création de nouvelles personnes ainsi
+                            que l'importation et la mise à jour d'individus déjà présents dans l'annuaire.
+                        </p>
+                        <p class="text-justify">
+                            J'ai ensuite développé les fonctionnalités de modification des profils enregistrés. Cela
+                            inclut la mise à jour des informations professionnelles et personnelles, la gestion des
+                            véhicules associés, ainsi que le suivi des affectations. Une attention particulière a été
+                            portée à la cohérence des données, à la traçabilité des modifications et au respect des
+                            règles RGPD afin de garantir un système fiable, évolutif
+                            et conforme aux exigences opérationnelles.
                         </p>
                     </div>
-                    <Galery :images="images2"/>
+                    <Galery :images="images2" />
+                </section>
+                <section class="py-20 grid grid-cols-2 gap-4">
+                    <Galery :images="images3" />
+                    <div class="space-y-3">
+                        <p class="text-justify">
+
+                        </p>
+                        <p class="text-justify">
+
+                        </p>
+
+                    </div>
+                </section>
+                <section class="py-20 space-y-5">
+                    <h2 class="text-center font-bold text-2xl">Autres fonctionnalités ajoutées à l'application</h2>
+                    <p class="text-muted text-sm italic text-center">Vous pouvez cliqué sur les images pour avoir une description</p>
+                    <div class="grid grid-cols-5 gap-3">
+                        <ImageDesc v-for="(img, n) in imagesOthers" :key="n" :image="img" />
+                    </div>
                 </section>
                 <footer class="pb-20 text-center">
                     <p>
-
+                        Je tiens à remercier l'ensemble de l'équipe pour son engagement, sa collaboration et son
+                        implication tout au long du développement de l'application. Leur contribution a été essentielle
+                        à la réussite de ce projet.
                     </p>
                 </footer>
             </article>
@@ -102,19 +163,41 @@ defineSchema([
     },
 ])
 
-import image1CommandCode from "~/assets/data/images/projects/harmonix/commands_code.png";
-import image1EventCode from "~/assets/data/images/projects/harmonix/event_code.png";
+
+import manageGroups from "~/assets/data/images/projects/ensmbpn-gipe/manage_groups.png";
+import managePermission from "~/assets/data/images/projects/ensmbpn-gipe/create_and_manage_permission.png";
+import manageRole from "~/assets/data/images/projects/ensmbpn-gipe/create_roles.png";
+import manageGroupsRoles from "~/assets/data/images/projects/ensmbpn-gipe/manage_permission_groups.png";
 const images1 = [
-    { url: image1CommandCode, alt: "Présentation de l'utilisation de l'annotation Command" },
-    { url: image1EventCode, alt: "Présentation de l'utilisation de l'annotation Event" },
+    { url: manageGroups, alt: "Gestion des groups au sein de l'école" },
+    { url: managePermission, alt: "Gestion des permissions de l'application" },
+    { url: manageRole, alt: "Gestion des rôles avec l'assignation d'une ou plusieurs permissions" },
+    { url: manageGroupsRoles, alt: "Assignation de plusieurs rôles dans un groupe" },
 ];
 
-import image2HarmonixClass from "~/assets/data/images/projects/harmonix/harmonix_class.png";
-import image2ExpressPuglinAdd from "~/assets/data/images/projects/harmonix/express_plugin_add.png";
-import image2ExempleExpress from "~/assets/data/images/projects/harmonix/example_express.png";
+import personCreateS from "~/assets/data/images/projects/ensmbpn-gipe/search_before_create.png";
+import personCreate from "~/assets/data/images/projects/ensmbpn-gipe/create_person.png";
+import personInfo from "~/assets/data/images/projects/ensmbpn-gipe/person_information.png";
 const images2 = [
-    { url: image2HarmonixClass, alt: "Présentation de la classe Harmonix" },
-    { url: image2ExpressPuglinAdd, alt: "Installation d'un plugin dans le framework" },
-    { url: image2ExempleExpress, alt: "Exemple d'utilisation du plugin expressjs" }
-]
+    { url: personCreateS, alt: "Recherche d'une personne existante au sein de l'application ou l'annuaire militaire" },
+    { url: personCreate, alt: "Création d'une personne à partir ou non des informations collectées" },
+    { url: personInfo, alt: "Visionage des informations des personnes enregistrer dans l'application" }
+];
+
+const images3 = [
+    { url: personInfo, alt: "Visionage des informations des personnes enregistrer dans l'application" }
+
+];
+
+
+// petit.e ajoute / modification
+import sessionView from "~/assets/data/images/projects/ensmbpn-gipe/session_view.png";
+const imagesOthers = [
+    {
+        url: sessionView,
+        alt: "Visualisation des sessions acttives avec leurs dates de début et de fin",
+        description: "Affichage détaillé des sessions actives, incluant leurs dates de début et de fin, offrant une vision claire de leur période de validité et un suivi précis de leur état. La consultation est limitée à une fenêtre temporelle de trois semaines : la semaine en cours, la semaine précédente et la semaine suivante, afin de conserver une vue pertinente et synthétique."
+    }
+];
+
 </script>
