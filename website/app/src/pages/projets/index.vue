@@ -117,7 +117,7 @@
                 </div>
             </div>
         </section>
-        <IntroPage intro-id="projects" :steps="[]"/>
+        <!-- <IntroPage intro-id="projects" :steps="[]"/> -->
     </NuxtLayout>
 </template>
 

@@ -13,7 +13,7 @@
             @click.self="close">
             <div class="absolute top-10 right-10 p-3 rounded-full bg-white shadow-xl flex flex-col items-center justify-center hover:scale-105 hover:bg-primary-100 cursor-pointer"
                 @click="close">
-                <UIcon name="i-heroicons-x-mark" class="h-7 w-7" />
+                <UIcon name="i-heroicons-x-mark" class="h-7 w-7 text-black" />
             </div>
             <img :src="image.url" :alt="image.alt" class="max-w-[90%] max-h-[80%] object-contain object-center" />
             <div v-if="image.description" class="mt-6 text-white text-center max-w-2xl">
@@ -45,4 +45,10 @@ function open() {
 function close() {
     fullscreen.value = false
 }
+
+defineShortcuts({
+  escape: () => {
+    close();
+  }
+})
 </script>

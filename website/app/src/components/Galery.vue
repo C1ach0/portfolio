@@ -17,13 +17,13 @@
       <img :src="images[0].url" :alt="images[0].alt"
         class="w-full max-h-[500px] object-cover object-center transition-transform duration-300 group-hover:scale-105" />
     </div>
-    
+
     <div v-if="fullscreen" class="fixed inset-0 bg-black/90 flex flex-col items-center justify-center z-50 p-6"
       @click.self="close">
       <div
         class="absolute top-10 right-10 p-3 rounded-full bg-white shadow-xl flex flex-col items-center justify-center hover:scale-105 hover:bg-primary-100 cursor-pointer"
         @click="close">
-        <UIcon name="i-heroicons-x-mark" class="h-7 w-7" />
+        <UIcon name="i-heroicons-x-mark" class="h-7 w-7 text-black" />
       </div>
       <img :src="fullscreen.url" :alt="fullscreen.alt" class="max-w-[90%] max-h-[80%] object-contain object-center" />
       <div v-if="fullscreen.description" class="mt-6 text-white text-center max-w-2xl">
@@ -88,6 +88,12 @@ function goto(next: "prev" | "next") {
 function close() {
   fullscreen.value = null
 }
+
+defineShortcuts({
+  escape: () => {
+    close();
+  }
+})
 
 const gridClass = computed(() => {
   if (props.images.length >= 3) {

@@ -43,8 +43,7 @@
                         </div>
                         <div class="flex space-x-8 mt-8">
                             <div class="metric-item transform translate-y-8 opacity-0" ref="metric1">
-                                <div class="text-2xl font-bold text-rose-500 dark:text-rose-400">{{ (new Date()).getFullYear() - (new
-                                    Date(about.devYearsStart)).getFullYear() }}+</div>
+                                <div class="text-2xl font-bold text-rose-500 dark:text-rose-400">{{ (new Date()).getFullYear() - (new Date(about.devYearsStart)).getFullYear() }}+</div>
                                 <div class="text-sm text-gray-500 dark:text-gray-400">Ans de pratique</div>
                             </div>
                             <div class="metric-item transform translate-y-8 opacity-0" ref="metric2">
@@ -180,7 +179,7 @@
             </div>
             <div class="absolute top-1/4 right-[15%] w-44 h-44 bg-rose-500 rounded-full blur-3xl"></div>
         </section>
-        <IntroPage intro-id="about" :steps="introSteps"/>
+        <!-- <IntroPage intro-id="about" :steps="introSteps"/> -->
     </NuxtLayout>
 </template>
 

@@ -217,7 +217,7 @@
             <div class="absolute top-1/4 right-[15%] w-44 h-44 bg-rose-500 rounded-full blur-3xl"></div>
             <div class="absolute bottom-1/4 left-[15%] w-44 h-44 bg-purple-500 rounded-full blur-3xl"></div>
         </section>
-        <IntroPage intro-id="home" :steps="introSteps"/>
+        <!-- <IntroPage intro-id="home" :steps="introSteps"/> -->
     </NuxtLayout>
 </template>
 
