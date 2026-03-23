@@ -166,7 +166,7 @@ const from = (devFrom: string|undefined) => {
     return {
         "home": "Personnel",
         "school": "Scolaire",
-        "work": "Professionnel"
+        "company": "Professionnel"
     }[devFrom || "home"];
 }
 

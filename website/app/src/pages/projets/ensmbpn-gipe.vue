@@ -4,7 +4,7 @@
             <ProjectInfo :project />
             <article class="min-h-screen relative overflow-x-hidden max-w-6xl mx-auto">
                 <header class="max-w-3xl mx-auto text-center space-y-5">
-                    <h1 class="text-4xl font-bold">Gestion Informatique Pour l'Enseignement</h1>
+                    <h1 class="text-4xl font-bold">Gestion Informatisé Pour l'Enseignement</h1>
                     <p>
                         GIPE est un projet auquel j'ai largement contribué. J'y ai apporté de nombreuses recommandations
                         afin d'en améliorer la conception et d'en assurer la pérennité.
@@ -12,7 +12,8 @@
                         Ce projet a pour objectif de soutenir le service des ressources humaines de l'école, ainsi que
                         d'optimiser la gestion des cours et des exercices.
                     </p>
-                    <img src="" alt="Présentation du projet GIPE">
+                    <img :src="pageLoginHeader" alt="Présentation du projet GIPE. Page de connexion sur l'application">
+                    <SkillBadge :tech-uses="techUses" />
                 </header>
                 <section class="py-20 grid grid-cols-2 gap-4 items-start">
                     <Galery :images="images1" />
@@ -72,7 +73,7 @@
                     </div>
                     <Galery :images="images2" />
                 </section>
-                <section class="py-20 grid grid-cols-2 gap-4">
+                <!-- <section class="py-20 grid grid-cols-2 gap-4">
                     <Galery :images="images3" />
                     <div class="space-y-3">
                         <p class="text-justify">
@@ -83,11 +84,10 @@
                         </p>
 
                     </div>
-                </section>
+                </section> -->
                 <section class="py-20 space-y-5">
                     <h2 class="text-center font-bold text-2xl">Autres fonctionnalités ajoutées à l'application</h2>
-                    <p class="text-muted text-sm italic text-center">Vous pouvez cliqué sur les images pour avoir une description</p>
-                    <div class="grid grid-cols-5 gap-3">
+                    <div class="grid grid-cols-3 gap-3">
                         <ImageDesc v-for="(img, n) in imagesOthers" :key="n" :image="img" />
                     </div>
                 </section>
@@ -163,31 +163,95 @@ defineSchema([
     },
 ])
 
+const techUses = [
+    {
+        icon: "typescript",
+        name: "TypeScript"
+    },
+    {
+        icon: "vuejs-light",
+        name: "VueJS"
+    },
+    {
+        icon: "tailwindcss-light",
+        name: "TailwindCSS"
+    },
+    {
+        icon: "php-light",
+        name: "PHP 8.3"
+    },
+    {
+        icon: "symfony-light",
+        name: "Symfony 6.4"
+    },
+    {
+        icon: "mysql-light",
+        name: "MySQL"
+    },
+    {
+        icon: "git",
+        name: "Git"
+    },
+    {
+        icon: "gitlab-light",
+        name: "GitLab"
+    }
+]
+
+import pageLoginHeader from "~/assets/data/images/projects/ensmbpn-gipe/page_login.png";
 
 import manageGroups from "~/assets/data/images/projects/ensmbpn-gipe/manage_groups.png";
-import managePermission from "~/assets/data/images/projects/ensmbpn-gipe/create_and_manage_permission.png";
+import manageRolePermission from "~/assets/data/images/projects/ensmbpn-gipe/ajout_perm_role.png";
 import manageRole from "~/assets/data/images/projects/ensmbpn-gipe/create_roles.png";
 import manageGroupsRoles from "~/assets/data/images/projects/ensmbpn-gipe/manage_permission_groups.png";
 const images1 = [
-    { url: manageGroups, alt: "Gestion des groups au sein de l'école" },
-    { url: managePermission, alt: "Gestion des permissions de l'application" },
-    { url: manageRole, alt: "Gestion des rôles avec l'assignation d'une ou plusieurs permissions" },
-    { url: manageGroupsRoles, alt: "Assignation de plusieurs rôles dans un groupe" },
+    { 
+        url: manageGroups, 
+        alt: "Gestion des groupes au sein de l'école", 
+        description: "Création et gestion des groupes au sein de l'école, permettant une organisation hiérarchique et l'affectation des utilisateurs à leurs groupes respectifs." 
+    },
+    { 
+        url: manageRolePermission, 
+        alt: "Gestion des permissions associées aux rôles",
+        description: "Attribution de permissions définies dans l'application aux rôles, permettant un contrôle précis des actions disponibles."
+    },
+    { 
+        url: manageRole, 
+        alt: "Gestion des rôles et de leurs permissions",
+        description: "Création, modification et gestion des rôles utilisés dans l'application. Chaque rôle peut être configuré avec des permissions spécifiques afin de définir précisément les actions autorisées pour les utilisateurs, facilitant ainsi une gestion claire et sécurisée des accès."
+    },
+    { 
+        url: manageGroupsRoles, 
+        alt: "Attribution de rôles aux groupes",
+        description: "Attribution d'un ou plusieurs rôles à un groupe afin d'accorder des permissions à ses membres ainsi qu'à ceux des groupes enfants, héritant de ces permissions."
+    },
 ];
 
 import personCreateS from "~/assets/data/images/projects/ensmbpn-gipe/search_before_create.png";
 import personCreate from "~/assets/data/images/projects/ensmbpn-gipe/create_person.png";
 import personInfo from "~/assets/data/images/projects/ensmbpn-gipe/person_information.png";
 const images2 = [
-    { url: personCreateS, alt: "Recherche d'une personne existante au sein de l'application ou l'annuaire militaire" },
-    { url: personCreate, alt: "Création d'une personne à partir ou non des informations collectées" },
-    { url: personInfo, alt: "Visionage des informations des personnes enregistrer dans l'application" }
+    { 
+        url: personCreateS, 
+        alt: "Recherche d'une personne existante dans l'application ou l'annuaire militaire",
+        description: "Formulaire de recherche dans l'annuaire (LDAP) avant la création d'une personne. Cette étape permet de récupérer les données existantes et d'éviter les doublons."
+    },
+    { 
+        url: personCreate, 
+        alt: "Création d'une personne avec ou sans les informations collectées",
+        description: "Création d'une personne à partir des informations récupérées via le LDAP ou saisies manuellement. Seules les informations essentielles sont მოთხოვ afin de permettre aux ressources humaines d'effectuer l'enregistrement plus rapidement."
+    },
+    { 
+        url: personInfo, 
+        alt: "Visualisation des informations des personnes enregistrées dans l'application", 
+        description: "Consultation des informations des personnes enregistrées dans l'application, incluant les données professionnelles, personnelles ainsi que celles liées à la formation ou à l'affectation au sein de l'école."
+    }
 ];
 
-const images3 = [
-    { url: personInfo, alt: "Visionage des informations des personnes enregistrer dans l'application" }
+// const images3 = [
+//     { url: personInfo, alt: "Visionage des informations des personnes enregistrer dans l'application" }
 
-];
+// ];
 
 
 // petit.e ajoute / modification

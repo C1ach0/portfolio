@@ -21,6 +21,24 @@
                         <UButton href="https://github.com/c1ach0/portfolio" target="_blank" class="rounded-full">Github
                         </UButton>
                     </div>
+                    <SkillBadge :tech-uses="[
+                        {
+                            icon: 'typescript',
+                            name: 'TypeScript'
+                        },
+                        {
+                            icon: 'nuxtjs-light',
+                            name: 'Nuxt'
+                        },
+                        {
+                            icon: 'tailwindcss-light',
+                            name: 'TailwindCSS'
+                        },
+                        {
+                            icon: 'github-light',
+                            name: 'GitHub'
+                        }
+                    ]"/>
                 </header>
                 <section class="py-20 grid grid-cols-2 gap-4 items-start">
                     <Galery :images="images1" />

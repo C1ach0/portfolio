@@ -23,6 +23,16 @@
                         <UButton href="https://png-generation.maxence-bessi.com" target="_blank" class="rounded-full">
                             Documentation</UButton>
                     </div>
+                    <SkillBadge :tech-uses="[
+                        {
+                            icon: 'typescript',
+                            name: 'TypeScript'
+                        },
+                        {
+                            icon: 'nestjs-light',
+                            name: 'NestJS'
+                        }
+                    ]"/>
                 </header>
                 <section class="py-20 grid grid-cols-2 gap-4 items-start">
                     <Galery :images="images1" />

@@ -6,11 +6,28 @@
                 <header class="max-w-3xl mx-auto text-center space-y-5">
                     <h1 class="text-4xl font-bold">HarmonixJS - Framework DiscordJS</h1>
                     <p>HarmonixJS est un framework complet et modulaire destiné à faciliter la création de robots Discord. L'outil est basé sur l'utilisation des décorateurs (annotations) et de la réflexion. Il permet ainsi de créer facilement des fichiers correctement annotés, qui seront ensuite détectés et exécutés automatiquement.</p>
-                    <img src="" alt="Présentation du projet HarmonixJS">
                     <div class="flex items-center justify-center gap-4 lg:gap-10 flex-wrap">
                         <UButton href="https://github.com/harmonixjs" target="_blank" class="rounded-full">Github</UButton>
                         <UButton href="" target="_blank" class="rounded-full" disabled>Documentation (dev)</UButton>
                     </div>
+                    <SkillBadge :tech-uses="[
+                        {
+                            icon: 'typescript',
+                            name: 'TypeScript'
+                        },
+                        {
+                            icon: 'discord',
+                            name: 'DiscordJS v14'
+                        },
+                        {
+                            icon: 'github-light',
+                            name: 'GitHub'
+                        },
+                        {
+                            icon: 'npm-light',
+                            name: 'NPM'
+                        }
+                    ]" />
                 </header>
                 <section class="py-20 grid grid-cols-2 gap-4 items-start">
                     <Galery :images="images1"/>
