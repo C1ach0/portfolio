@@ -2,7 +2,7 @@
     <NuxtLayout>
         <template v-if="project">
             <ProjectInfo :project />
-            <article class="min-h-screen relative overflow-x-hidden max-w-6xl mx-auto">
+            <article class="min-h-screen relative overflow-x-hidden max-w-6xl mx-auto px-2">
                 <header class="max-w-3xl mx-auto text-center space-y-5">
                     <h1 class="text-4xl font-bold">PNG Génération - Framework DiscordJS</h1>
                     <p>
@@ -34,14 +34,14 @@
                         }
                     ]"/>
                 </header>
-                <section class="py-20 grid grid-cols-2 gap-4 items-start">
+                <section class="py-20 flex flex-col-reverse lg:grid grid-cols-2 gap-4 items-start">
                     <Galery :images="images1" />
                     <div class="space-y-3">
                         <p class="text-justify">
-                            L’utilisation du projet repose sur un principe simple : définir une structure d’image à l’aide de HTML et de CSS (ou TailwindCSS), comme pour n’importe quelle interface web. Le template peut être conçu avec des composants VueJS ou React afin de bénéficier d’une logique dynamique et d’un système de props pour personnaliser le rendu. L’image finale est ensuite générée à partir de ce rendu, permettant de produire des visuels cohérents, maintenables et facilement modifiables.
+                            L'utilisation du projet repose sur un principe simple : définir une structure d'image à l'aide de HTML et de CSS (ou TailwindCSS), comme pour n'importe quelle interface web. Le template peut être conçu avec des composants VueJS ou React afin de bénéficier d'une logique dynamique et d'un système de props pour personnaliser le rendu. L'image finale est ensuite générée à partir de ce rendu, permettant de produire des visuels cohérents, maintenables et facilement modifiables.
                         </p>
                         <p class="text-justify">
-                            Côté API, l’intégration consiste à exposer un endpoint chargé de générer l’image à la demande. Les données sont transmises via des paramètres ou un corps de requête, injectées dans le template, puis converties en image au moment de l’appel. Cette approche permet de générer dynamiquement des visuels personnalisés (cartes, aperçus, certificats, bannières, etc.) tout en conservant une structure de code claire et proche des standards du développement frontend.
+                            Côté API, l'intégration consiste à exposer un endpoint chargé de générer l'image à la demande. Les données sont transmises via des paramètres ou un corps de requête, injectées dans le template, puis converties en image au moment de l'appel. Cette approche permet de générer dynamiquement des visuels personnalisés (cartes, aperçus, certificats, bannières, etc.) tout en conservant une structure de code claire et proche des standards du développement frontend.
                         </p>
                     </div>
                 </section>

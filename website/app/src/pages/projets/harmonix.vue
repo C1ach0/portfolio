@@ -2,7 +2,7 @@
     <NuxtLayout>
         <template v-if="project">
             <ProjectInfo :project />
-            <article class="min-h-screen relative overflow-x-hidden max-w-6xl mx-auto">
+            <article class="min-h-screen relative overflow-x-hidden max-w-6xl mx-auto px-2">
                 <header class="max-w-3xl mx-auto text-center space-y-5">
                     <h1 class="text-4xl font-bold">HarmonixJS - Framework DiscordJS</h1>
                     <p>HarmonixJS est un framework complet et modulaire destiné à faciliter la création de robots Discord. L'outil est basé sur l'utilisation des décorateurs (annotations) et de la réflexion. Il permet ainsi de créer facilement des fichiers correctement annotés, qui seront ensuite détectés et exécutés automatiquement.</p>
@@ -29,7 +29,7 @@
                         }
                     ]" />
                 </header>
-                <section class="py-20 grid grid-cols-2 gap-4 items-start">
+                <section class="py-20 flex flex-col-reverse lg:grid grid-cols-2 gap-4 items-start">
                     <Galery :images="images1"/>
                     <div class="space-y-3">
                         <p class="text-justify">
@@ -40,7 +40,7 @@
                         </p>
                     </div>
                 </section>
-                <section class="py-20 grid grid-cols-2 gap-4">
+                <section class="py-20 flex flex-col lg:grid grid-cols-2 gap-4">
                     <div class="space-y-3">
                         <p class="text-justify">
                             Harmonix a été conçu avec une architecture modulaire permettant l'ajout de fonctionnalités complémentaires selon les besoins de l'application. Parmi ces extensions figure le plugin Express, développé afin d'intégrer une couche HTTP complète au sein de l'écosystème Harmonix. Ce module permet de mettre en place une API REST structurée tout en conservant la cohérence architecturale du framework, notamment en matière d'injection de dépendances et d'organisation par responsabilités.

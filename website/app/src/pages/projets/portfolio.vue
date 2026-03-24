@@ -2,7 +2,7 @@
     <NuxtLayout>
         <template v-if="project">
             <ProjectInfo :project />
-            <article class="min-h-screen relative overflow-x-hidden max-w-6xl mx-auto">
+            <article class="min-h-screen relative overflow-x-hidden max-w-6xl mx-auto px-2">
                 <header class="max-w-3xl mx-auto text-center space-y-5">
                     <h1 class="text-4xl font-bold">Mon Portfolio</h1>
                     <p>
@@ -40,7 +40,7 @@
                         }
                     ]"/>
                 </header>
-                <section class="py-20 grid grid-cols-2 gap-4 items-start">
+                <section class="py-20 flex flex-col-reverse lg:grid grid-cols-2 gap-4 items-start">
                     <Galery :images="images1" />
                     <div class="space-y-4">
                         <h2 class="text-2xl font-bold">Présentation du projet</h2>
@@ -58,7 +58,7 @@
                         </p>
                     </div>
                 </section>
-                <section class="py-20 grid grid-cols-2 gap-4">
+                <section class="py-20 flex flex-col lg:grid grid-cols-2 gap-4">
                     <div class="space-y-4">
                         <h2 class="text-2xl font-bold">Stack technique</h2>
                         <p class="text-justify">

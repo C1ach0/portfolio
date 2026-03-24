@@ -53,4 +53,8 @@ export interface ProjectData {
      * Complement du nom de l'établissement
      */
     sndName?: string;
+    /**
+     * Nombre d'heure passé sur le projet (appproximativement)
+     */
+    workingHours?: number;
 }

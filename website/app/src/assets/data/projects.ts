@@ -56,13 +56,14 @@ export const projects: ProjectData[] = [
     {
         slug: "ensmbpn-gipe",
         name: "GIPE",
-        description: "GIPE v3 est une refonte majeure du logiciel de gestion des formations de l'ENSM/BPN. Développé en Vue.js (front-end) et Symfony (back-end), il modernise la gestion des formations et activités annuelles. Cette version sépare l'interface utilisateur du serveur pour une meilleure évolutivité et maintenabilité. Elle intègre les fonctionnalités clés de la v1 (tests, documentation) tout en restant compatible avec l'ajout d'autres écoles.",
-        previewImage: "__og-image__/image/projects/ensmbpn-gipe/og.png",
+        description: "GIPE est l'outil de Gestion Informatisée Pour l'Enseignement qui soutient l'activité pédagogique de l'école ENSM-BPN. Le projet s'inscrit dans une dynamique de transformation numérique de l'enseignement de la Marine, avec des leviers comme l'amélioration de la traçabilité pédagogique, la facilitation du pilotage des formations et la rationalisation des outils métiers.",
+        previewImage: "/project_preview/logo_gipe.png",
         date: "2026-06-30",
         techs: ["Symfony", "VueJS", "TailwindCss"],
         types: ["Website"],
         devFrom: "company",
         locationName: "ENSM-BPN",
-        sndName: "Marine National"
+        sndName: "Marine National",
+        workingHours: (37 * 2 * 20) - 50
     }
 ]

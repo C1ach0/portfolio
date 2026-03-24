@@ -116,9 +116,9 @@
         </section>
         <section id="projects"
             class="min-h-screen w-screen flex items-center justify-center py-40 relative overflow-hidden">
-            <div class="container mx-auto px-6 flex flex-col md:flex-row items-center justify-center h-full">
+            <div class="px-3 md:container md:mx-auto md:px-6 flex flex-col md:flex-row items-center justify-center h-full">
                 <div class="w-full md:w-1/2 h-full flex flex-col justify-center items-start pr-0 md:pr-12 z-10">
-                    <h2 ref="projectsTitle" class="text-4xl md:text-5xl font-bold mb-8 text-rose-500 dark:text-rose-400">Mes Projets</h2>
+                    <h2 ref="projectsTitle" class="text-4xl md:text-5xl font-bold mb-8 text-rose-500 dark:text-rose-400 mx-2">Mes Projets</h2>
                     <div v-for="(project, idx) in sortedProjects" :key="project.name" v-show="idx === currentProject"
                         class="group">
                         <div
@@ -127,7 +127,10 @@
                                 class="absolute inset-0 bg-gradient-to-r from-purple-600/10 to-rose-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                             </div>
                             <div class="relative z-10 w-full min-w-80">
-                                <h3 class="text-2xl font-semibold dark:text-white mb-2">{{ project.name }}</h3>
+                                <div class="flex items-center justify-between mb-2">
+                                    <h3 class="text-2xl font-semibold dark:text-white">{{ project.name }}</h3>
+                                    <h2 class="text-sm text-gray-500 dark:text-gray-300">{{ from(project.devFrom) }}</h2>
+                                </div>
                                 <p class="text-gray-800 dark:text-gray-300 mb-4">{{ project.description }}</p>
                                 <div class="flex flex-wrap gap-2 mb-4">
                                     <span v-for="tag in project.techs" :key="tag"
@@ -164,7 +167,7 @@
                             :src="sortedProjects[currentProject].previewImage"
                             :alt="sortedProjects[currentProject].name"
                             :key="sortedProjects[currentProject].previewImage"
-                            class="rounded-2xl shadow-2xl object-cover w-[28rem] max-h-[22rem] md:w-[32rem] md:max-h-[28rem] transition-all duration-700" />
+                            class="rounded-2xl object-cover w-[28rem] max-h-[22rem] md:w-[32rem] md:max-h-[28rem] transition-all duration-700" />
                         <!-- <div v-else
                             class="w-[28rem] h-[22rem] md:w-[32rem] md:h-[28rem] bg-gray-700 rounded-2xl flex items-center justify-center text-gray-400 text-xl">
                             Pas d'image
@@ -207,7 +210,7 @@
                                 </a>
                                 <span v-else>{{ item.from }}</span>
                             </div>
-                            <CardAbout class="my-2 text-start text-gray-800 dark:text-gray-300">
+                            <CardAbout class="my-2 text-start text-gray-800 dark:text-gray-300 text-md">
                                 {{ item.description }}
                             </CardAbout>
                         </template>
@@ -273,6 +276,14 @@ defineSchema([
         }
     }
 ])
+
+const from = (devFrom: string|undefined) => {
+    return {
+        "home": "Personnel",
+        "school": "Scolaire",
+        "company": "Professionnel"
+    }[devFrom || "home"];
+}
 
 const sortedProjects = computed(() => {
     return projects.slice().sort((a, b) => {

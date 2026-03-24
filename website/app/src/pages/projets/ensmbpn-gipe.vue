@@ -2,9 +2,9 @@
     <NuxtLayout>
         <template v-if="project">
             <ProjectInfo :project />
-            <article class="min-h-screen relative overflow-x-hidden max-w-6xl mx-auto">
+            <article class="min-h-screen relative overflow-x-hidden max-w-6xl mx-auto px-2">
                 <header class="max-w-3xl mx-auto text-center space-y-5">
-                    <h1 class="text-4xl font-bold">Gestion Informatisé Pour l'Enseignement</h1>
+                    <h1 class="text-4xl font-bold">Gestion Informatisée Pour l'Enseignement</h1>
                     <p>
                         GIPE est un projet auquel j'ai largement contribué. J'y ai apporté de nombreuses recommandations
                         afin d'en améliorer la conception et d'en assurer la pérennité.
@@ -15,7 +15,7 @@
                     <img :src="pageLoginHeader" alt="Présentation du projet GIPE. Page de connexion sur l'application">
                     <SkillBadge :tech-uses="techUses" />
                 </header>
-                <section class="py-20 grid grid-cols-2 gap-4 items-start">
+                <section class="py-20 flex flex-col-reverse lg:grid grid-cols-2 gap-4 items-start">
                     <Galery :images="images1" />
                     <div class="space-y-3">
                         <p class="text-justify">
@@ -43,7 +43,7 @@
                         </p>
                     </div>
                 </section>
-                <section class="py-20 grid grid-cols-2 gap-4">
+                <section class="py-20 flex flex-col lg:grid grid-cols-2 gap-4">
                     <div class="space-y-3">
                         <p class="text-justify">
                             Au sein de l'application, j'ai principalement contribué à la mise en place de la gestion des
@@ -87,7 +87,7 @@
                 </section> -->
                 <section class="py-20 space-y-5">
                     <h2 class="text-center font-bold text-2xl">Autres fonctionnalités ajoutées à l'application</h2>
-                    <div class="grid grid-cols-3 gap-3">
+                    <div class="flex flex-col lg:grid grid-cols-3 gap-3">
                         <ImageDesc v-for="(img, n) in imagesOthers" :key="n" :image="img" />
                     </div>
                 </section>
@@ -136,7 +136,7 @@ defineSchema([
         "@context": "https://schema.org",
         "@type": "CreativeWork",
         "name": `Maxence Bessi - ${project.value?.name}`,
-        "description": "Mission réalisée en alternance consistant à concevoir et développer un outil interne de gestion RH et pédagogique.",
+        "description": project.value?.description,
         "isPartOf": {
             "@type": "WebSite",
             "name": "Maxence Bessi - Développeur Full Stack",
@@ -154,11 +154,10 @@ defineSchema([
         "dateCreated": "2024-09",
         "datePublished": "2026-07",
         "keywords": [
-            "framework",
-            "discord",
-            "handler",
-            "typescript",
-            "reflection"
+            "website",
+            "pedagogie",
+            "marine nationale",
+            "ensm-bpn"
         ]
     },
 ])
@@ -186,7 +185,7 @@ const techUses = [
     },
     {
         icon: "mysql-light",
-        name: "MySQL"
+        name: "MariaDB"
     },
     {
         icon: "git",

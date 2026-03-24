@@ -37,7 +37,7 @@
                         </svg>
                     </button>
                     <div ref="mobileMenu" v-show="isMenuOpen"
-                        class="absolute top-full text-black dark:text-white left-0 w-full bg-slate-50/70 dark:bg-black/70 backdrop-blur-sm border-b border-slate-50 dark:border-black md:hidden overflow-hidden">
+                        class="absolute  top-full text-black dark:text-white left-0 w-full bg-slate-50/70 dark:bg-black/70 backdrop-blur-lg border-b border-slate-50 dark:border-black md:hidden overflow-hidden">
                         <div class="flex flex-col space-y-4 px-6 py-4">
                             <RouterLink @click="isMenuOpen = false" to="/"
                                 class="nav-link hover:text-rose-400 transition-colors cursor-pointer">
