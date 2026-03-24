@@ -18,6 +18,7 @@
                 <section class="py-20 flex flex-col-reverse lg:grid grid-cols-2 gap-4 items-start">
                     <Galery :images="images1" />
                     <div class="space-y-3">
+                        <h2 class="text-2xl font-bold">Gestion de l'application</h2>
                         <p class="text-justify">
                             Afin de reprendre le projet dans de bonnes conditions, nous l'avons restructuré en deux
                             services distincts : un site web et une API. Cette séparation nous a permis de mieux
@@ -45,6 +46,7 @@
                 </section>
                 <section class="py-20 flex flex-col lg:grid grid-cols-2 gap-4">
                     <div class="space-y-3">
+                        <h2 class="text-2xl font-bold">Gestion des personnes</h2>
                         <p class="text-justify">
                             Au sein de l'application, j'ai principalement contribué à la mise en place de la gestion des
                             groupes et des rôles, mais également au développement complet du module de gestion des
@@ -73,18 +75,72 @@
                     </div>
                     <Galery :images="images2" />
                 </section>
-                <!-- <section class="py-20 grid grid-cols-2 gap-4">
+                <USeparator />
+                <section class="py-20 grid grid-cols-2 gap-4">
                     <Galery :images="images3" />
                     <div class="space-y-3">
+                        <h2 class="text-2xl font-bold">Mise en place des librairies</h2>
                         <p class="text-justify">
-
+                            En raison de notre environnement en réseau fermé, nous devons gérer notre propre registre de
+                            paquets, notamment pour NPM et Composer. Dans ce contexte, nous utilisons <a
+                                href="https://jfrog.com/fr/" class="">JFrog</a> comme
+                            solution de gestion des artefacts.
                         </p>
                         <p class="text-justify">
-
+                            Nous avons donc entrepris une remise à plat complète de notre registre existant. Cela a
+                            impliqué une phase d'exploration et de compréhension de l'outil, notamment en raison d'un
+                            manque de documentation interne. Ce travail nous a permis de mieux structurer notre registre
+                            et d'optimiser nos processus d'installation et de gestion des dépendances.
                         </p>
 
                     </div>
-                </section> -->
+                </section>
+                <section class="py-20">
+                    <div class="space-y-3">
+                        <h2 class="text-2xl font-bold">Gestion de la base de donnée</h2>
+                        <p class="text-justify">
+                            Dans ce projet, nous utilisons une base de données MariaDB pour assurer la gestion et la
+                            persistance des données. Compte tenu du contexte, nous manipulons un volume important de
+                            données issues de reprises existantes, ce qui impose un niveau d'exigence particulièrement
+                            élevé en matière d'intégrité.
+                        </p>
+                        <p class="text-justify">
+                            Ainsi, la majorité des opérations de création et de modification de structure (tables,
+                            schémas, relations) est réalisée via des requêtes SQL écrites et maîtrisées manuellement.
+                            Cette approche nous permet de garder un contrôle précis sur chaque changement appliqué à la
+                            base de données.
+                        </p>
+                        <p class="text-justify">
+                            L'objectif est de garantir qu'aucune donnée ne soit altérée ou perdue lors des différentes
+                            phases de migration ou d'évolution. Chaque intervention est donc pensée, testée et sécurisée
+                            en amont afin d'assurer la fiabilité et la continuité des données.
+                        </p>
+                    </div>
+                </section>
+                <section class="py-20 grid grid-cols-2 gap-4">
+                    <Galery :images="images4" />
+                    <div class="space-y-3">
+                        <h2 class="text-2xl font-bold">Mise en ligne</h2>
+                        <p class="text-justify">
+                            Actuellement, la mise en production repose sur un environnement IIS hébergé sur Windows
+                            Server. Toutefois, une migration vers une infrastructure cloud, basée sur une machine Linux,
+                            est prévue à moyen terme afin de bénéficier d'un environnement plus flexible et mieux adapté
+                            aux standards actuels.
+                        </p>
+                        <p class="text-justify">
+                            Néanmoins, cette transition s'avère complexe, notamment en raison d'un manque important de
+                            documentation sur l'existant et sur les étapes nécessaires à la migration. Cette situation
+                            rend le processus plus risqué et demande un travail d'analyse approfondi avant toute mise en
+                            œuvre.
+                        </p>
+                        <p class="text-justify">
+                            Par ailleurs, les contraintes de planning et les délais du projet nous imposent de prioriser
+                            la stabilité et la livraison des fonctionnalités attendues. Dans ce contexte, il est
+                            actuellement plus pertinent de conserver l'infrastructure existante, tout en préparant
+                            progressivement la migration vers une solution Linux plus pérenne.
+                        </p>
+                    </div>
+                </section>
                 <section class="py-20 space-y-5">
                     <h2 class="text-center font-bold text-2xl">Autres fonctionnalités ajoutées à l'application</h2>
                     <div class="flex flex-col lg:grid grid-cols-3 gap-3">
@@ -204,23 +260,23 @@ import manageRolePermission from "~/assets/data/images/projects/ensmbpn-gipe/ajo
 import manageRole from "~/assets/data/images/projects/ensmbpn-gipe/create_roles.png";
 import manageGroupsRoles from "~/assets/data/images/projects/ensmbpn-gipe/manage_permission_groups.png";
 const images1 = [
-    { 
-        url: manageGroups, 
-        alt: "Gestion des groupes au sein de l'école", 
-        description: "Création et gestion des groupes au sein de l'école, permettant une organisation hiérarchique et l'affectation des utilisateurs à leurs groupes respectifs." 
+    {
+        url: manageGroups,
+        alt: "Gestion des groupes au sein de l'école",
+        description: "Création et gestion des groupes au sein de l'école, permettant une organisation hiérarchique et l'affectation des utilisateurs à leurs groupes respectifs."
     },
-    { 
-        url: manageRolePermission, 
+    {
+        url: manageRolePermission,
         alt: "Gestion des permissions associées aux rôles",
         description: "Attribution de permissions définies dans l'application aux rôles, permettant un contrôle précis des actions disponibles."
     },
-    { 
-        url: manageRole, 
+    {
+        url: manageRole,
         alt: "Gestion des rôles et de leurs permissions",
         description: "Création, modification et gestion des rôles utilisés dans l'application. Chaque rôle peut être configuré avec des permissions spécifiques afin de définir précisément les actions autorisées pour les utilisateurs, facilitant ainsi une gestion claire et sécurisée des accès."
     },
-    { 
-        url: manageGroupsRoles, 
+    {
+        url: manageGroupsRoles,
         alt: "Attribution de rôles aux groupes",
         description: "Attribution d'un ou plusieurs rôles à un groupe afin d'accorder des permissions à ses membres ainsi qu'à ceux des groupes enfants, héritant de ces permissions."
     },
@@ -230,27 +286,46 @@ import personCreateS from "~/assets/data/images/projects/ensmbpn-gipe/search_bef
 import personCreate from "~/assets/data/images/projects/ensmbpn-gipe/create_person.png";
 import personInfo from "~/assets/data/images/projects/ensmbpn-gipe/person_information.png";
 const images2 = [
-    { 
-        url: personCreateS, 
+    {
+        url: personCreateS,
         alt: "Recherche d'une personne existante dans l'application ou l'annuaire militaire",
         description: "Formulaire de recherche dans l'annuaire (LDAP) avant la création d'une personne. Cette étape permet de récupérer les données existantes et d'éviter les doublons."
     },
-    { 
-        url: personCreate, 
+    {
+        url: personCreate,
         alt: "Création d'une personne avec ou sans les informations collectées",
         description: "Création d'une personne à partir des informations récupérées via le LDAP ou saisies manuellement. Seules les informations essentielles sont მოთხოვ afin de permettre aux ressources humaines d'effectuer l'enregistrement plus rapidement."
     },
-    { 
-        url: personInfo, 
-        alt: "Visualisation des informations des personnes enregistrées dans l'application", 
+    {
+        url: personInfo,
+        alt: "Visualisation des informations des personnes enregistrées dans l'application",
         description: "Consultation des informations des personnes enregistrées dans l'application, incluant les données professionnelles, personnelles ainsi que celles liées à la formation ou à l'affectation au sein de l'école."
     }
 ];
 
-// const images3 = [
-//     { url: personInfo, alt: "Visionage des informations des personnes enregistrer dans l'application" }
+import jfrog from "~/assets/data/images/projects/ensmbpn-gipe/jfrog.png";
+const images3 = [
+    { 
+        url: jfrog, 
+        alt: "Outil de gestion de librairies informatiques (NPM, COmposer, ...)",
+        description: "Exemple de la vue de l'outil JFrog"
+    }
+];
 
-// ];
+import zoneDev from "~/assets/data/images/projects/ensmbpn-gipe/dev_zone.png";
+import zoneProd from "~/assets/data/images/projects/ensmbpn-gipe/prod_zone.png";
+const images4 = [
+    {
+        url: zoneDev,
+        alt: "Zone de développement, incluant la machine de développement",
+        description: "Présentation de la zone de développement, incluant la machine de développpement et les outils tels que Jfrog et GitLab"
+    },
+    {
+        url: zoneProd,
+        alt: "Zone sur l'intranet, avec la visualisation de la production et pre-production",
+        description: "Présentation de la zone de production et pré-production dans l'intranet"
+    }
+]
 
 
 // petit.e ajoute / modification
@@ -262,5 +337,4 @@ const imagesOthers = [
         description: "Affichage détaillé des sessions actives, incluant leurs dates de début et de fin, offrant une vision claire de leur période de validité et un suivi précis de leur état. La consultation est limitée à une fenêtre temporelle de trois semaines : la semaine en cours, la semaine précédente et la semaine suivante, afin de conserver une vue pertinente et synthétique."
     }
 ];
-
 </script>

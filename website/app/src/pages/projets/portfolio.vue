@@ -37,47 +37,80 @@
                         {
                             icon: 'github-light',
                             name: 'GitHub'
+                        },
+                        {
+                            icon: 'docker',
+                            name: 'Docker'
                         }
-                    ]"/>
+                    ]" />
                 </header>
                 <section class="py-20 flex flex-col-reverse lg:grid grid-cols-2 gap-4 items-start">
                     <Galery :images="images1" />
                     <div class="space-y-4">
                         <h2 class="text-2xl font-bold">Présentation du projet</h2>
                         <p class="text-justify">
-                            Ce portfolio a été pensé comme un projet à part entière et non comme une simple vitrine
-                            statique.
-                            Il centralise mes projets et met en avant ma capacité à structurer une application moderne,
-                            maintenable et évolutive.
+                            Ce portfolio a été pensé comme un projet à part entière, avec les mêmes exigences qu'une
+                            application en production. Il centralise mes réalisations tout en illustrant ma capacité à
+                            concevoir des interfaces modernes, performantes et évolutives.
                         </p>
                         <p class="text-justify">
-                            L'objectif principal était de concevoir une interface claire, performante et agréable à
-                            parcourir,
-                            tout en respectant les bonnes pratiques actuelles en matière d'architecture front-end,
-                            d'accessibilité et d'optimisation.
+                            Au-delà de l'aspect visuel, l'accent a été mis sur une architecture front-end robuste, une
+                            expérience utilisateur fluide, ainsi que sur l'optimisation et l'accessibilité. L'ensemble a
+                            été structuré pour être maintenable dans le temps et facilement extensible.
                         </p>
                     </div>
                 </section>
                 <section class="py-20 flex flex-col lg:grid grid-cols-2 gap-4">
                     <div class="space-y-4">
-                        <h2 class="text-2xl font-bold">Stack technique</h2>
+                        <h2 class="text-2xl font-bold">Optimisation SEO</h2>
                         <p class="text-justify">
-                            Le site est développé avec Nuxt 3, permettant de bénéficier du Server-Side Rendering (SSR)
-                            et d'une optimisation SEO native. Cette approche améliore les performances perçues
-                            et le référencement naturel.
+                            Le projet repose sur Nuxt 3 afin de bénéficier du Server-Side Rendering (SSR) et d'une
+                            optimisation SEO native, améliorant significativement les performances et la visibilité.
                         </p>
                         <p class="text-justify">
-                            L'interface repose sur TailwindCSS avec une approche utility-first, garantissant
-                            une cohérence visuelle et une grande rapidité de développement.
-                            L'architecture est organisée en composants réutilisables (cartes projets,
-                            galerie dynamique, layout global), favorisant la maintenabilité et l'évolutivité.
+                            L'interface est construite avec TailwindCSS, favorisant rapidité d'itération et cohérence
+                            visuelle. L'application est organisée en composants réutilisables (cartes projets, galerie
+                            dynamique, layout global), assurant une base maintenable et évolutive.
                         </p>
                         <p class="text-justify">
-                            L'utilisation de la Composition API permet une meilleure séparation des responsabilités
-                            et une gestion claire de la logique métier.
+                            Une attention particulière a été portée à la gestion des performances et à l'expérience
+                            utilisateur, notamment à travers l'optimisation du chargement des ressources, la gestion des
+                            états d'interface et la fluidité de navigation entre les différentes sections.
+                        </p>
+                        <p class="text-justify">
+                            Le référencement est également renforcé par l'utilisation de données structurées
+                            (schema.org), permettant d'améliorer la compréhension du contenu par les moteurs de
+                            recherche et d'optimiser l'affichage des résultats.
                         </p>
                     </div>
                     <Galery :images="images2" />
+                </section>
+                <section class="py-20 flex flex-col-reverse lg:grid grid-cols-2 gap-4">
+                    <Galery :images="images3" />
+                    <div class="space-y-4">
+                        <h2 class="text-2xl font-bold">Présentation des projets</h2>
+                        <p class="text-justify">
+                            Afin de présenter plusieurs projets de manière simple et cohérente, j'ai fait le choix d'opter pour une intégration statique directement dans l'application.
+                        </p>
+                        <p class="text-justify">
+                            Cette décision a été motivée par la volonté de garder un contrôle total sur la structure de chaque page projet, tout en facilitant la création de pages dédiées avec un contenu riche et personnalisé.
+                        </p>
+                        <p class="text-justify">
+                            Une approche dynamique avec base de données aurait nécessité une gestion supplémentaire (modélisation, synchronisation, génération de pages), sans réel gain dans ce contexte. Le choix du statique permet ainsi de conserver une implémentation plus simple, tout en restant adaptée aux besoins du projet.
+                        </p>
+                    </div>
+                </section>
+                <section class="py-20 flex flex-col lg:grid grid-cols-2 gap-4">
+                    <div class="space-y-4">
+                        <h2 class="text-2xl font-bold">Mise en ligne</h2>
+                        <p class="text-justify">
+                            Afin de simplifier le déploiement de l'application, j'ai choisi d'utiliser Docker, ce qui me permet de créer une image reproductible et de la déployer rapidement sur mon serveur.
+                        </p>
+                        <p class="text-justify">
+                            Pour automatiser ce processus, j'ai mis en place un pipeline GitHub. À chaque mise à jour sur la branche principale, celui-ci récupère les dernières modifications, construit une nouvelle image Docker, puis déclenche automatiquement le redéploiement en appelant une API sur mon serveur.
+                        </p>
+                    </div>
+                    <Galery :images="images4" />
                 </section>
                 <section class="py-20 text-center max-w-lg mx-auto">
                     <h2 class="text-2xl font-bold mb-4">Perspectives d'évolution</h2>
@@ -132,7 +165,7 @@ defineSchema([
         "@context": "https://schema.org",
         "@type": "CreativeWork",
         "name": `Maxence Bessi - ${project.value?.name}`,
-        "description": "Mission réalisée en alternance consistant à concevoir et développer un outil interne de gestion RH et pédagogique.",
+        "description": project.value?.description!,
         "isPartOf": {
             "@type": "WebSite",
             "name": "Maxence Bessi - Développeur Full Stack",
@@ -143,28 +176,57 @@ defineSchema([
             "name": "Bessi Maxence"
         },
         "dateCreated": "2025-12",
-        "datePublished": "2026-01",
+        "datePublished": "2026-03",
         "keywords": [
             "webiste",
             "portfolio",
             "cv",
             "présentation",
-            "Maxence Bessi"
+            "Maxence Bessi",
+            "Bessi",
+            "Développement",
+            "Informatique"
         ]
     },
 ])
 
-import image1CommandCode from "~/assets/data/images/projects/harmonix/commands_code.png";
-import image1EventCode from "~/assets/data/images/projects/harmonix/event_code.png";
+import landingPage from "~/assets/data/images/projects/portfolio/landingpage.png";
 const images1 = [
-    { url: image1CommandCode, alt: "Présentation de l'utilisation de l'annotation Command" }
+    {
+        url: landingPage,
+        alt: "Page d'accueil de ce site (portfolio)",
+        description: "Page d'accueil de ce site"
+    }
 ];
 
-import image2HarmonixClass from "~/assets/data/images/projects/harmonix/harmonix_class.png";
-import image2ExpressPuglinAdd from "~/assets/data/images/projects/harmonix/express_plugin_add.png";
-import image2ExempleExpress from "~/assets/data/images/projects/harmonix/example_express.png";
+import ssrSeoCode from "~/assets/data/images/projects/portfolio/ssr_image.png";
 const images2 = [
-    { url: image2HarmonixClass, alt: "Présentation de la classe Harmonix" },
-    { url: image2ExpressPuglinAdd, alt: "Installation d'un plugin dans le framework" }
+    {
+        url: "/__og-image__/image/projets/ensmbpn-gipe/og.png",
+        alt: "Exemple d'image de prévisualisation Open Graph générée dynamiquement à partir des données récupérées",
+        description: "Exemple d'image de prévisualisation Open Graph générée dynamiquement à partir des données récupérées"
+    },
+    {
+        url: ssrSeoCode,
+        alt: "Mise en place de l'affichage Open Graph ",
+        description: "Mise en place de l'affichage Open Graph dynamiquement"
+    }
+]
+import projectsPage from "~/assets/data/images/projects/portfolio/projects_page.png";
+const images3 = [
+    {
+        url: projectsPage,
+        alt: "Affichage de la page projets",
+        description: "Présentation de la page projets, où ce trouvent tout les projets disponible et automatiquement importé depuis les données"
+    }
+];
+
+import cicdGithub from "~/assets/data/images/projects/portfolio/cicd_github.png";
+const images4 = [
+    {
+        url: cicdGithub,
+        alt: "Pipeline CI/CD sur Github",
+        description: "Exemple de resultat suite à une nouvelle mise à jour reçu sur GitHub"
+    }
 ]
 </script>

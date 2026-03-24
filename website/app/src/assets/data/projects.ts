@@ -44,16 +44,6 @@ export const projects: ProjectData[] = [
         devFrom: "home"
     },
     {
-        slug: "gsb-frais",
-        name: "GSB Frais",
-        description: "Application de gestion des frais pour le compte rendu de visite des délégués médicaux de l'entreprise GSB (Galaxy Swiss Bourdin). Ce projet académique m'a permis de mettre en pratique mes compétences en développement d'applications web, en travaillant sur des fonctionnalités telles que la saisie, la validation et le suivi des frais professionnels.",
-        previewImage: "/__og-image__/image/projets/gsb-frais/og.png",
-        date: "2025-05-15",
-        techs: ["PHP", "MySQL", "Bootstrap"],
-        types: ["Website"],
-        devFrom: "school"
-    },
-    {
         slug: "ensmbpn-gipe",
         name: "GIPE",
         description: "GIPE est l'outil de Gestion Informatisée Pour l'Enseignement qui soutient l'activité pédagogique de l'école ENSM-BPN. Le projet s'inscrit dans une dynamique de transformation numérique de l'enseignement de la Marine, avec des leviers comme l'amélioration de la traçabilité pédagogique, la facilitation du pilotage des formations et la rationalisation des outils métiers.",
