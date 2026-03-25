@@ -13,15 +13,17 @@
                         </div>
                         <div class="space-y-3">
                             <p class="text-lg text-gray-800 dark:text-gray-300 leading-relaxed transform translate-y-8 opacity-0"
-                            ref="aboutText1">
+                                ref="aboutText1">
                                 Développeur spécialisé dans la création d'applications modernes et variées,
-                                j'interviens sur des projets aux problématiques diverses en m'appuyant sur des technologies actuelles
+                                j'interviens sur des projets aux problématiques diverses en m'appuyant sur des
+                                technologies actuelles
                                 et des pratiques éprouvées.
                             </p>
                             <p class="text-lg text-gray-800 dark:text-gray-300 leading-relaxed transform translate-y-8 opacity-0"
-                            ref="aboutText2">
+                                ref="aboutText2">
                                 Grâce à un parcours mêlant auto-apprentissage, formation et projets concrets,
-                                j'ai développé une expertise solide me permettant de concevoir des applications performantes,
+                                j'ai développé une expertise solide me permettant de concevoir des applications
+                                performantes,
                                 innovantes et centrées sur la qualité ainsi que l'expérience utilisateur.
                             </p>
                         </div>
@@ -32,7 +34,8 @@
                                 <h4
                                     class="font-semibold text-rose-500 dark:text-rose-400 mb-2 group-hover:text-rose-300 transition-colors">
                                     Frontend</h4>
-                                <p class="text-gray-800 dark:text-gray-300 text-sm">Vue/Nuxt, Typescript, TailwindCss</p>
+                                <p class="text-gray-800 dark:text-gray-300 text-sm">Vue/Nuxt, Typescript, TailwindCss
+                                </p>
                             </CardAbout>
                             <CardAbout ref="skill2" class="skill-card">
                                 <h4
@@ -43,11 +46,13 @@
                         </div>
                         <div class="flex space-x-8 mt-8">
                             <div class="metric-item transform translate-y-8 opacity-0" ref="metric1">
-                                <div class="text-2xl font-bold text-rose-500 dark:text-rose-400">{{ (new Date()).getFullYear() - (new Date(about.devYearsStart)).getFullYear() }}+</div>
+                                <div class="text-2xl font-bold text-rose-500 dark:text-rose-400">{{ (new
+                                    Date()).getFullYear() - (new Date(about.devYearsStart)).getFullYear() }}+</div>
                                 <div class="text-sm text-gray-500 dark:text-gray-400">Ans de pratique</div>
                             </div>
                             <div class="metric-item transform translate-y-8 opacity-0" ref="metric2">
-                                <div class="text-2xl font-bold text-rose-500 dark:text-rose-400">{{ projects.length }}+</div>
+                                <div class="text-2xl font-bold text-rose-500 dark:text-rose-400">{{ projects.length }}+
+                                </div>
                                 <div class="text-sm text-gray-500 dark:text-gray-400">Projets réalisés</div>
                             </div>
                         </div>
@@ -58,7 +63,8 @@
                             <div
                                 class="absolute inset-0 bg-gradient-to-br from-rose-600 via-purple-600 to-pink-600 rounded-2xl transform rotate-6 opacity-80 group-hover:rotate-12 transition-all duration-700">
                             </div>
-                            <img src="~/assets/data/images/face.jpg" class="absolute h-96 w-full object-cover object-center inset-0 rounded-2xl opacity-60 group-hover:opacity-80 transition-all duration-500"/>
+                            <img src="~/assets/data/images/face.jpg"
+                                class="absolute h-96 w-full object-cover object-center inset-0 rounded-2xl opacity-60 group-hover:opacity-80 transition-all duration-500" />
                             <!-- <div
                                 class="absolute inset-0 bg-gradient-to-tl from-purple-600 via-rose-600 to-cyan-600 rounded-2xl opacity-60 group-hover:opacity-80 transition-all duration-500">
                             </div> -->
@@ -95,15 +101,17 @@
             </div>
         </section>
         <section id="skills" class="py-10 flex flex-col items-center justify-center mx-2">
-            <div ref="skillContent" class="max-w-screen-sm mx-auto flex flex-wrap gap-3 items-center justify-center" data-intro-id="skill-content">
-                <UIcon v-for="skill in about.skills" :key="skill" :name="`skill-icons:${skill}`" class="h-10 w-10"/>
+            <div ref="skillContent" class="max-w-screen-sm mx-auto flex flex-wrap gap-3 items-center justify-center"
+                data-intro-id="skill-content">
+                <UIcon v-for="skill in about.skills" :key="skill" :name="`skill-icons:${skill}`" class="h-10 w-10" />
             </div>
             <p class="text-sm text-mutted text-center">...</p>
         </section>
         <section id="career" class="py-40 relative overflow-hidden flex items-center justify-center">
             <div class="container mx-auto px-6 relative z-10 flex flex-col items-center">
                 <div class="mb-12 text-center">
-                    <h2 ref="careerTitle" class="text-4xl md:text-5xl font-bold text-rose-500 dark:text-rose-400 mb-4">Mon Parcours</h2>
+                    <h2 ref="careerTitle" class="text-4xl md:text-5xl font-bold text-rose-500 dark:text-rose-400 mb-4">
+                        Mon Parcours</h2>
                     <p class="text-lg text-gray-800 dark:text-gray-300 max-w-2xl mx-auto">
                         Découvrez mon évolution professionnelle.
                     </p>
@@ -141,9 +149,12 @@
             <div class="absolute bottom-1/4 left-[15%] w-44 h-44 bg-purple-500 rounded-full blur-3xl"></div>
         </section>
         <section id="school" class="py-40 relative overflow-hidden flex items-center justify-center">
-            <div ref="schoolSection" class="container mx-auto px-6 relative z-10 flex flex-col items-center" data-intro-id="school-section">
+            <div ref="schoolSection" class="container mx-auto px-6 relative z-10 flex flex-col items-center"
+                data-intro-id="school-section">
                 <div class="mb-12 text-center">
-                    <h2 ref="schoolTitle" class="text-4xl md:text-5xl font-bold text-rose-500 dark:text-rose-400 mb-4">Mon Education</h2>
+                    <h2 ref="schoolTitle" class="text-4xl md:text-5xl font-bold text-rose-500 dark:text-rose-400 mb-4">
+                        Mon
+                        Education</h2>
                     <p class="text-lg text-gray-800 dark:text-gray-300 max-w-2xl mx-auto">
                         Découvrez mon parcours éducatif et les écoles que j'ai fréquentées.
                     </p>
@@ -178,6 +189,20 @@
                 </div>
             </div>
             <div class="absolute top-1/4 right-[15%] w-44 h-44 bg-rose-500 rounded-full blur-3xl"></div>
+        </section>
+        <USeparator class="max-w-3xl mx-auto"/>
+        <section class="max-w-6xl mx-auto px-3 py-20 flex flex-col-reverse lg:grid grid-cols-2 lg:items-center gap-4">
+            <img src="/coffees/ensmbpn.jpg" alt="café exemple" class="h-92 object-center object-cover w-full rounded-md"/>
+            <div class="space-y-3">
+                <h2 class="text-2xl font-bold">Derrière chaque projet,<br> une tasse de café</h2>
+                <p class="text-justify">
+                    Et vous, plutôt espresso rapide ou café long pour démarrer ?
+                </p>
+                <RouterLink to="/coffees"
+                    class="inline-block mt-2 text-rose-500 dark:text-rose-400 hover:underline font-semibold">
+                    Voir les souvenirs &rarr;
+                </RouterLink>
+            </div>
         </section>
         <!-- <IntroPage intro-id="about" :steps="introSteps"/> -->
     </NuxtLayout>
@@ -234,9 +259,8 @@ const careers = ref<ICS[]>([]);
 const schools = ref<ICS[]>([]);
 
 const imageUrl = computed(() => {
-    return `https://skills-icons.vercel.app/api/icons?i=${
-        about.skills.join(',')
-    }&perline=10`
+    return `https://skills-icons.vercel.app/api/icons?i=${about.skills.join(',')
+        }&perline=10`
 })
 
 const introSteps = [

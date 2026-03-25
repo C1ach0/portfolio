@@ -17,3 +17,10 @@ export interface AboutAll {
     careers: ICS[];
     schools: ICS[];
 }
+
+export interface Coffee {
+    path: string;
+    company: string;
+    subName?: string;
+    end?: string;
+}

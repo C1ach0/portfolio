@@ -1,5 +1,6 @@
 import type {
-    AboutAll
+    AboutAll,
+    Coffee
 } from "@/models/About.models";
 
 export const about: AboutAll = {
@@ -51,3 +52,12 @@ export const about: AboutAll = {
         }
     ]
 };
+
+export const coffees: Coffee[] = [
+    {
+        company: "Marine National",
+        subName: "ENSM-BPN",
+        path: "/coffees/ensmbpn.jpg",
+        // end: "2025-04"
+    }
+]

@@ -49,13 +49,15 @@
                             icon: 'docker',
                             name: 'Docker'
                         }
-                    ]"/>
+                    ]" />
                 </header>
                 <section class="py-20 grid grid-cols-2 gap-4 items-start">
                     <Galery :images="images1" />
                     <div class="space-y-3">
                         <p class="text-justify">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos odio magnam tenetur suscipit incidunt. Aliquam quam, libero distinctio sit, voluptate, saepe perspiciatis placeat porro eos error recusandae temporibus facere velit.
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos odio magnam tenetur suscipit
+                            incidunt. Aliquam quam, libero distinctio sit, voluptate, saepe perspiciatis placeat porro
+                            eos error recusandae temporibus facere velit.
                         </p>
                         <!-- <p class="text-justify">
                             Concernant les évènements, le décorateur <UKbd size="lg" class="kdb-text">Event</UKbd> va
@@ -81,7 +83,12 @@
                 </section> -->
                 <footer class="pb-20 text-center">
                     <p>
-                        Le développement de RosyRP a été interrompu avant sa finalisation en raison de contraintes de temps et de priorités personnelles. Malgré cela, ce projet m'a permis d'explorer la conception d'outils dédiés au rôle-play sur Discord, ainsi que d'approfondir l'utilisation de technologies telles que Java et Spring, et de mettre en place une intégration complète de Stripe pour la gestion de paiements mensuels. Cette expérience a également renforcé mes compétences en organisation, développement et conception d'interfaces adaptées aux besoins des utilisateurs.
+                        Le développement de RosyRP a été interrompu avant sa finalisation en raison de contraintes de
+                        temps et de priorités personnelles. Malgré cela, ce projet m'a permis d'explorer la conception
+                        d'outils dédiés au rôle-play sur Discord, ainsi que d'approfondir l'utilisation de technologies
+                        telles que Java et Spring, et de mettre en place une intégration complète de Stripe pour la
+                        gestion de paiements mensuels. Cette expérience a également renforcé mes compétences en
+                        organisation, développement et conception d'interfaces adaptées aux besoins des utilisateurs.
                     </p>
                 </footer>
             </article>
@@ -150,7 +157,13 @@ defineSchema([
 import image1CommandCode from "~/assets/data/images/projects/harmonix/commands_code.png";
 import image1EventCode from "~/assets/data/images/projects/harmonix/event_code.png";
 const images1 = [
-    { url: image1CommandCode, alt: "Présentation de l'utilisation de l'annotation Command" },
-    { url: image1EventCode, alt: "Présentation de l'utilisation de l'annotation Event" },
+    {
+        url: image1CommandCode,
+        alt: "Présentation de l'utilisation de l'annotation Command"
+    },
+    {
+        url: image1EventCode,
+        alt: "Présentation de l'utilisation de l'annotation Event"
+    },
 ];
 </script>

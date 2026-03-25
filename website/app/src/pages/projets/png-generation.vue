@@ -16,7 +16,8 @@
                         au développement d'une solution plus générique, flexible et adaptée à différents contextes
                         applicatifs.
                     </p>
-                    <img src="https://png-generation.maxence-bessi.com/banner.png" alt="Présentation du projet PNG Generation">
+                    <img src="https://png-generation.maxence-bessi.com/banner.png"
+                        alt="Présentation du projet PNG Generation">
                     <div class="flex items-center justify-center gap-4 lg:gap-10 flex-wrap">
                         <UButton href="https://github.com/c1ach0/png-generation" target="_blank" class="rounded-full">
                             Github</UButton>
@@ -32,16 +33,26 @@
                             icon: 'nestjs-light',
                             name: 'NestJS'
                         }
-                    ]"/>
+                    ]" />
                 </header>
                 <section class="py-20 flex flex-col-reverse lg:grid grid-cols-2 gap-4 items-start">
                     <Galery :images="images1" />
                     <div class="space-y-3">
                         <p class="text-justify">
-                            L'utilisation du projet repose sur un principe simple : définir une structure d'image à l'aide de HTML et de CSS (ou TailwindCSS), comme pour n'importe quelle interface web. Le template peut être conçu avec des composants VueJS ou React afin de bénéficier d'une logique dynamique et d'un système de props pour personnaliser le rendu. L'image finale est ensuite générée à partir de ce rendu, permettant de produire des visuels cohérents, maintenables et facilement modifiables.
+                            L'utilisation du projet repose sur un principe simple : définir une structure d'image à
+                            l'aide de HTML et de CSS (ou TailwindCSS), comme pour n'importe quelle interface web. Le
+                            template peut être conçu avec des composants VueJS ou React afin de bénéficier d'une logique
+                            dynamique et d'un système de props pour personnaliser le rendu. L'image finale est ensuite
+                            générée à partir de ce rendu, permettant de produire des visuels cohérents, maintenables et
+                            facilement modifiables.
                         </p>
                         <p class="text-justify">
-                            Côté API, l'intégration consiste à exposer un endpoint chargé de générer l'image à la demande. Les données sont transmises via des paramètres ou un corps de requête, injectées dans le template, puis converties en image au moment de l'appel. Cette approche permet de générer dynamiquement des visuels personnalisés (cartes, aperçus, certificats, bannières, etc.) tout en conservant une structure de code claire et proche des standards du développement frontend.
+                            Côté API, l'intégration consiste à exposer un endpoint chargé de générer l'image à la
+                            demande. Les données sont transmises via des paramètres ou un corps de requête, injectées
+                            dans le template, puis converties en image au moment de l'appel. Cette approche permet de
+                            générer dynamiquement des visuels personnalisés (cartes, aperçus, certificats, bannières,
+                            etc.) tout en conservant une structure de code claire et proche des standards du
+                            développement frontend.
                         </p>
                     </div>
                 </section>
@@ -115,7 +126,15 @@ defineSchema([
 import image1HTMLCode from "~/assets/data/images/projects/png-gen/html_code.png";
 import image1ToAPICode from "~/assets/data/images/projects/png-gen/toapi_code.png";
 const images1 = [
-    { url: image1HTMLCode, alt: "Présentation d'un script html simple" },
-    { url: image1ToAPICode, alt: "Présentation de l'utilisation de l'API de création d'image" },
+    {
+        url: image1HTMLCode,
+        alt: "Présentation d'un script html simple",
+        description: "Présentation d'un script html simple utilisé pour générer une image"
+    },
+    {
+        url: image1ToAPICode,
+        alt: "Présentation de l'utilisation de l'API de création d'image",
+        description: "Création d'une image à partir du script html et en faisant un appel vers l'API"
+    },
 ];
 </script>
