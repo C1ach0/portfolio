@@ -6,14 +6,13 @@
                 <header class="max-w-3xl mx-auto text-center space-y-5">
                     <h1 class="text-4xl font-bold">Gestion Informatisée Pour l'Enseignement</h1>
                     <p>
-                        GIPE est un projet auquel j'ai largement contribué. J'y ai apporté de nombreuses recommandations
-                        afin d'en améliorer la conception et d'en assurer la pérennité.
-
-                        Ce projet a pour objectif de soutenir le service des ressources humaines de l'école, ainsi que
-                        d'optimiser la gestion des cours et des exercices.
+                        GIPE est l'outil de Gestion Informatisée Pour l'Enseignement qui soutient l'activité pédagogique de l'école ENSM-BPN. Le projet s'inscrit dans une dynamique de transformation numérique de l'enseignement de la Marine, avec des leviers comme l'amélioration de la traçabilité pédagogique, la facilitation du pilotage des formations et la rationalisation des outils métiers.
                     </p>
                     <img :src="pageLoginHeader" alt="Présentation du projet GIPE. Page de connexion sur l'application">
                     <SkillBadge :tech-uses="techUses" />
+                    <p class="mt-4">
+                        À mon arrivée, l'application était en cours de refonte afin d'améliorer la gestion des droits ainsi que l'intégration de plusieurs écoles. J'ai alors proposé à ma responsable de séparer le back-end du front-end. Cette idée a été bien accueillie, et le contexte s'y prêtait particulièrement, ce qui nous a conduits à engager une refonte complète du logiciel. 
+                    </p>
                 </header>
                 <section class="py-20 flex flex-col-reverse lg:grid grid-cols-2 gap-4 items-start">
                     <Galery :images="images1" />

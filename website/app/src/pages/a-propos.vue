@@ -111,7 +111,8 @@
             <div class="container mx-auto px-6 relative z-10 flex flex-col items-center">
                 <div class="mb-12 text-center">
                     <h2 ref="careerTitle" class="text-4xl md:text-5xl font-bold text-rose-500 dark:text-rose-400 mb-4">
-                        Mon Parcours</h2>
+                        Mon Parcours
+                    </h2>
                     <p class="text-lg text-gray-800 dark:text-gray-300 max-w-2xl mx-auto">
                         Découvrez mon évolution professionnelle.
                     </p>
@@ -153,8 +154,8 @@
                 data-intro-id="school-section">
                 <div class="mb-12 text-center">
                     <h2 ref="schoolTitle" class="text-4xl md:text-5xl font-bold text-rose-500 dark:text-rose-400 mb-4">
-                        Mon
-                        Education</h2>
+                        Ma Formation
+                    </h2>
                     <p class="text-lg text-gray-800 dark:text-gray-300 max-w-2xl mx-auto">
                         Découvrez mon parcours éducatif et les écoles que j'ai fréquentées.
                     </p>
