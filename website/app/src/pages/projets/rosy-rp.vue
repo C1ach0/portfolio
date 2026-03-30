@@ -51,36 +51,9 @@
                         }
                     ]" />
                 </header>
-                <section class="py-20 grid grid-cols-2 gap-4 items-start">
-                    <Galery :images="images1" />
-                    <div class="space-y-3">
-                        <p class="text-justify">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos odio magnam tenetur suscipit
-                            incidunt. Aliquam quam, libero distinctio sit, voluptate, saepe perspiciatis placeat porro
-                            eos error recusandae temporibus facere velit.
-                        </p>
-                        <!-- <p class="text-justify">
-                            Concernant les évènements, le décorateur <UKbd size="lg" class="kdb-text">Event</UKbd> va
-                            encore plus loin en simplifiant considérablement l'implémentation des handlers. Harmonix se
-                            charge automatiquement de relier l'évènement au gestionnaire correspondant et d'injecter les
-                            paramètres nécessaires directement dans la méthode <UKbd size="lg" class="kdb-text">execute
-                            </UKbd>. Ainsi, les données transportées par l'évènement sont résolues et typées sans
-                            configuration additionnelle, ce qui améliore la lisibilité, réduit le risque d'erreur et
-                            favorise une forte cohérence dans l'ensemble du système.
-                        </p> -->
-                    </div>
+                <section class="py-20 flex flex-col items-center justify-center gap-4">
+                    <p class="text-muted font-bold text-xl text-center">Contenu en cours de développement</p>
                 </section>
-                <!-- <section class="py-20 grid grid-cols-2 gap-4">
-                    <div class="space-y-3">
-                        <p class="text-justify">
-                            Harmonix a été conçu avec une architecture modulaire permettant l'ajout de fonctionnalités complémentaires selon les besoins de l'application. Parmi ces extensions figure le plugin Express, développé afin d'intégrer une couche HTTP complète au sein de l'écosystème Harmonix. Ce module permet de mettre en place une API REST structurée tout en conservant la cohérence architecturale du framework, notamment en matière d'injection de dépendances et d'organisation par responsabilités.
-                        </p>
-                        <p class="text-justify">
-                            L'intégration du plugin s'effectue simplement par sa déclaration et son initialisation dans le fichier <UKbd size="lg" class="kdb-text">index.ts</UKbd>. Une fois configuré, il devient possible de créer des contrôleurs et de définir des routes HTTP via des décorateurs dédiés tels que <UKbd class="kdb-text">@Controller</UKbd>, <UKbd class="kdb-text">@Get</UKbd> ou <UKbd class="kdb-text">@Post</UKbd>. Cette approche, inspirée des standards modernes du développement backend, favorise une structure claire, maintenable et adaptée à des applications évolutives.
-                        </p>
-                    </div>
-                    <Galery :images="images2"/>
-                </section> -->
                 <footer class="pb-20 text-center">
                     <p>
                         Le développement de RosyRP a été interrompu avant sa finalisation en raison de contraintes de
