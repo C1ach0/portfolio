@@ -15,6 +15,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@c1ach0/nppt": "^1.0.1",
     "@nuxt/ui": "^3.3.2",
     "@nuxtjs/proxy": "^2.1.0",
     "gsap": "^3.13.0",
@@ -26,6 +27,11 @@
     "vue-router": "latest"
   },
   "devDependencies": {
+    "@iconify-json/ic": "^1.2.4",
+    "@iconify-json/lucide": "^1.2.101",
+    "@iconify-json/material-symbols": "^1.2.65",
+    "@iconify-json/mdi": "^1.2.3",
+    "@iconify-json/skill-icons": "^1.2.4",
     "@tailwindcss/typography": "^0.5.16",
     "@types/intro.js": "^5.1.5"
   }

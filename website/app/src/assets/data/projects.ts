@@ -6,11 +6,11 @@ export const projects: ProjectData[] = [
     {
         slug: "harmonix",
         name: "HarmonixJS",
-        description: "HarmonixJS est un framework de développement de bots Discord en TypeScript, conçu pour simplifier la création et la gestion de fonctionnalités avancées telles que les commandes slash, les événements, la gestion des permissions et l'intégration avec des bases de données. Il vise à offrir une structure modulaire et extensible pour les développeurs de bots Discord.",
+        description: "HarmonixJS est un écosystème TypeScript construit au-dessus de Discord.js pour développer des bots Discord maintenables. Il regroupe un coeur orienté décorateurs, une CLI, des plugins officiels, un kit UI autonome et une documentation exploitable par les développeurs comme par les assistants IA.",
         previewImage: "https://avatars.githubusercontent.com/u/247443023?s=400&u=a5ee14f63343f440adb9f7d8ef302c33553635ee&v=4",
-        date: "2023-08-21",
+        date: "2026-06-30",
         techs: ["TypeScript", "NodeJS", "Discord", "Reflect-Metadata"],
-        types: ["Bot"],
+        types: ["Framework"],
         devFrom: "home"
     },
     {
@@ -23,20 +23,20 @@ export const projects: ProjectData[] = [
         types: ["API"],
         devFrom: "home"
     },
-    {
-        slug: "rosy-rp",
-        name: "RosyRP",
-        description: "RosyRP est une application ambitieuse permettant aux joueurs consoles de pratiquer du rôle-play sur GTA et d'autres jeux via Discord. Les utilisateurs interagissent avec le bot depuis leur téléphone. Les serveurs peuvent personnaliser entièrement l'expérience, en ajoutant des items, entreprises et autres fonctionnalités. J'ai développé ce projet pour répondre à de nombreuses demandes, malgré son caractère un peu niche.",
-        previewImage: "/__og-image__/image/projets/rosy-rp/og.png",
-        date: "2025-12-01",
-        techs: ["Nuxt", "TailwindCss", "Spring Boot", "Stripe", "DiscordJS"],
-        types: ["Website", "Bot", "API"],
-        devFrom: "home"
-    },
+    // {
+    //     slug: "rosy-rp",
+    //     name: "RosyRP",
+    //     description: "RosyRP est une application ambitieuse permettant aux joueurs consoles de pratiquer du rôle-play sur GTA et d'autres jeux via Discord. Les utilisateurs interagissent avec le bot depuis leur téléphone. Les serveurs peuvent personnaliser entièrement l'expérience, en ajoutant des items, entreprises et autres fonctionnalités. J'ai développé ce projet pour répondre à de nombreuses demandes, malgré son caractère un peu niche.",
+    //     previewImage: "/__og-image__/image/projets/rosy-rp/og.png",
+    //     date: "2025-12-01",
+    //     techs: ["Nuxt", "TailwindCss", "Spring Boot", "Stripe", "DiscordJS"],
+    //     types: ["Website", "Bot", "API"],
+    //     devFrom: "home"
+    // },
     {
         slug: "portfolio",
         name: "Portfolio",
-        description: "Ce portfolio est un projet que j'ai développé pour présenter mes compétences, mes projets et mon expérience de manière interactive et moderne. Construit avec TypeScript et Nuxt, il met en avant mes capacités à créer des interfaces réactives et performantes.",
+        description: "Ce portfolio est un projet que j'ai développé pour présenter mes compétences, mes projets et mon expérience de manière interactive et moderne. Construit avec TypeScript et Nuxt, il mets en avant mes capacités à créer des interfaces réactives et performantes.",
         previewImage: "/__og-image__/image/og.png",
         date: "2025-08-27",
         techs: ["TypeScript", "Nuxt", "TailwindCss"],
@@ -55,5 +55,17 @@ export const projects: ProjectData[] = [
         locationName: "ENSM-BPN",
         sndName: "Marine National",
         workingHours: (37 * 2 * 20) - 50
+    },
+    {
+        slug: "foxpile-companion",
+        name: "Foxpile Companion",
+        description: "Foxpile Companion est une application Windows qui surveille les fichiers de sauvegarde de Foxhole, génère des métadonnées fiables et envoie des mises à jour signées à l'API Foxpile. Les données collectées alimentent ensuite une base exploitable par les développeurs via une API dédiée.",
+        previewImage: "/__og-image__/image/projets/foxpile-companion/og.png",
+        date: "2026-05-01",
+        techs: ["TypeScript", "NodeJS", "NestJS", "Windows"],
+        types: ["Application", "API"],
+        devFrom: "home",
+        github: "https://github.com/C1ach0/foxhole-companion",
+        website: "https://compagnon-api.foxwar.net"
     }
 ]

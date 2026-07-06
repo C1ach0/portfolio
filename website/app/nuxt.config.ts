@@ -33,7 +33,7 @@ export default defineNuxtConfig({
     "./assets/main.css",
     "intro.js/introjs.css"
   ],
-  modules: ["@nuxt/ui", "nuxt-og-image"],
+  modules: ["@nuxt/ui", "nuxt-og-image", "@c1ach0/nppt"],
   ui: {
     colorMode: true,
   }

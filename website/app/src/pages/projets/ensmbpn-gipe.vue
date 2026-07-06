@@ -2,80 +2,154 @@
     <NuxtLayout>
         <template v-if="project">
             <ProjectInfo :project />
-            <article class="min-h-screen relative overflow-x-hidden max-w-6xl mx-auto px-2">
-                <header class="max-w-3xl mx-auto text-center space-y-5">
-                    <h1 class="text-4xl font-bold">Gestion Informatisée Pour l'Enseignement</h1>
-                    <p>
-                        GIPE est l'outil de Gestion Informatisée Pour l'Enseignement qui soutient l'activité pédagogique de l'école ENSM-BPN. Le projet s'inscrit dans une dynamique de transformation numérique de l'enseignement de la Marine, avec des leviers comme l'amélioration de la traçabilité pédagogique, la facilitation du pilotage des formations et la rationalisation des outils métiers.
-                    </p>
-                    <img :src="pageLoginHeader" alt="Présentation du projet GIPE. Page de connexion sur l'application">
-                    <SkillBadge :tech-uses="techUses" />
-                    <p class="mt-4">
-                        À mon arrivée, l'application était en cours de refonte afin d'améliorer la gestion des droits ainsi que l'intégration de plusieurs écoles. J'ai alors proposé à ma responsable de séparer le back-end du front-end. Cette idée a été bien accueillie, et le contexte s'y prêtait particulièrement, ce qui nous a conduits à engager une refonte complète du logiciel. 
-                    </p>
+            <article class="min-h-screen relative overflow-x-hidden mx-auto px-2">
+                <header class="text-center mt-4" v-nppt="{
+                    step: 1,
+                    title: 'Gestion Informatisée pour l\'Enseignement',
+                    keywords: [
+                        { label: 'G.I.P.E', tone: 'warn', size: 'xl' },
+                        { label: 'Pédagogie', tone: 'success', size: 'lg' },
+                        { label: 'RH', tone: 'warn', size: 'lg' },
+                        { label: 'Symfony', tone: 'warn', size: 'xl' },
+                        { label: 'Vue.js', tone: 'warn', size: 'xl' },
+                        { label: 'API', tone: 'warn', size: 'xl' },
+                        { label: 'Front', tone: 'warn', size: 'xl' },
+                    ]
+                }">
+                    <div class="max-w-3xl mx-auto space-y-5">
+                        <h1 class="text-4xl font-bold">Gestion Informatisée Pour l'Enseignement</h1>
+                        <p>
+                            GIPE est l'outil de Gestion Informatisée Pour l'Enseignement qui soutient l'activité
+                            pédagogique
+                            de l'école ENSM-BPN. Le projet s'inscrit dans une dynamique de transformation numérique de
+                            l'enseignement de la Marine, avec des leviers comme l'amélioration de la traçabilité
+                            pédagogique, la facilitation du pilotage des formations et la rationalisation des outils
+                            métiers.
+                        </p>
+                        <img :src="pageLoginHeader"
+                            alt="Présentation du projet GIPE. Page de connexion sur l'application">
+                        <SkillBadge :tech-uses="techUses" />
+                        <NpptHideOnPresentation>
+                            <p class="mt-4">
+                                À mon arrivée, l'application était en cours de refonte afin d'améliorer la gestion des
+                                droits
+                                ainsi que l'intégration de plusieurs écoles. J'ai alors proposé à ma responsable de
+                                séparer
+                                le
+                                back-end du front-end. Cette idée a été bien accueillie, et le contexte s'y prêtait
+                                particulièrement, ce qui nous a conduits à engager une refonte complète du logiciel.
+                            </p>
+                        </NpptHideOnPresentation>
+                    </div>
                 </header>
-                <section class="py-20 flex flex-col-reverse lg:grid grid-cols-2 gap-4 items-start">
-                    <Galery :images="images1" />
-                    <div class="space-y-3">
-                        <h2 class="text-2xl font-bold">Gestion de l'application</h2>
-                        <p class="text-justify">
-                            Afin de reprendre le projet dans de bonnes conditions, nous l'avons restructuré en deux
-                            services distincts : un site web et une API. Cette séparation nous a permis de mieux
-                            comprendre l'architecture de l'application et d'envisager son évolution, notamment en
-                            facilitant le développement futur d'autres applications pouvant s'y connecter.
-                        </p>
-                        <p class="text-justify">
-                            Dans un premier temps, avec cette nouvelle configuration, nous avons consacré plusieurs
-                            heures à concevoir un système modulable pour la gestion des groupes, ainsi qu'une méthode
-                            plus efficace pour administrer les rôles au sein de l'application.
-                        </p>
-                        <p class="text-justify">
-                            Pour y parvenir, je me suis appuyé sur différentes solutions avec lesquelles j'avais déjà
-                            travaillé, et nous avons retenu cette approche. Nous avons ainsi mis en place une table «
-                            Permissions », directement exploitée dans le code, puis défini des rôles regroupant
-                            plusieurs de ces permissions.
-                        </p>
-                        <p class="text-justify">
-                            Nous avons ensuite associé les rôles créés soit à des groupes, soit à des utilisateurs
-                            individuels via un système d'affectation. Cela nous a permis de développer une application
-                            dotée d'un système suffisamment modulable pour répondre aux besoins de notre école, et
-                            potentiellement à ceux d'autres établissements.
-                        </p>
-                    </div>
-                </section>
-                <section class="py-20 flex flex-col lg:grid grid-cols-2 gap-4">
-                    <div class="space-y-3">
+                <NpptHideOnPresentation>
+                    <section class="py-20 flex flex-col-reverse lg:grid grid-cols-2 gap-4 items-start max-w-6xl mx-auto">
+                        <Galery :images="images1" />
+                        <div class="space-y-3">
+                            <h2 class="text-2xl font-bold">Gestion de l'application</h2>
+                            <p class="text-justify">
+                                Afin de reprendre le projet dans de bonnes conditions, nous l'avons restructuré en deux
+                                services distincts : un site web et une API. Cette séparation nous a permis de mieux
+                                comprendre l'architecture de l'application et d'envisager son évolution, notamment en
+                                facilitant le développement futur d'autres applications pouvant s'y connecter.
+                            </p>
+                            <p class="text-justify">
+                                Dans un premier temps, avec cette nouvelle configuration, nous avons consacré plusieurs
+                                heures à concevoir un système modulable pour la gestion des groupes, ainsi qu'une
+                                méthode
+                                plus efficace pour administrer les rôles au sein de l'application.
+                            </p>
+                            <p class="text-justify">
+                                Pour y parvenir, je me suis appuyé sur différentes solutions avec lesquelles j'avais
+                                déjà
+                                travaillé, et nous avons retenu cette approche. Nous avons ainsi mis en place une table
+                                «
+                                Permissions », directement exploitée dans le code, puis défini des rôles regroupant
+                                plusieurs de ces permissions.
+                            </p>
+                            <p class="text-justify">
+                                Nous avons ensuite associé les rôles créés soit à des groupes, soit à des utilisateurs
+                                individuels via un système d'affectation. Cela nous a permis de développer une
+                                application
+                                dotée d'un système suffisamment modulable pour répondre aux besoins de notre école, et
+                                potentiellement à ceux d'autres établissements.
+                            </p>
+                        </div>
+                    </section>
+                </NpptHideOnPresentation>
+                <NpptShowOnPresentation>
+                    <section class="py-20 flex flex-col gap-4 max-w-6xl mx-auto" v-nppt="{
+                            step: 2,
+                            title: 'Gestion Informatisée pour l\'Enseignement',
+                            keywords: [
+                                { label: 'G.I.P.E', tone: 'warn', size: 'xl' },
+                                { label: 'Pédagogie', tone: 'success', size: 'lg' },
+                                { label: 'RH', tone: 'warn', size: 'lg' },
+                                { label: 'Symfony', tone: 'warn', size: 'xl' },
+                                { label: 'Vue.js', tone: 'warn', size: 'xl' },
+                                { label: 'API', tone: 'warn', size: 'xl' },
+                                { label: 'Front', tone: 'warn', size: 'xl' },
+                            ]
+                        }">
+                        <h2 class="text-2xl font-bold text-center">Gestion de l'application</h2>
+                        <div class="space-y-3 flex flex-col gap-4 items-center justify-center">
+                            <img :src="images1[0].url" :alt="images1[0].alt" class="rounded-lg shadow-md h-[30vh]">
+                            <img :src="images1[3].url" :alt="images1[3].alt" class="rounded-lg shadow-md h-[30vh]">
+                        </div>
+                    </section>
+                </NpptShowOnPresentation>
+                <NpptHideOnPresentation>
+                    <section class="py-20 flex flex-col lg:grid grid-cols-2 gap-4 max-w-6xl mx-auto">
+                        <div class="space-y-3">
+                            <h2 class="text-2xl font-bold">Gestion des personnes</h2>
+                            <p class="text-justify">
+                                Au sein de l'application, j'ai principalement contribué à la mise en place de la gestion
+                                des
+                                groupes et des rôles, mais également au développement complet du module de gestion des
+                                personnes : création, modification et assignation à des groupes. Pour cela, je me suis
+                                appuyé en partie sur l'ancienne version du système afin d'en analyser le fonctionnement
+                                et
+                                d'identifier précisément les besoins métiers, tout en veillant à moderniser et
+                                structurer
+                                davantage l'architecture existante.
+                            </p>
+                            <p class="text-justify">
+                                L'une des principales étapes a consisté à établir une liaison avec l'annuaire militaire.
+                                Cette intégration a représenté un défi important, puisque nous travaillions sur un
+                                réseau
+                                isolé, non directement connecté à celui de l'annuaire. J'ai donc dû concevoir un
+                                mécanisme
+                                d'échange et de synchronisation fiable, en réalisant de nombreux tests entre les
+                                environnements de développement et de préproduction. Après plusieurs phases de
+                                validation,
+                                l'intégration s'est révélée concluante, permettant la création de nouvelles personnes
+                                ainsi
+                                que l'importation et la mise à jour d'individus déjà présents dans l'annuaire.
+                            </p>
+                            <p class="text-justify">
+                                J'ai ensuite développé les fonctionnalités de modification des profils enregistrés. Cela
+                                inclut la mise à jour des informations professionnelles et personnelles, la gestion des
+                                véhicules associés, ainsi que le suivi des affectations. Une attention particulière a
+                                été
+                                portée à la cohérence des données, à la traçabilité des modifications et au respect des
+                                règles RGPD afin de garantir un système fiable, évolutif
+                                et conforme aux exigences opérationnelles.
+                            </p>
+                        </div>
+                        <Galery :images="images2" />
+                    </section>
+                </NpptHideOnPresentation>
+                <NpptShowOnPresentation>
+                    <section class="py-20 flex flex-col gap-4 max-w-2xl mx-auto">
                         <h2 class="text-2xl font-bold">Gestion des personnes</h2>
-                        <p class="text-justify">
-                            Au sein de l'application, j'ai principalement contribué à la mise en place de la gestion des
-                            groupes et des rôles, mais également au développement complet du module de gestion des
-                            personnes : création, modification et assignation à des groupes. Pour cela, je me suis
-                            appuyé en partie sur l'ancienne version du système afin d'en analyser le fonctionnement et
-                            d'identifier précisément les besoins métiers, tout en veillant à moderniser et structurer
-                            davantage l'architecture existante.
-                        </p>
-                        <p class="text-justify">
-                            L'une des principales étapes a consisté à établir une liaison avec l'annuaire militaire.
-                            Cette intégration a représenté un défi important, puisque nous travaillions sur un réseau
-                            isolé, non directement connecté à celui de l'annuaire. J'ai donc dû concevoir un mécanisme
-                            d'échange et de synchronisation fiable, en réalisant de nombreux tests entre les
-                            environnements de développement et de préproduction. Après plusieurs phases de validation,
-                            l'intégration s'est révélée concluante, permettant la création de nouvelles personnes ainsi
-                            que l'importation et la mise à jour d'individus déjà présents dans l'annuaire.
-                        </p>
-                        <p class="text-justify">
-                            J'ai ensuite développé les fonctionnalités de modification des profils enregistrés. Cela
-                            inclut la mise à jour des informations professionnelles et personnelles, la gestion des
-                            véhicules associés, ainsi que le suivi des affectations. Une attention particulière a été
-                            portée à la cohérence des données, à la traçabilité des modifications et au respect des
-                            règles RGPD afin de garantir un système fiable, évolutif
-                            et conforme aux exigences opérationnelles.
-                        </p>
-                    </div>
-                    <Galery :images="images2" />
-                </section>
-                <USeparator />
-                <section class="py-20 grid grid-cols-2 gap-4">
+                        <div class="space-y-3">
+                            <img :src="images1[0].url" :alt="images1[0].alt" class="rounded-lg shadow-md">
+                            <img :src="images1[3].url" :alt="images1[3].alt" class="rounded-lg shadow-md">
+                        </div>
+                    </section>
+                </NpptShowOnPresentation>
+                <USeparator class="max-w-6xl mx-auto" />
+                <section class="py-20 grid grid-cols-2 gap-4 max-w-6xl mx-auto">
                     <Galery :images="images3" />
                     <div class="space-y-3">
                         <h2 class="text-2xl font-bold">Mise en place des librairies</h2>
@@ -94,7 +168,7 @@
 
                     </div>
                 </section>
-                <section class="py-20">
+                <section class="py-20 max-w-6xl mx-auto">
                     <div class="space-y-3">
                         <h2 class="text-2xl font-bold">Gestion de la base de donnée</h2>
                         <p class="text-justify">
@@ -116,7 +190,7 @@
                         </p>
                     </div>
                 </section>
-                <section class="py-20 grid grid-cols-2 gap-4">
+                <section class="py-20 grid grid-cols-2 gap-4 max-w-6xl mx-auto">
                     <Galery :images="images4" />
                     <div class="space-y-3">
                         <h2 class="text-2xl font-bold">Mise en ligne</h2>
@@ -140,13 +214,13 @@
                         </p>
                     </div>
                 </section>
-                <section class="py-20 space-y-5">
+                <section class="py-20 space-y-5 max-w-6xl mx-auto">
                     <h2 class="text-center font-bold text-2xl">Autres fonctionnalités ajoutées à l'application</h2>
                     <div class="flex flex-col lg:grid grid-cols-3 gap-3">
                         <ImageDesc v-for="(img, n) in imagesOthers" :key="n" :image="img" />
                     </div>
                 </section>
-                <footer class="pb-20 text-center">
+                <footer class="pb-20 text-center max-w-6xl mx-auto">
                     <p>
                         Je tiens à remercier l'ensemble de l'équipe pour son engagement, sa collaboration et son
                         implication tout au long du développement de l'application. Leur contribution a été essentielle
@@ -304,8 +378,8 @@ const images2 = [
 
 import jfrog from "~/assets/data/images/projects/ensmbpn-gipe/jfrog.png";
 const images3 = [
-    { 
-        url: jfrog, 
+    {
+        url: jfrog,
         alt: "Outil de gestion de librairies informatiques (NPM, COmposer, ...)",
         description: "Exemple de la vue de l'outil JFrog"
     }

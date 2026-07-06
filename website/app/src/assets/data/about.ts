@@ -32,6 +32,7 @@ export const about: AboutAll = {
             description: "En alternance à l'ENSM-BPN, j'ai contribué au développement d'une plateforme de gestion scolaire type Pronote/Moodle, axée sur les enseignants et la programmation de cours. Réalisée en PHP (Symfony), Vue.js et TailwindCSS, elle facilite la gestion RH et le suivi pédagogique.",
             from: "Marine Nationale",
             start: "09/2024",
+            end: "06/2026",
             link: "https://www.defense.gouv.fr/marine"
         }
     ],
@@ -48,6 +49,7 @@ export const about: AboutAll = {
             description: "Je poursuis un BTS Services Informatiques aux Organisations (SLAM), consolidant mes connaissances tout en découvrant de nouvelles technologies. Cette alternance me permet de mettre en pratique mes acquis et d'explorer des outils modernes pour répondre aux besoins des entreprises.",
             from: "Lycée Bonaparte",
             start: "09/2024",
+            end: "06/2026",
             link: "https://bts-sio.lyc-bonaparte.fr"
         }
     ]
@@ -58,6 +60,6 @@ export const coffees: Coffee[] = [
         company: "Marine National",
         subName: "ENSM-BPN",
         path: "/coffees/ensmbpn.jpg",
-        // end: "2025-04"
+        end: "2025-06"
     }
 ]

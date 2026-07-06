@@ -108,7 +108,23 @@
             <p class="text-sm text-mutted text-center">...</p>
         </section>
         <section id="career" class="py-40 relative overflow-hidden flex items-center justify-center">
-            <div class="container mx-auto px-6 relative z-10 flex flex-col items-center">
+            <div class="container mx-auto px-6 relative z-10 flex flex-col items-center"
+                v-nppt="{
+                    step: 2,
+                    title: 'Parcours Professionnel',
+                    note: 'Présentation de mon parcours professionnel',
+                    keywords: [
+                        { label: 'Chez webforce3', tone: 'info', size: 'lg' },
+                        { label: 'Aesis Conseil', tone: 'success', size: 'xl' },
+                        { label: 'ENSM-BPN', tone: 'warning', size: 'xl' },
+                        { label: 'cadre militaire', tone: 'error', size: 'lg' },
+                        { label: '600 el', tone: 'info', size: 'lg' },
+                        { label: '50/100 inst', tone: 'info', size: 'lg' },
+                        { label: 'intranet', tone: 'info', size: 'lg' },
+                        { label: 'réseau fermé + deconnecté', tone: 'info', size: 'lg' },
+                    ],
+                    next: '/projets'
+                }">
                 <div class="mb-12 text-center">
                     <h2 ref="careerTitle" class="text-4xl md:text-5xl font-bold text-rose-500 dark:text-rose-400 mb-4">
                         Mon Parcours
@@ -151,7 +167,19 @@
         </section>
         <section id="school" class="py-40 relative overflow-hidden flex items-center justify-center">
             <div ref="schoolSection" class="container mx-auto px-6 relative z-10 flex flex-col items-center"
-                data-intro-id="school-section">
+                v-nppt="{
+                    step: 1,
+                    title: 'Formation',
+                    note: 'Présentation des formations éffectuer',
+                    keywords: [
+                        { label: 'Aventure', tone: 'info', size: 'xl' },
+                        { label: 'Bac Pro Melec (Elec)', tone: 'info', size: 'lg' },
+                        { label: 'vision futur', tone: 'error', size: 'lg' },
+                        { label: '(echec) BTS SIO Alt', tone: 'info', size: 'lg' },
+                        { label: 'Webforce3', tone: 'success', size: 'lg' },
+                        { label: 'BTS SIO Alt', tone: 'warning', size: 'lg' }
+                    ]
+                }">
                 <div class="mb-12 text-center">
                     <h2 ref="schoolTitle" class="text-4xl md:text-5xl font-bold text-rose-500 dark:text-rose-400 mb-4">
                         Ma Formation
@@ -246,9 +274,6 @@ defineSchema([
     }
 ])
 
-const route = useRoute()
-const { registerSteps } = useIntro()
-
 // Template refs
 const aboutContent = useTemplateRef("aboutContent");
 const skillContent = useTemplateRef("skillContent");
@@ -284,14 +309,6 @@ const introSteps = [
 
 onMounted(async () => {
     gsap.registerPlugin(ScrollTrigger)
-
-    // Enregistrer les steps pour l'intro si elle est active
-    if (route.query.intro === 'start') {
-        await nextTick()
-        await new Promise(resolve => setTimeout(resolve, 100))
-        await registerSteps('about', introSteps)
-        console.log('📝 Registered steps for about page')
-    }
 
     // About section animations
     const aboutTl = gsap.timeline({

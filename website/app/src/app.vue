@@ -1,7 +1,8 @@
 <template>
   <UApp>
-    <IntroConfig v-model:isOpen="open"/>
     <NuxtPage/>
+    <!-- <NpptPresenter />
+    <NpptLauncher label="Démarrer la présentation" class="fixed z-50 bottom-4 right-4 hover:-rotate-2 ease-in-out duration-250 shadow"/> -->
   </UApp>
 </template>
 

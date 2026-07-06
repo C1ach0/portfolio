@@ -1,7 +1,7 @@
 <template>
     <NuxtLayout>
         <header id="hero" class="h-screen flex items-center justify-center relative">
-            <div ref="heroContent" class="text-center z-10 .introHeroContent" data-intro-id="1">
+            <div ref="heroContent" class="text-center z-10">
                 <h1 ref="heroTitle" class="text-6xl md:text-8xl font-bold mb-6 opacity-0">
                     <span class="text-rose-500 dark:text-rose-400">Maxence</span><br>
                     <span class="dark:text-white">Bessi</span>
@@ -242,8 +242,6 @@ defineMeta({
     }
 })
 
-const { initScenario, registerSteps } = useIntro()
-
 // Template refs
 const heroContent = useTemplateRef("heroContent");
 const heroTitle = useTemplateRef("heroTitle");
@@ -334,39 +332,9 @@ function toggleAutoRotate() {
         stopAutoRotate();
     }
 }
-
-const introSteps = [
-    {
-        element: '[data-intro-id="1"]',
-        intro: "Bienvenue sur mon portfolio ! Je suis Maxence Bessi, développeur Full Stack passionné.",
-        title: "Présentation"
-    },
-    {
-        element: '[data-intro-id="2"]',
-        intro: "Découvrez mon parcours, mes compétences et les technologies que j'utilise au quotidien.",
-        title: "À propos de moi"
-    },
-    {
-        element: '[data-intro-id="3"]',
-        intro: "Voici mon parcours professionnel, de mes débuts à aujourd'hui.",
-        position: "bottom",
-        title: "Mon parcours"
-    }
-]
-
 onMounted(async () => {
     startAutoRotate()
     gsap.registerPlugin(ScrollTrigger)
-
-    // Enregistrer les steps pour l'intro si elle est active
-    const route = useRoute()
-    if (route.query.intro === 'start') {
-        await nextTick()
-        await new Promise(resolve => setTimeout(resolve, 100))
-        const { registerSteps } = useIntro()
-        await registerSteps('home', introSteps)
-        console.log('📝 Registered steps for home page')
-    }
 
     // Hero animations
     const tl = gsap.timeline()
